@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "8976707c107da1fd56cd",
+  "displayName": "Revenue KPIs",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "947d8e9fa2eb9b328cd1",
+      "target": "9e930d5c2d48c3406a52",
+      "type": "NoFilter"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "6aa4229f1bac40e25d56",
+  "displayName": "Net Income & Profitability",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "e7b4a1af31cb57ca0e2d",
+      "target": "d7d59e00416860d33a9b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e7b4a1af31cb57ca0e2d",
+      "target": "cc5c0b3b8d6a47212995",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e7b4a1af31cb57ca0e2d",
+      "target": "ce28ef7c80130d3b008d",
+      "type": "NoFilter"
+    }
+  ]
+}

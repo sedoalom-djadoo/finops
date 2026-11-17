@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "be42f3f1882be0168027",
+  "displayName": "Expense Analysis KPIs",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "41acf32f802edbb09e19",
+      "target": "c64affc9a2a3d7600bd8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5f86cefa0a4eb29a91ea",
+      "target": "c20e89a71369e50817a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "41acf32f802edbb09e19",
+      "target": "c20e89a71369e50817a3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5f86cefa0a4eb29a91ea",
+      "target": "a74995da63d14c2c7600",
+      "type": "DataFilter"
+    },
+    {
+      "source": "5f86cefa0a4eb29a91ea",
+      "target": "0bbc22df6c728cbcc208",
+      "type": "NoFilter"
+    }
+  ]
+}

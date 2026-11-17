@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "860bc7a5e7cea29a8814",
+  "displayName": "Balance Sheet & Solvency",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "5b59b99e90a068ed88ab",
+      "target": "03901ad9a0240cb1ee0c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5b59b99e90a068ed88ab",
+      "target": "6558259ce1b091b0d03c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "5b59b99e90a068ed88ab",
+      "target": "e87a4363a83313296a1a",
+      "type": "NoFilter"
+    }
+  ]
+}

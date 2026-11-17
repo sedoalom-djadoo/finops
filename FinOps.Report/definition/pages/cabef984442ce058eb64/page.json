@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "cabef984442ce058eb64",
+  "displayName": "Gross Margin KPIs",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "672211045dacb7755d58",
+      "target": "1d0b1a2556637d4e00de",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7d3bf03401b6bcaa4a85",
+      "target": "cc6992e9be52e080b69d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "672211045dacb7755d58",
+      "target": "cc6992e9be52e080b69d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7d3bf03401b6bcaa4a85",
+      "target": "dd7ce490c53e685811b4",
+      "type": "DataFilter"
+    }
+  ]
+}
