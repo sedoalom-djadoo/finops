@@ -1,0 +1,329 @@
+table DimAccount
+	lineageTag: 66299ff4-53cf-443b-8967-83be164edd9e
+
+	measure DoublonCheck =
+			
+			COUNTROWS(
+			    FILTER(
+			        DimAccount,
+			        CALCULATE(COUNTROWS(DimAccount), ALLEXCEPT(DimAccount, DimAccount[AccountNumber])) > 1
+			    )
+			)
+		formatString: 0
+		lineageTag: 76c113cb-3f9c-4169-bd90-4d23c9cbaf8e
+
+	column ExpenseCategory
+		dataType: string
+		lineageTag: bf4652a7-ca72-4337-91b7-85a6ed7f86b2
+		summarizeBy: none
+		sourceColumn: ExpenseCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsDirectCost
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: faeade71-7acb-4621-a30d-1a89f47a9563
+		summarizeBy: none
+		sourceColumn: IsDirectCost
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSREDCredit
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8e9f5911-1649-4855-8562-27fa65e521ce
+		summarizeBy: none
+		sourceColumn: IsSREDCredit
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountName
+		dataType: string
+		lineageTag: f6fd53fe-ef07-4d69-9394-56a8d42a2024
+		summarizeBy: none
+		sourceColumn: AccountName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountType
+		dataType: string
+		lineageTag: ac3fc97d-580b-49b8-b7a2-87f2f043e5ba
+		summarizeBy: none
+		sourceColumn: AccountType
+
+		annotation SummarizationSetBy = Automatic
+
+	column DetailType
+		dataType: string
+		lineageTag: f75a62c1-9f03-4c3b-91f6-cee82d58f196
+		summarizeBy: none
+		sourceColumn: DetailType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 09e86799-9516-4bba-b61b-8e6c4a512b22
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountSource
+		dataType: string
+		lineageTag: 619f603e-5890-4d0e-8f11-be6fb57913b6
+		summarizeBy: none
+		sourceColumn: AccountSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExpenseType
+		dataType: string
+		lineageTag: c2601417-dccc-425d-ad64-0ccdfed6a4f7
+		summarizeBy: none
+		sourceColumn: ExpenseType
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsNonRecurring
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a252b6ec-9546-4b0c-901d-09c3280bcd40
+		summarizeBy: none
+		sourceColumn: IsNonRecurring
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountNumber
+		dataType: string
+		lineageTag: 5f038df7-c62f-47ba-b6a8-1666ed867fee
+		summarizeBy: none
+		sourceColumn: AccountNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column BalanceSheetSection
+		dataType: string
+		lineageTag: 6b287222-fded-4e84-8c13-64059c1f4603
+		summarizeBy: none
+		sourceColumn: BalanceSheetSection
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsCurrent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 29ca4b78-e8d1-4382-a346-bdb5f0b8f6b8
+		summarizeBy: none
+		sourceColumn: IsCurrent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lender
+		dataType: string
+		lineageTag: ff1e56bf-e255-4dfd-a19a-b64130e7c48e
+		summarizeBy: none
+		sourceColumn: Lender
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimAccount = m
+		mode: import
+		source =
+				let
+				    // ── BLOC 1 : Chart of Accounts (base officielle) ──────────────────────────
+				    Source = Excel.Workbook(File.Contents(DataFolder & "Chart_of_Accounts.xlsx"), false, true),
+				    Sheet = Source{[Item="Sheet2",Kind="Sheet"]}[Data],
+				    BufferedSheet = Table.Buffer(Sheet),
+				    SkipTopRows = Table.Skip(BufferedSheet, 4),
+				    SelectCols = Table.SelectColumns(SkipTopRows, {"Column1", "Column2", "Column3", "Column4", "Column5"}),
+				    RenameColumns = Table.RenameColumns(SelectCols, {
+				        {"Column1", "AccountNumber"},
+				        {"Column2", "AccountName"},
+				        {"Column3", "AccountType"},
+				        {"Column4", "DetailType"},
+				        {"Column5", "Currency"}
+				    }),
+				    FilterNulls = Table.SelectRows(RenameColumns, each [AccountNumber] <> null),
+				    AddAccountNumberBase = Table.AddColumn(FilterNulls, "AccountNumberBase", each
+				        try Number.From([AccountNumber]) otherwise
+				        try Number.From(Text.BeforeDelimiter(Text.From([AccountNumber]), "-")) otherwise null
+				    , type number),
+				    FilterNumericOnly = Table.SelectRows(AddAccountNumberBase, each [AccountNumberBase] <> null),
+				    AccountNumberAsText = Table.TransformColumnTypes(FilterNumericOnly, {{"AccountNumber", type text}}),
+				    COA_Typed = Table.TransformColumnTypes(AccountNumberAsText, {
+				        {"AccountName", type text},
+				        {"AccountType", type text},
+				        {"DetailType", type text},
+				        {"Currency", type text}
+				    }),
+				    COA_AddSource = Table.AddColumn(COA_Typed, "AccountSource", each "COA", type text),
+				
+				    // ── BLOC 2 : Comptes orphelins actifs dans FactTransactions ────────────────
+				    GL_Distinct = Table.Distinct(
+				        Table.SelectColumns(FactTransactions, {"AccountNumber", "AccountRaw"})
+				    ),
+				    GL_WithBase = Table.AddColumn(GL_Distinct, "AccountNumberBase", each
+				        try Number.From(Text.Trim([AccountNumber])) otherwise
+				        try Number.From(Text.BeforeDelimiter(Text.Trim([AccountNumber]), "-")) otherwise null
+				    , type number),
+				    GL_ValidOnly = Table.SelectRows(GL_WithBase, each [AccountNumberBase] <> null),
+				    COA_TextList = List.Distinct(COA_AddSource[AccountNumber]),
+				    GL_Orphans = Table.SelectRows(GL_ValidOnly, each not List.Contains(COA_TextList, Text.Trim([AccountNumber]))),
+				    Orphans_AddName = Table.AddColumn(GL_Orphans, "AccountName", each
+				        Text.Trim(Text.AfterDelimiter([AccountRaw], " "))
+				    , type text),
+				    Orphans_Final = Table.AddColumn(Orphans_AddName, "AccountType", each "Unknown (GL only)", type text),
+				    Orphans_Final2 = Table.AddColumn(Orphans_Final, "DetailType", each null, type text),
+				    Orphans_Final3 = Table.AddColumn(Orphans_Final2, "Currency", each "CAD", type text),
+				    Orphans_Final4 = Table.AddColumn(Orphans_Final3, "AccountSource", each "GL-only", type text),
+				    Orphans_AccountNumberText = Table.TransformColumnTypes(Orphans_Final4, {{"AccountNumber", type text}}),
+				    Orphans_Selected = Table.SelectColumns(Orphans_AccountNumberText,
+				        {"AccountNumber", "AccountNumberBase", "AccountName", "AccountType", "DetailType", "Currency", "AccountSource"}
+				    ),
+				    COA_Selected = Table.SelectColumns(COA_AddSource,
+				        {"AccountNumber", "AccountNumberBase", "AccountName", "AccountType", "DetailType", "Currency", "AccountSource"}
+				    ),
+				
+				    // ── BLOC 2bis : Compte synthétique — "Profit for the year" ──────────────────
+				    SyntheticAccounts = Table.FromRows(
+				        {
+				            {"99999", 99999, "Profit for the year", "Synthetic (no QB account)", null, "CAD", "Synthetic"}
+				        },
+				        {"AccountNumber", "AccountNumberBase", "AccountName", "AccountType", "DetailType", "Currency", "AccountSource"}
+				    ),
+				    SyntheticTyped = Table.TransformColumnTypes(SyntheticAccounts, {
+				        {"AccountNumber", type text}, {"AccountNumberBase", type number},
+				        {"AccountName", type text}, {"AccountType", type text},
+				        {"DetailType", type text}, {"Currency", type text}, {"AccountSource", type text}
+				    }),
+				
+				    // ── BLOC 3 : Union ──────────────────────────────────────────────────────────
+				    Combined = Table.Combine({COA_Selected, Orphans_Selected, SyntheticTyped}),
+				
+				    // ── BLOC 4 : ExpenseCategory — logique bâtie sur AccountNumberBase ──────────
+				    AddCategory = Table.AddColumn(Combined, "ExpenseCategory", each
+				        if [AccountNumberBase] = 99999 then "Balance Sheet Accounts"
+				        else if [AccountNumberBase] = 40001 then "Revenue"
+				        else if List.Contains({40098, 40200, 40210}, [AccountNumberBase]) then "Other Income"
+				        else if [AccountNumberBase] = 81001 then "Other Expenses (Non-Operating)"
+				        else if [AccountNumberBase] < 40000 then "Balance Sheet Accounts"
+				        else if List.Contains({50100, 50120, 50150, 50155, 50160}, [AccountNumberBase]) then "Direct Research Costs"
+				        else if [AccountNumberBase] = 60005 then "Subcontractor Expense"
+				        else if [AccountNumberBase] = 50184 then "SRED Tax Credit"
+				        else if [AccountNumberBase] = 50185 then "Prior-Year R&D Credit"
+				        else if List.Contains({60010, 60020, 60030, 60040, 60050}, [AccountNumberBase]) then "Payroll"
+				        else if [AccountNumberBase] = 60021 then "Payroll"
+				        else if List.Contains({60110, 60120, 60121}, [AccountNumberBase]) then "Sales & Representation"
+				        else if List.Contains({60200, 60250, 60300, 60400}, [AccountNumberBase]) then "Travel & Accommodation"
+				        else if [AccountNumberBase] = 60501 then "Occupancy"
+				        else if List.Contains({70100, 70120, 70125, 70130, 70135, 70140, 70160, 70190}, [AccountNumberBase]) then "Office & Operations"
+				        else if List.Contains({70300, 70310}, [AccountNumberBase]) then "Repairs & Maintenance"
+				        else if List.Contains({70400, 70600}, [AccountNumberBase]) then "Insurance & Licenses"
+				        else if List.Contains({70800, 70801, 70830}, [AccountNumberBase]) then "Professional Fees"
+				        else if List.Contains({70840, 70900, 80001}, [AccountNumberBase]) then "Other General Expenses"
+				        else if [AccountNumberBase] = 80900 then "Other General Expenses"
+				        else if List.Contains({80010, 80020, 80030, 80040, 80050, 80070, 80085, 80090, 80100}, [AccountNumberBase]) then "Depreciation & Amortization"
+				        else if List.Contains({80505, 80506, 80507, 80520, 80530, 80540}, [AccountNumberBase]) then "Financial Charges"
+				        else if List.Contains({90900, 90910}, [AccountNumberBase]) then "Income Taxes"
+				        else "Uncategorized"
+				    , type text),
+				
+				    // ── BLOC 5 : ExpenseType — dérivé de la catégorie ────────────────────────────
+				    ExpenseTypeMap = [
+				        #"Revenue" = "Revenue",
+				        #"Other Income" = "OtherIncome",
+				        #"Other Expenses (Non-Operating)" = "NonOperating",
+				        #"Balance Sheet Accounts" = "BalanceSheet",
+				        #"Direct Research Costs" = "Direct",
+				        #"Subcontractor Expense" = "Direct",
+				        #"SRED Tax Credit" = "Direct",
+				        #"Prior-Year R&D Credit" = "Direct",
+				        #"Payroll" = "Direct",
+				        #"Sales & Representation" = "Operating",
+				        #"Travel & Accommodation" = "Operating",
+				        #"Occupancy" = "Operating",
+				        #"Office & Operations" = "Operating",
+				        #"Repairs & Maintenance" = "Operating",
+				        #"Insurance & Licenses" = "Operating",
+				        #"Professional Fees" = "Operating",
+				        #"Other General Expenses" = "Operating",
+				        #"Depreciation & Amortization" = "Depreciation",
+				        #"Financial Charges" = "Financial",
+				        #"Income Taxes" = "Tax",
+				        #"Uncategorized" = "Uncategorized"
+				    ],
+				    AddExpenseType = Table.AddColumn(AddCategory, "ExpenseType", each
+				        Record.FieldOrDefault(ExpenseTypeMap, [ExpenseCategory], "Uncategorized")
+				    , type text),
+				
+				    // ── BLOC 6 : Flags ────────────────────────────────────────────────────────
+				    AddIsDirectCost = Table.AddColumn(AddExpenseType, "IsDirectCost", each
+				        List.Contains({"Direct Research Costs", "Subcontractor Expense", "Payroll"}, [ExpenseCategory])
+				    , type logical),
+				    AddIsSREDCredit = Table.AddColumn(AddIsDirectCost, "IsSREDCredit", each
+				        [AccountNumberBase] = 50184
+				    , type logical),
+				    AddIsNonRecurring = Table.AddColumn(AddIsSREDCredit, "IsNonRecurring", each
+				        List.Contains({70801, 50185, 80001, 80090}, [AccountNumberBase])
+				    , type logical),
+				
+				    // ── BLOC 6bis : Override manuel — BalanceSheetSection pour comptes sans AccountType réel ──
+				    ManualBSMap = [
+				        #"30189" = "Liability",
+				        #"30171" = "Liability",
+				        #"30115" = "Liability",
+				        #"20500" = "Asset",
+				        #"20112" = "Asset",
+				        #"20109" = "Asset",
+				        #"20105" = "Asset",
+				        #"99999" = "Equity"
+				    ],
+				    AddBalanceSheetSection = Table.AddColumn(AddIsNonRecurring, "BalanceSheetSection", each
+				        if List.Contains({"Bank","Accounts receivable (A/R)","Current assets","Property, plant and equipment","Long-term Assets"}, [AccountType]) then "Asset"
+				        else if List.Contains({"Accounts payable (A/P)","Credit Card","Other Current Liabilities","Long-term Liabilities"}, [AccountType]) then "Liability"
+				        else if [AccountType] = "Equity" then "Equity"
+				        else Record.FieldOrDefault(ManualBSMap, [AccountNumber], null)
+				    , type text),
+				
+				    // ── BLOC 6ter : IsCurrent ──────────────────────────────────────────────────
+				    ManualCurrentMap = [
+				        #"30189" = false,
+				        #"30171" = true,
+				        #"30115" = true,
+				        #"20500" = false,
+				        #"20112" = true,
+				        #"20109" = true,
+				        #"20105" = true
+				    ],
+				    AddIsCurrent = Table.AddColumn(AddBalanceSheetSection, "IsCurrent", each
+				        if List.Contains({"Bank","Accounts receivable (A/R)","Current assets","Accounts payable (A/P)","Credit Card","Other Current Liabilities"}, [AccountType]) then true
+				        else if List.Contains({"Property, plant and equipment","Long-term Assets","Long-term Liabilities"}, [AccountType]) then false
+				        else Record.FieldOrDefault(ManualCurrentMap, [AccountNumber], null)
+				    , type logical),
+				
+				    // ── BLOC 6quater : Lender — NOUVEAU, requis pour Long-term Debt by Lender ──
+				    LenderMap = [
+				        #"30184" = "Harbour Bank",
+				        #"30185" = "Harbour Bank",
+				        #"30189" = "Summit Capital",
+				        #"30190" = "Summit Capital",
+				        #"30191" = "Summit Capital",
+				        #"30192" = "Summit Capital",
+				        #"30193" = "Summit Capital",
+				        #"30194" = "Summit Capital"
+				    ],
+				    AddLender = Table.AddColumn(AddIsCurrent, "Lender", each
+				        Record.FieldOrDefault(LenderMap, [AccountNumber], null)
+				    , type text),
+				
+				    // ── BLOC 7 : Nettoyage — retire la colonne helper numérique ───────────────
+				    RemoveHelperColumn = Table.RemoveColumns(AddLender, {"AccountNumberBase"})
+				in
+				    RemoveHelperColumn
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

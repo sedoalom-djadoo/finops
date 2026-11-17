@@ -1,0 +1,6 @@
+expression DataFolder = "C:\PBI\finops\data\raw\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 80260bba-650b-4a00-851c-003f9b55d6fb
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text

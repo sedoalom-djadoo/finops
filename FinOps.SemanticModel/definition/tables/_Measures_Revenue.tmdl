@@ -1,0 +1,241 @@
+table _Measures_Revenue
+	lineageTag: e2bdfc13-c83c-4140-967d-2afb2b24628a
+
+	measure 'Total Revenue' =
+			
+			SUM(FactRevenue[Amount_CAD])
+		formatString: #,0.0
+		lineageTag: 8eff8fb6-58d8-4126-bc54-ceb458c0b253
+
+	measure 'Revenue Prior Year' =
+			
+			CALCULATE(
+			    [Total Revenue],
+			    SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) )
+			)
+		formatString: #,0
+		lineageTag: 7bbe9d03-6701-4eba-8fa1-2186b2468e6c
+
+	measure 'Revenue YOY Growth %' =
+			
+			IF(
+			    ISBLANK([Revenue Prior Year]),
+			    BLANK(),
+			    DIVIDE([Total Revenue] - [Revenue Prior Year], [Revenue Prior Year])
+			)
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 4e72fd87-679f-4795-979a-f663bd811c4e
+
+	/// Billing revenue from the start of the fiscal year (September) to the selected date.
+	measure 'Revenue YTD' = ```
+			TOTALYTD ( [Total Revenue], DimDate[Date], "08-31" )
+			```
+		lineageTag: 251d5ac6-2872-4e34-a772-b0346edeacae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Same fiscal-year-to-date window one year earlier, limited to the dates that have data this year (like-for-like).
+	measure 'Revenue Prior Year YTD' = ```
+			CALCULATE ( [Revenue YTD], SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) ) )
+			```
+		lineageTag: 16f063a1-af07-4bc3-b936-75112a429634
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Average invoice value in CAD. USD invoices (A/R 12001) are converted with the monthly Bank of Canada rate.
+	measure 'Avg Revenue per Invoice' = ```
+			VAR InvoicesCAD =
+			    SUMX (
+			        FactInvoices,
+			        VAR Rate =
+			            IF (
+			                FactInvoices[OriginalCurrency] = "USD",
+			                LOOKUPVALUE (
+			                    DimExchangeRate[USD_CAD_Rate],
+			                    DimExchangeRate[YearMonthKey], YEAR ( FactInvoices[TransactionDate] ) * 100 + MONTH ( FactInvoices[TransactionDate] )
+			                ),
+			                1
+			            )
+			        RETURN FactInvoices[Amount_Raw] * Rate
+			    )
+			RETURN
+			    DIVIDE ( InvoicesCAD, COUNTROWS ( FactInvoices ), 0 )
+			```
+		lineageTag: 11f76830-75ca-4147-904c-51d24c48a0d8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue QB' =
+			
+			CALCULATE(
+			    SUM(FactPL[Amount]),
+			    FactPL[AccountNumber] = "40001"
+			)
+		formatString: #,0
+		lineageTag: 14c12fa6-df89-4d4c-886c-993737e31998
+
+	measure 'Revenue Billing' =
+			
+			[Total Revenue]
+		formatString: #,0
+		lineageTag: 50aa1183-c103-4552-9fd8-fb28bee3a16e
+
+	measure 'Revenue Reconciliation Gap' =
+			
+			[Revenue Billing] - [Revenue QB]
+		formatString: #,0
+		lineageTag: a07f9d65-9ade-41b2-87a2-279537ef8378
+
+	measure 'Revenue YTD YOY Growth %' =
+			
+			IF(
+			    ISBLANK([Revenue Prior Year YTD]),
+			    BLANK(),
+			    DIVIDE([Revenue YTD] - [Revenue Prior Year YTD], [Revenue Prior Year YTD])
+			)
+		lineageTag: cc92be31-fb73-4ebe-bb78-ba84ed70c2ac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Revenue Prior Year Variance' =
+			
+			IF(
+			    ISBLANK([Revenue Prior Year]),
+			    "No prior year data",
+			    VAR _growth = [Revenue YOY Growth %]
+			    VAR _delta = [Total Revenue] - [Revenue Prior Year]
+			    VAR _arrow = IF(_growth >= 0, "▲ +", "▼ ")
+			    VAR _pct = FORMAT(ABS(_growth), "0.0%")
+			    VAR _sign = IF(_delta >= 0, "+", "-")
+			    VAR _abs = _sign & FORMAT(ABS(_delta) / 1000000, "0.00") & "M"
+			    RETURN _arrow & _pct & " | " & _abs & " vs PY"
+			)
+		lineageTag: fba3d9b8-b521-429d-ab15-51c2d4c15d49
+
+	measure 'Avg Revenue per Invoice Prior Year Variance' =
+			
+			VAR _py = CALCULATE([Avg Revenue per Invoice], SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) ))
+			RETURN
+			IF(
+			    ISBLANK(_py),
+			    "No prior year data",
+			    VAR _current = [Avg Revenue per Invoice]
+			    VAR _delta = _current - _py
+			    VAR _growth = DIVIDE(_delta, _py)
+			    VAR _arrow = IF(_growth >= 0, "▲ +", "▼ ")
+			    VAR _pct = FORMAT(ABS(_growth), "0.0%")
+			    VAR _sign = IF(_delta >= 0, "+", "-")
+			    VAR _abs = _sign & FORMAT(ABS(_delta) / 1000, "0.0") & "K"
+			    RETURN _arrow & _pct & " | " & _abs & " vs PY"
+			)
+		lineageTag: 18f929e1-4b07-4653-bbc3-d00facbf7abf
+
+	measure 'Avg Revenue per Invoice YOY Growth %' =
+			
+			VAR _current = [Avg Revenue per Invoice]
+			VAR _py = CALCULATE([Avg Revenue per Invoice], SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) ))
+			RETURN
+			IF(ISBLANK(_py), BLANK(), DIVIDE(_current - _py, _py))
+		lineageTag: 3499a5d6-fd14-4210-a4ef-2b207b184b3a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue YTD Prior Year Variance' =
+			
+			IF(
+			    ISBLANK([Revenue Prior Year YTD]),
+			    "No prior year data",
+			    VAR _current = [Revenue YTD]
+			    VAR _py = [Revenue Prior Year YTD]
+			    VAR _delta = _current - _py
+			    VAR _growth = DIVIDE(_delta, _py)
+			    VAR _arrow = IF(_growth >= 0, "▲ +", "▼ ")
+			    VAR _pct = FORMAT(ABS(_growth), "0.0%")
+			    VAR _sign = IF(_delta >= 0, "+", "-")
+			    VAR _abs = _sign & FORMAT(ABS(_delta) / 1000000, "0.00") & "M"
+			    RETURN _arrow & _pct & " | " & _abs & " vs PY"
+			)
+		lineageTag: 51ece84b-35b0-46d7-99dd-c6b620e27f4a
+
+	/// Alias of [Revenue Prior Year], kept for the site chart.
+	measure 'Revenue by Site Prior Year' = ```
+			[Revenue Prior Year]
+			```
+		lineageTag: d632b167-ec5c-4e4f-8a1e-b594cdc70b94
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Active Studies' =
+			
+			DISTINCTCOUNT(FactRevenue[StudyRaw])
+		formatString: 0
+		lineageTag: 385ab49b-c8bd-4498-bcb3-e4c72890dbe8
+
+	measure 'Active Studies Prior Year' =
+			
+			VAR _hasData = CALCULATE(COUNTROWS(FactRevenue), SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) ))
+			RETURN
+			IF(
+			    ISBLANK(_hasData),
+			    BLANK(),
+			    CALCULATE(DISTINCTCOUNT(FactRevenue[StudyRaw]), SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) ))
+			)
+		formatString: 0
+		lineageTag: 24e0e4fd-236d-4a5e-987e-70c64e94cc44
+
+	measure 'Active Studies Prior Year Variance' =
+			
+			IF(
+			    ISBLANK([Active Studies Prior Year]),
+			    "No prior year data",
+			    VAR _current = [Active Studies]
+			    VAR _py = [Active Studies Prior Year]
+			    VAR _delta = _current - _py
+			    VAR _growth = DIVIDE(_delta, _py)
+			    VAR _arrow = IF(_delta >= 0, "▲ +", "▼ ")
+			    VAR _pct = FORMAT(ABS(_growth), "0.0%")
+			    VAR _sign = IF(_delta >= 0, "+", "")
+			    VAR _abs = _sign & FORMAT(_delta, "0") & " studies"
+			    RETURN _arrow & _pct & " | " & _abs & " vs PY"
+			)
+		lineageTag: bbbdf41f-d743-40b0-925e-de48a4cc7095
+
+	measure 'Active Studies Delta' =
+			
+			IF(
+			    ISBLANK([Active Studies Prior Year]),
+			    BLANK(),
+			    [Active Studies] - [Active Studies Prior Year]
+			)
+		formatString: 0
+		lineageTag: 5a0bbc5d-4b67-4892-a7e4-614c25f17149
+
+	measure 'Study Revenue Variance' =
+			
+			VAR _current = [Total Revenue]
+			VAR _py = [Revenue Prior Year]
+			VAR _delta = _current - _py
+			VAR _growth = DIVIDE(_delta, _py, 0)
+			VAR _arrow = IF(_delta >= 0, "▲ +", "▼ ")
+			VAR _pct = FORMAT(ABS(_growth), "0.0%")
+			RETURN
+			IF(_py = 0 || _current = 0, "—", _arrow & _pct)
+		lineageTag: 1a0dc3ac-95d7-4783-88d6-c000f86a1fb3
+
+	column Column
+		formatString: 0
+		lineageTag: 5e6b0071-1889-44ba-ac55-9828206becb6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures_Revenue = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = a595dac4afb444cd82d0f2b6d55c63b1
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

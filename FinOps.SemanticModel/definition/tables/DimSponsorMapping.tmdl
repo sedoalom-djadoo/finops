@@ -1,0 +1,73 @@
+table DimSponsorMapping
+	lineageTag: 21266725-9dac-48bf-993d-245c8922ba94
+
+	column SponsorRaw_Billing
+		dataType: string
+		lineageTag: 0f0a97d9-b92d-4d2a-8c1d-0ba6ef596d49
+		summarizeBy: none
+		sourceColumn: SponsorRaw_Billing
+
+		annotation SummarizationSetBy = Automatic
+
+	column SponsorRaw_QB
+		dataType: string
+		lineageTag: df30b20e-5f50-4978-8b74-9b2d6a47ddb1
+		summarizeBy: none
+		sourceColumn: SponsorRaw_QB
+
+		annotation SummarizationSetBy = Automatic
+
+	column SponsorNameNormalized
+		dataType: string
+		lineageTag: b1f5fd74-f0eb-4273-b086-2e484ff79c0f
+		summarizeBy: none
+		sourceColumn: SponsorNameNormalized
+
+		annotation SummarizationSetBy = Automatic
+
+	column IncludeInRevenue
+		dataType: string
+		lineageTag: cdfc955b-9955-4b2f-87d8-1f0881b1745c
+		summarizeBy: none
+		sourceColumn: IncludeInRevenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Notes
+		dataType: string
+		lineageTag: 346a74bf-4348-4ea5-9402-79e36608ee56
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 42b19db6-e7eb-468b-b61e-b492a4736215
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+
+	partition DimSponsorMapping = m
+		mode: import
+		source = ```
+				let
+				    // Finance-maintained mapping: every billing-file spelling and QB customer name -> one sponsor
+				    Source = Excel.Workbook(File.Contents(DataFolder & "DimSponsorMapping.xlsx"), null, true),
+				    Sheet = Source{[Item="DimSponsorMapping",Kind="Sheet"]}[Data],
+				    SkipTitleRows = Table.Skip(Sheet, 3),
+				    PromoteHeaders = Table.PromoteHeaders(SkipTitleRows, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(PromoteHeaders, {
+				        {"SponsorRaw_Billing", type text}, {"SponsorRaw_QB", type text}, {"SponsorNameNormalized", type text},
+				        {"IncludeInRevenue", type text}, {"Notes", type text}, {"Status", type text}
+				    })
+				in
+				    Typed
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,226 @@
+table FactInvoices
+	lineageTag: 8f510da4-9bcd-4616-85be-a2c208df1bc7
+
+	column SponsorNameNormalized
+		dataType: string
+		lineageTag: e9cf1f90-74bb-4bb2-aa3d-ccd1e87f031e
+		summarizeBy: none
+		sourceColumn: SponsorNameNormalized
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: 59a84ff5-3301-464f-839d-b0d4f4a4d9df
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransactionDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0a3ea6b5-1e56-410f-b6fd-5df63f962428
+		summarizeBy: none
+		sourceColumn: TransactionDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column InvoiceNumber
+		dataType: string
+		lineageTag: c11d2b7c-9783-49a2-bc5a-4859b4168d52
+		summarizeBy: none
+		sourceColumn: InvoiceNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount_Raw
+		dataType: double
+		lineageTag: 5b429ae0-55bc-4d46-abb0-ac94a582e103
+		summarizeBy: sum
+		sourceColumn: Amount_Raw
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OriginalCurrency
+		dataType: string
+		lineageTag: a3cc16de-e649-49d2-b434-19507f567a50
+		summarizeBy: none
+		sourceColumn: OriginalCurrency
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountFullName
+		dataType: string
+		lineageTag: 057f0cab-d8dc-4c74-a6c2-2077837f2c0d
+		summarizeBy: none
+		sourceColumn: AccountFullName
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntityName_Raw
+		dataType: string
+		lineageTag: aaa64f1a-91f4-4b70-bda4-447a7d6bccf6
+		summarizeBy: none
+		sourceColumn: EntityName_Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactInvoices = m
+		mode: import
+		source =
+				// QuickBooks 'Transaction List by Customer' export: invoices only, A/R accounts 12000 (CAD) and 12001 (USD)
+				
+				let
+				
+				    SOURCE_PATH = DataFolder & "Transaction_List_by_Customer.xlsx",
+				
+				    // ── STEP 1-3: Load, skip preamble, combine sheets ─────────────────────
+				    Source = Excel.Workbook(File.Contents(SOURCE_PATH), null, true),
+				    AllSheets = Table.SelectRows(Source, each [Kind] = "Sheet"),
+				    CleanedSheets = List.Transform(
+				        AllSheets[Data],
+				        each Table.PromoteHeaders(Table.Skip(_, 4), [PromoteAllScalars=true])
+				    ),
+				    CombineAllSheets = Table.Combine(CleanedSheets),
+				
+				    // ── STEP 4: RenameColumns ─────────────────────────────────────────────
+				    RenameColumns = Table.RenameColumns(
+				        CombineAllSheets,
+				        {
+				            {"Column1",           "EntityName_Raw"},
+				            {"Date",              "TransactionDate_Text"},
+				            {"Transaction type",  "TransactionType"},
+				            {"#",                 "InvoiceNumber"},
+				            {"Posting (Y/N)",     "IsPosted"},
+				            {"Memo",              "Memo"},
+				            {"Account full name", "AccountFullName"},
+				            {"Amount",            "Amount_Raw"}
+				        },
+				        MissingField.Ignore
+				    ),
+				
+				    // ── STEP 5: FillDownEntityName ────────────────────────────────────────
+				    FillDownEntityName = Table.FillDown(RenameColumns, {"EntityName_Raw"}),
+				
+				    // ── STEP 6: FilterTransactionRows ─────────────────────────────────────
+				    FilterTransactionRows = Table.SelectRows(
+				        FillDownEntityName,
+				        each [TransactionDate_Text] <> null and
+				             Text.Trim(Text.From([TransactionDate_Text])) <> ""
+				    ),
+				
+				    // ── STEP 7: FilterInvoiceTypes ────────────────────────────────────────
+				    FilterInvoiceTypes = Table.SelectRows(
+				        FilterTransactionRows,
+				        each Text.Upper(Text.Trim(Text.From([TransactionType] ?? ""))) = "INVOICE"
+				    ),
+				
+				    // ── STEP 8: FilterARAccounts ──────────────────────────────────────────
+				    FilterARAccounts = Table.SelectRows(
+				        FilterInvoiceTypes,
+				        each
+				            Text.StartsWith(Text.Trim(Text.From([AccountFullName] ?? "")), "12000") or
+				            Text.StartsWith(Text.Trim(Text.From([AccountFullName] ?? "")), "12001")
+				    ),
+				
+				    // ── STEP 9: ParseTransactionDate ──────────────────────────────────────
+				    ParseTransactionDate = Table.AddColumn(
+				        FilterARAccounts,
+				        "TransactionDate",
+				        each Date.FromText([TransactionDate_Text], [Culture="en-US"]),
+				        type date
+				    ),
+				
+				    // ── STEP 10: AddYearMonth ─────────────────────────────────────────────
+				    AddYearMonth = Table.AddColumn(
+				        ParseTransactionDate,
+				        "YearMonth",
+				        each
+				            Text.From(Date.Year([TransactionDate])) & "-" &
+				            Text.PadStart(Text.From(Date.Month([TransactionDate])), 2, "0"),
+				        type text
+				    ),
+				
+				    // ── STEP 11: DetectCurrency ───────────────────────────────────────────
+				    DetectCurrency = Table.AddColumn(
+				        AddYearMonth,
+				        "OriginalCurrency",
+				        each
+				            if Text.StartsWith(Text.Trim(Text.From([AccountFullName] ?? "")), "12001")
+				            then "USD"
+				            else "CAD",
+				        type text
+				    ),
+				
+				    // ── STEP 12: CleanEntityName ──────────────────────────────────────────
+				    CleanEntityName = Table.TransformColumns(
+				        DetectCurrency,
+				        {{"EntityName_Raw", Text.Trim, type text}}
+				    ),
+				
+				    // ── STEP 13: MappingDeduped ───────────────────────────────────────────
+				    // The mapping holds several billing spellings per QB customer name. Deduplicate on
+				    // SponsorRaw_QB before the join, otherwise each invoice is repeated once per spelling.
+				    MappingDeduped = Table.Distinct(
+				        Table.SelectColumns(
+				            DimSponsorMapping,
+				            {"SponsorRaw_QB", "SponsorNameNormalized", "IncludeInRevenue"}
+				        ),
+				        {"SponsorRaw_QB"}
+				    ),
+				
+				    // ── STEP 14: JoinNormalizationTable ──────────────────────────────────
+				    JoinNormalizationTable = Table.NestedJoin(
+				        CleanEntityName,
+				        {"EntityName_Raw"},
+				        MappingDeduped,
+				        {"SponsorRaw_QB"},
+				        "MappingData",
+				        JoinKind.LeftOuter
+				    ),
+				    ExpandMappingData = Table.ExpandTableColumn(
+				        JoinNormalizationTable,
+				        "MappingData",
+				        {"SponsorNameNormalized", "IncludeInRevenue"},
+				        {"SponsorNameNormalized", "IncludeInRevenue"}
+				    ),
+				
+				    // ── STEP 15: FilterTrueSponsors ───────────────────────────────────────
+				    FilterTrueSponsors = Table.SelectRows(
+				        ExpandMappingData,
+				        each [IncludeInRevenue] = "TRUE"
+				    ),
+				
+				    // ── STEP 16: SetAmountType ────────────────────────────────────────────
+				    SetAmountType = Table.TransformColumnTypes(
+				        FilterTrueSponsors,
+				        {{"Amount_Raw", type number}}
+				    ),
+				
+				    // ── STEP 17: SelectFinalColumns ───────────────────────────────────────
+				    SelectFinalColumns = Table.SelectColumns(
+				        SetAmountType,
+				        {
+				            "SponsorNameNormalized",
+				            "YearMonth",
+				            "TransactionDate",
+				            "InvoiceNumber",
+				            "Amount_Raw",
+				            "OriginalCurrency",
+				            "AccountFullName",
+				            "EntityName_Raw"
+				        }
+				    )
+				
+				in
+				    SelectFinalColumns
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

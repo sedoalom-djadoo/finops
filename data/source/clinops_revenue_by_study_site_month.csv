@@ -1,0 +1,1470 @@
+study_id,sponsor,site,year,month,revenue
+STUDY-001,Cobalt Neuro,Calgary,2025,7,472.95
+STUDY-001,Cobalt Neuro,Calgary,2025,8,789.0
+STUDY-001,Cobalt Neuro,Calgary,2025,9,1126.51
+STUDY-001,Cobalt Neuro,Calgary,2025,10,1820.12
+STUDY-001,Cobalt Neuro,Calgary,2025,11,2130.71
+STUDY-001,Cobalt Neuro,Calgary,2025,12,2364.05
+STUDY-001,Cobalt Neuro,Calgary,2026,1,3473.74
+STUDY-001,Cobalt Neuro,Calgary,2026,2,3417.11
+STUDY-001,Cobalt Neuro,Calgary,2026,3,3697.41
+STUDY-001,Cobalt Neuro,Calgary,2026,4,4176.92
+STUDY-001,Cobalt Neuro,Calgary,2026,5,4159.91
+STUDY-001,Cobalt Neuro,Calgary,2026,6,3770.85
+STUDY-001,Cobalt Neuro,Calgary,2026,7,3473.12
+STUDY-001,Cobalt Neuro,Calgary,2026,8,2811.44
+STUDY-001,Cobalt Neuro,Calgary,2026,9,1468.22
+STUDY-001,Cobalt Neuro,Calgary,2026,10,1166.4
+STUDY-001,Cobalt Neuro,Toronto,2025,7,252.56
+STUDY-001,Cobalt Neuro,Toronto,2025,8,2052.53
+STUDY-001,Cobalt Neuro,Toronto,2025,9,3059.16
+STUDY-001,Cobalt Neuro,Toronto,2025,10,3792.53
+STUDY-001,Cobalt Neuro,Toronto,2025,11,4731.82
+STUDY-001,Cobalt Neuro,Toronto,2025,12,5731.62
+STUDY-001,Cobalt Neuro,Toronto,2026,1,5651.31
+STUDY-001,Cobalt Neuro,Toronto,2026,2,5501.65
+STUDY-001,Cobalt Neuro,Toronto,2026,3,5577.19
+STUDY-001,Cobalt Neuro,Toronto,2026,4,5667.58
+STUDY-001,Cobalt Neuro,Toronto,2026,5,5235.43
+STUDY-001,Cobalt Neuro,Toronto,2026,6,4733.33
+STUDY-001,Cobalt Neuro,Toronto,2026,7,3794.71
+STUDY-001,Cobalt Neuro,Toronto,2026,8,2625.29
+STUDY-001,Cobalt Neuro,Toronto,2026,9,1801.02
+STUDY-001,Cobalt Neuro,Toronto,2026,10,1181.92
+STUDY-001,Cobalt Neuro,Vancouver,2025,8,242.39
+STUDY-001,Cobalt Neuro,Vancouver,2025,9,547.19
+STUDY-001,Cobalt Neuro,Vancouver,2025,10,968.42
+STUDY-001,Cobalt Neuro,Vancouver,2025,11,1857.75
+STUDY-001,Cobalt Neuro,Vancouver,2025,12,1852.55
+STUDY-001,Cobalt Neuro,Vancouver,2026,1,2283.37
+STUDY-001,Cobalt Neuro,Vancouver,2026,2,2546.93
+STUDY-001,Cobalt Neuro,Vancouver,2026,3,2962.14
+STUDY-001,Cobalt Neuro,Vancouver,2026,4,2662.16
+STUDY-001,Cobalt Neuro,Vancouver,2026,5,2246.96
+STUDY-001,Cobalt Neuro,Vancouver,2026,6,1578.44
+STUDY-001,Cobalt Neuro,Vancouver,2026,7,1578.44
+STUDY-001,Cobalt Neuro,Vancouver,2026,8,1578.44
+STUDY-001,Cobalt Neuro,Vancouver,2026,9,1082.19
+STUDY-001,Cobalt Neuro,Vancouver,2026,10,364.01
+STUDY-002,Aurelis Pharma,Calgary,2025,9,2352.45
+STUDY-002,Aurelis Pharma,Calgary,2025,10,3508.78
+STUDY-002,Aurelis Pharma,Calgary,2025,11,3618.7
+STUDY-002,Aurelis Pharma,Calgary,2025,12,3455.76
+STUDY-002,Aurelis Pharma,Calgary,2026,1,3877.1
+STUDY-002,Aurelis Pharma,Calgary,2026,2,4203.53
+STUDY-002,Aurelis Pharma,Calgary,2026,3,5124.84
+STUDY-002,Aurelis Pharma,Calgary,2026,4,6473.32
+STUDY-002,Aurelis Pharma,Calgary,2026,5,7702.08
+STUDY-002,Aurelis Pharma,Calgary,2026,6,7693.03
+STUDY-002,Aurelis Pharma,Calgary,2026,7,7505.63
+STUDY-002,Aurelis Pharma,Calgary,2026,8,5876.48
+STUDY-002,Aurelis Pharma,Calgary,2026,9,5876.48
+STUDY-002,Aurelis Pharma,Calgary,2026,10,5120.56
+STUDY-002,Aurelis Pharma,Toronto,2025,10,701.36
+STUDY-002,Aurelis Pharma,Toronto,2025,11,2435.04
+STUDY-002,Aurelis Pharma,Toronto,2025,12,3065.8
+STUDY-002,Aurelis Pharma,Toronto,2026,1,3334.55
+STUDY-002,Aurelis Pharma,Toronto,2026,2,4697.26
+STUDY-002,Aurelis Pharma,Toronto,2026,3,7773.15
+STUDY-002,Aurelis Pharma,Toronto,2026,4,8174.74
+STUDY-002,Aurelis Pharma,Toronto,2026,5,10211.94
+STUDY-002,Aurelis Pharma,Toronto,2026,6,11758.91
+STUDY-002,Aurelis Pharma,Toronto,2026,7,11758.91
+STUDY-002,Aurelis Pharma,Toronto,2026,8,11280.96
+STUDY-002,Aurelis Pharma,Toronto,2026,9,9933.33
+STUDY-002,Aurelis Pharma,Toronto,2026,10,8138.94
+STUDY-002,Aurelis Pharma,Vancouver,2025,10,446.86
+STUDY-002,Aurelis Pharma,Vancouver,2025,11,739.6
+STUDY-002,Aurelis Pharma,Vancouver,2025,12,1068.8
+STUDY-002,Aurelis Pharma,Vancouver,2026,1,1631.05
+STUDY-002,Aurelis Pharma,Vancouver,2026,2,2738.15
+STUDY-002,Aurelis Pharma,Vancouver,2026,3,3523.31
+STUDY-002,Aurelis Pharma,Vancouver,2026,4,5522.49
+STUDY-002,Aurelis Pharma,Vancouver,2026,5,5926.44
+STUDY-002,Aurelis Pharma,Vancouver,2026,6,7550.57
+STUDY-002,Aurelis Pharma,Vancouver,2026,7,7039.98
+STUDY-002,Aurelis Pharma,Vancouver,2026,8,5734.85
+STUDY-002,Aurelis Pharma,Vancouver,2026,9,4964.67
+STUDY-002,Aurelis Pharma,Vancouver,2026,10,4561.18
+STUDY-003,Helix Ridge Bio,Calgary,2025,9,711.97
+STUDY-003,Helix Ridge Bio,Calgary,2025,10,2251.62
+STUDY-003,Helix Ridge Bio,Calgary,2025,11,2637.49
+STUDY-003,Helix Ridge Bio,Calgary,2025,12,3424.61
+STUDY-003,Helix Ridge Bio,Calgary,2026,1,5747.79
+STUDY-003,Helix Ridge Bio,Calgary,2026,2,5316.31
+STUDY-003,Helix Ridge Bio,Calgary,2026,3,5720.46
+STUDY-003,Helix Ridge Bio,Calgary,2026,4,5524.55
+STUDY-003,Helix Ridge Bio,Calgary,2026,5,5524.55
+STUDY-003,Helix Ridge Bio,Calgary,2026,6,5524.55
+STUDY-003,Helix Ridge Bio,Calgary,2026,7,4902.32
+STUDY-003,Helix Ridge Bio,Calgary,2026,8,3988.22
+STUDY-003,Helix Ridge Bio,Calgary,2026,9,3423.18
+STUDY-003,Helix Ridge Bio,Calgary,2026,10,3123.39
+STUDY-003,Helix Ridge Bio,Toronto,2025,9,1353.85
+STUDY-003,Helix Ridge Bio,Toronto,2025,10,2786.82
+STUDY-003,Helix Ridge Bio,Toronto,2025,11,5017.43
+STUDY-003,Helix Ridge Bio,Toronto,2025,12,6292.09
+STUDY-003,Helix Ridge Bio,Toronto,2026,1,7287.75
+STUDY-003,Helix Ridge Bio,Toronto,2026,2,9283.6
+STUDY-003,Helix Ridge Bio,Toronto,2026,3,10204.01
+STUDY-003,Helix Ridge Bio,Toronto,2026,4,11294.16
+STUDY-003,Helix Ridge Bio,Toronto,2026,5,10939.02
+STUDY-003,Helix Ridge Bio,Toronto,2026,6,9348.52
+STUDY-003,Helix Ridge Bio,Toronto,2026,7,8711.92
+STUDY-003,Helix Ridge Bio,Toronto,2026,8,8020.72
+STUDY-003,Helix Ridge Bio,Toronto,2026,9,6698.24
+STUDY-003,Helix Ridge Bio,Toronto,2026,10,4411.13
+STUDY-003,Helix Ridge Bio,Vancouver,2025,10,1234.0
+STUDY-003,Helix Ridge Bio,Vancouver,2025,11,1949.16
+STUDY-003,Helix Ridge Bio,Vancouver,2025,12,3781.71
+STUDY-003,Helix Ridge Bio,Vancouver,2026,1,3824.39
+STUDY-003,Helix Ridge Bio,Vancouver,2026,2,4708.53
+STUDY-003,Helix Ridge Bio,Vancouver,2026,3,5512.2
+STUDY-003,Helix Ridge Bio,Vancouver,2026,4,5357.89
+STUDY-003,Helix Ridge Bio,Vancouver,2026,5,5213.05
+STUDY-003,Helix Ridge Bio,Vancouver,2026,6,4377.06
+STUDY-003,Helix Ridge Bio,Vancouver,2026,7,3900.46
+STUDY-003,Helix Ridge Bio,Vancouver,2026,8,3900.46
+STUDY-003,Helix Ridge Bio,Vancouver,2026,9,2859.5
+STUDY-003,Helix Ridge Bio,Vancouver,2026,10,2115.71
+STUDY-004,Cobalt Neuro,Calgary,2025,9,381.95
+STUDY-004,Cobalt Neuro,Calgary,2025,10,2119.0
+STUDY-004,Cobalt Neuro,Calgary,2025,11,2558.38
+STUDY-004,Cobalt Neuro,Calgary,2025,12,2685.9
+STUDY-004,Cobalt Neuro,Calgary,2026,1,3868.0
+STUDY-004,Cobalt Neuro,Calgary,2026,2,4852.4
+STUDY-004,Cobalt Neuro,Calgary,2026,3,5152.96
+STUDY-004,Cobalt Neuro,Calgary,2026,4,4486.96
+STUDY-004,Cobalt Neuro,Calgary,2026,5,3944.74
+STUDY-004,Cobalt Neuro,Calgary,2026,6,2802.55
+STUDY-004,Cobalt Neuro,Calgary,2026,7,1961.13
+STUDY-004,Cobalt Neuro,Calgary,2026,8,1472.45
+STUDY-004,Cobalt Neuro,Calgary,2026,9,1240.33
+STUDY-004,Cobalt Neuro,Calgary,2026,10,219.63
+STUDY-004,Cobalt Neuro,Toronto,2025,8,654.11
+STUDY-004,Cobalt Neuro,Toronto,2025,9,1191.37
+STUDY-004,Cobalt Neuro,Toronto,2025,10,2003.58
+STUDY-004,Cobalt Neuro,Toronto,2025,11,3438.55
+STUDY-004,Cobalt Neuro,Toronto,2025,12,4563.55
+STUDY-004,Cobalt Neuro,Toronto,2026,1,6573.64
+STUDY-004,Cobalt Neuro,Toronto,2026,2,6705.53
+STUDY-004,Cobalt Neuro,Toronto,2026,3,7950.58
+STUDY-004,Cobalt Neuro,Toronto,2026,4,7213.84
+STUDY-004,Cobalt Neuro,Toronto,2026,5,6409.8
+STUDY-004,Cobalt Neuro,Toronto,2026,6,3911.68
+STUDY-004,Cobalt Neuro,Toronto,2026,7,3010.01
+STUDY-004,Cobalt Neuro,Toronto,2026,8,1806.88
+STUDY-004,Cobalt Neuro,Toronto,2026,9,1019.9
+STUDY-004,Cobalt Neuro,Toronto,2026,10,510.85
+STUDY-004,Cobalt Neuro,Vancouver,2025,8,334.23
+STUDY-004,Cobalt Neuro,Vancouver,2025,9,1401.87
+STUDY-004,Cobalt Neuro,Vancouver,2025,10,1475.95
+STUDY-004,Cobalt Neuro,Vancouver,2025,11,1541.24
+STUDY-004,Cobalt Neuro,Vancouver,2025,12,2303.52
+STUDY-004,Cobalt Neuro,Vancouver,2026,1,2442.7
+STUDY-004,Cobalt Neuro,Vancouver,2026,2,2316.64
+STUDY-004,Cobalt Neuro,Vancouver,2026,3,2128.43
+STUDY-004,Cobalt Neuro,Vancouver,2026,4,2549.16
+STUDY-004,Cobalt Neuro,Vancouver,2026,5,1969.67
+STUDY-004,Cobalt Neuro,Vancouver,2026,6,1392.09
+STUDY-004,Cobalt Neuro,Vancouver,2026,7,1392.09
+STUDY-004,Cobalt Neuro,Vancouver,2026,8,887.2
+STUDY-004,Cobalt Neuro,Vancouver,2026,9,588.73
+STUDY-004,Cobalt Neuro,Vancouver,2026,10,168.0
+STUDY-005,Nordvale Therapeutics,Calgary,2025,9,407.4
+STUDY-005,Nordvale Therapeutics,Calgary,2025,10,1317.29
+STUDY-005,Nordvale Therapeutics,Calgary,2025,11,1436.83
+STUDY-005,Nordvale Therapeutics,Calgary,2025,12,1945.49
+STUDY-005,Nordvale Therapeutics,Calgary,2026,1,4176.79
+STUDY-005,Nordvale Therapeutics,Calgary,2026,2,4620.28
+STUDY-005,Nordvale Therapeutics,Calgary,2026,3,5600.32
+STUDY-005,Nordvale Therapeutics,Calgary,2026,4,5034.09
+STUDY-005,Nordvale Therapeutics,Calgary,2026,5,4590.91
+STUDY-005,Nordvale Therapeutics,Calgary,2026,6,5298.42
+STUDY-005,Nordvale Therapeutics,Calgary,2026,7,4034.14
+STUDY-005,Nordvale Therapeutics,Calgary,2026,8,3366.34
+STUDY-005,Nordvale Therapeutics,Calgary,2026,9,1436.73
+STUDY-005,Nordvale Therapeutics,Calgary,2026,10,1436.73
+STUDY-005,Nordvale Therapeutics,Toronto,2025,10,898.17
+STUDY-005,Nordvale Therapeutics,Toronto,2025,11,2213.54
+STUDY-005,Nordvale Therapeutics,Toronto,2025,12,2460.02
+STUDY-005,Nordvale Therapeutics,Toronto,2026,1,3214.46
+STUDY-005,Nordvale Therapeutics,Toronto,2026,2,4075.26
+STUDY-005,Nordvale Therapeutics,Toronto,2026,3,4627.89
+STUDY-005,Nordvale Therapeutics,Toronto,2026,4,4881.51
+STUDY-005,Nordvale Therapeutics,Toronto,2026,5,6013.07
+STUDY-005,Nordvale Therapeutics,Toronto,2026,6,6291.3
+STUDY-005,Nordvale Therapeutics,Toronto,2026,7,5375.64
+STUDY-005,Nordvale Therapeutics,Toronto,2026,8,4822.78
+STUDY-005,Nordvale Therapeutics,Toronto,2026,9,4561.81
+STUDY-005,Nordvale Therapeutics,Toronto,2026,10,2723.86
+STUDY-005,Nordvale Therapeutics,Vancouver,2025,10,728.27
+STUDY-005,Nordvale Therapeutics,Vancouver,2025,11,1532.29
+STUDY-005,Nordvale Therapeutics,Vancouver,2025,12,1752.38
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,1,1418.07
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,2,2153.88
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,3,2455.72
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,4,3666.83
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,5,2626.45
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,6,3208.9
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,7,2992.34
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,8,1976.57
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,9,1514.42
+STUDY-005,Nordvale Therapeutics,Vancouver,2026,10,1514.42
+STUDY-006,Corvant Pharma,Calgary,2025,5,445.99
+STUDY-006,Corvant Pharma,Calgary,2025,6,445.99
+STUDY-006,Corvant Pharma,Calgary,2025,7,445.99
+STUDY-006,Corvant Pharma,Calgary,2025,8,705.02
+STUDY-006,Corvant Pharma,Calgary,2025,9,445.99
+STUDY-006,Corvant Pharma,Calgary,2025,10,785.47
+STUDY-006,Corvant Pharma,Calgary,2025,11,929.69
+STUDY-006,Corvant Pharma,Calgary,2025,12,929.69
+STUDY-006,Corvant Pharma,Calgary,2026,1,929.69
+STUDY-006,Corvant Pharma,Calgary,2026,2,1413.87
+STUDY-006,Corvant Pharma,Calgary,2026,3,1453.25
+STUDY-006,Corvant Pharma,Calgary,2026,4,1453.25
+STUDY-006,Corvant Pharma,Calgary,2026,5,1264.26
+STUDY-006,Corvant Pharma,Calgary,2026,6,1007.26
+STUDY-006,Corvant Pharma,Calgary,2026,7,667.78
+STUDY-006,Corvant Pharma,Calgary,2026,8,667.78
+STUDY-006,Corvant Pharma,Calgary,2026,9,667.78
+STUDY-006,Corvant Pharma,Calgary,2026,10,667.78
+STUDY-006,Corvant Pharma,Toronto,2025,3,651.8
+STUDY-006,Corvant Pharma,Toronto,2025,4,651.8
+STUDY-006,Corvant Pharma,Toronto,2025,5,836.77
+STUDY-006,Corvant Pharma,Toronto,2025,6,1386.13
+STUDY-006,Corvant Pharma,Toronto,2025,7,1092.95
+STUDY-006,Corvant Pharma,Toronto,2025,8,1092.95
+STUDY-006,Corvant Pharma,Toronto,2025,9,1092.95
+STUDY-006,Corvant Pharma,Toronto,2025,10,1092.95
+STUDY-006,Corvant Pharma,Toronto,2025,11,1092.95
+STUDY-006,Corvant Pharma,Toronto,2025,12,1092.95
+STUDY-006,Corvant Pharma,Toronto,2026,1,548.58
+STUDY-006,Corvant Pharma,Toronto,2026,2,260.15
+STUDY-006,Corvant Pharma,Toronto,2026,3,426.28
+STUDY-006,Corvant Pharma,Toronto,2026,4,426.28
+STUDY-006,Corvant Pharma,Toronto,2026,5,260.15
+STUDY-006,Corvant Pharma,Toronto,2026,6,260.15
+STUDY-006,Corvant Pharma,Toronto,2026,7,260.15
+STUDY-006,Corvant Pharma,Toronto,2026,8,260.15
+STUDY-006,Corvant Pharma,Toronto,2026,9,260.15
+STUDY-006,Corvant Pharma,Toronto,2026,10,260.15
+STUDY-006,Corvant Pharma,Vancouver,2025,7,531.21
+STUDY-006,Corvant Pharma,Vancouver,2025,8,531.21
+STUDY-006,Corvant Pharma,Vancouver,2025,9,531.21
+STUDY-006,Corvant Pharma,Vancouver,2025,10,848.88
+STUDY-006,Corvant Pharma,Vancouver,2025,11,1154.04
+STUDY-006,Corvant Pharma,Vancouver,2025,12,1154.04
+STUDY-006,Corvant Pharma,Vancouver,2026,1,1154.04
+STUDY-006,Corvant Pharma,Vancouver,2026,2,622.84
+STUDY-006,Corvant Pharma,Vancouver,2026,3,622.84
+STUDY-006,Corvant Pharma,Vancouver,2026,4,622.84
+STUDY-006,Corvant Pharma,Vancouver,2026,5,622.84
+STUDY-006,Corvant Pharma,Vancouver,2026,6,622.84
+STUDY-006,Corvant Pharma,Vancouver,2026,7,317.68
+STUDY-007,Cobalt Neuro,Calgary,2025,7,1077.57
+STUDY-007,Cobalt Neuro,Calgary,2025,8,1520.26
+STUDY-007,Cobalt Neuro,Calgary,2025,9,2320.65
+STUDY-007,Cobalt Neuro,Calgary,2025,10,3253.1
+STUDY-007,Cobalt Neuro,Calgary,2025,11,3651.92
+STUDY-007,Cobalt Neuro,Calgary,2025,12,3991.4
+STUDY-007,Cobalt Neuro,Calgary,2026,1,4301.08
+STUDY-007,Cobalt Neuro,Calgary,2026,2,4301.08
+STUDY-007,Cobalt Neuro,Calgary,2026,3,3721.08
+STUDY-007,Cobalt Neuro,Calgary,2026,4,2998.83
+STUDY-007,Cobalt Neuro,Calgary,2026,5,2729.42
+STUDY-007,Cobalt Neuro,Calgary,2026,6,2207.95
+STUDY-007,Cobalt Neuro,Calgary,2026,7,1270.51
+STUDY-007,Cobalt Neuro,Calgary,2026,8,939.09
+STUDY-007,Cobalt Neuro,Calgary,2026,9,939.09
+STUDY-007,Cobalt Neuro,Calgary,2026,10,733.23
+STUDY-007,Cobalt Neuro,Toronto,2025,7,1151.11
+STUDY-007,Cobalt Neuro,Toronto,2025,8,1130.08
+STUDY-007,Cobalt Neuro,Toronto,2025,9,1834.48
+STUDY-007,Cobalt Neuro,Toronto,2025,10,2912.77
+STUDY-007,Cobalt Neuro,Toronto,2025,11,4824.88
+STUDY-007,Cobalt Neuro,Toronto,2025,12,4776.59
+STUDY-007,Cobalt Neuro,Toronto,2026,1,6479.95
+STUDY-007,Cobalt Neuro,Toronto,2026,2,6712.63
+STUDY-007,Cobalt Neuro,Toronto,2026,3,6712.63
+STUDY-007,Cobalt Neuro,Toronto,2026,4,6386.97
+STUDY-007,Cobalt Neuro,Toronto,2026,5,6053.32
+STUDY-007,Cobalt Neuro,Toronto,2026,6,5351.11
+STUDY-007,Cobalt Neuro,Toronto,2026,7,3875.17
+STUDY-007,Cobalt Neuro,Toronto,2026,8,3599.06
+STUDY-007,Cobalt Neuro,Toronto,2026,9,2472.81
+STUDY-007,Cobalt Neuro,Toronto,2026,10,1082.24
+STUDY-007,Cobalt Neuro,Vancouver,2025,7,1083.32
+STUDY-007,Cobalt Neuro,Vancouver,2025,8,2697.71
+STUDY-007,Cobalt Neuro,Vancouver,2025,9,3269.46
+STUDY-007,Cobalt Neuro,Vancouver,2025,10,4240.96
+STUDY-007,Cobalt Neuro,Vancouver,2025,11,4903.83
+STUDY-007,Cobalt Neuro,Vancouver,2025,12,5147.03
+STUDY-007,Cobalt Neuro,Vancouver,2026,1,5262.21
+STUDY-007,Cobalt Neuro,Vancouver,2026,2,5147.91
+STUDY-007,Cobalt Neuro,Vancouver,2026,3,4219.11
+STUDY-007,Cobalt Neuro,Vancouver,2026,4,3149.03
+STUDY-007,Cobalt Neuro,Vancouver,2026,5,2780.97
+STUDY-007,Cobalt Neuro,Vancouver,2026,6,1856.84
+STUDY-007,Cobalt Neuro,Vancouver,2026,7,1856.84
+STUDY-007,Cobalt Neuro,Vancouver,2026,8,866.5
+STUDY-007,Cobalt Neuro,Vancouver,2026,9,611.82
+STUDY-007,Cobalt Neuro,Vancouver,2026,10,191.58
+STUDY-008,Corvant Pharma,Calgary,2025,6,81.86
+STUDY-008,Corvant Pharma,Calgary,2025,7,393.95
+STUDY-008,Corvant Pharma,Calgary,2025,8,393.95
+STUDY-008,Corvant Pharma,Calgary,2025,9,881.86
+STUDY-008,Corvant Pharma,Calgary,2025,10,1251.07
+STUDY-008,Corvant Pharma,Calgary,2025,11,1829.15
+STUDY-008,Corvant Pharma,Calgary,2025,12,1738.67
+STUDY-008,Corvant Pharma,Calgary,2026,1,2302.5
+STUDY-008,Corvant Pharma,Calgary,2026,2,2202.33
+STUDY-008,Corvant Pharma,Calgary,2026,3,2191.55
+STUDY-008,Corvant Pharma,Calgary,2026,4,2145.99
+STUDY-008,Corvant Pharma,Calgary,2026,5,2145.99
+STUDY-008,Corvant Pharma,Calgary,2026,6,1776.77
+STUDY-008,Corvant Pharma,Calgary,2026,7,1776.77
+STUDY-008,Corvant Pharma,Calgary,2026,8,1776.77
+STUDY-008,Corvant Pharma,Calgary,2026,9,1428.87
+STUDY-008,Corvant Pharma,Calgary,2026,10,1088.37
+STUDY-008,Corvant Pharma,Toronto,2025,5,523.44
+STUDY-008,Corvant Pharma,Toronto,2025,6,779.51
+STUDY-008,Corvant Pharma,Toronto,2025,7,641.72
+STUDY-008,Corvant Pharma,Toronto,2025,8,730.88
+STUDY-008,Corvant Pharma,Toronto,2025,9,883.02
+STUDY-008,Corvant Pharma,Toronto,2025,10,1039.19
+STUDY-008,Corvant Pharma,Toronto,2025,11,1257.25
+STUDY-008,Corvant Pharma,Toronto,2025,12,1507.29
+STUDY-008,Corvant Pharma,Toronto,2026,1,1257.25
+STUDY-008,Corvant Pharma,Toronto,2026,2,1257.25
+STUDY-008,Corvant Pharma,Toronto,2026,3,1353.49
+STUDY-008,Corvant Pharma,Toronto,2026,4,1564.62
+STUDY-008,Corvant Pharma,Toronto,2026,5,1140.38
+STUDY-008,Corvant Pharma,Toronto,2026,6,1140.38
+STUDY-008,Corvant Pharma,Toronto,2026,7,770.18
+STUDY-008,Corvant Pharma,Toronto,2026,8,770.18
+STUDY-008,Corvant Pharma,Toronto,2026,9,524.85
+STUDY-008,Corvant Pharma,Toronto,2026,10,524.85
+STUDY-008,Corvant Pharma,Vancouver,2025,6,328.38
+STUDY-008,Corvant Pharma,Vancouver,2025,7,328.38
+STUDY-008,Corvant Pharma,Vancouver,2025,8,1057.16
+STUDY-008,Corvant Pharma,Vancouver,2025,9,1071.61
+STUDY-008,Corvant Pharma,Vancouver,2025,10,1481.55
+STUDY-008,Corvant Pharma,Vancouver,2025,11,1879.04
+STUDY-008,Corvant Pharma,Vancouver,2025,12,2328.16
+STUDY-008,Corvant Pharma,Vancouver,2026,1,2172.58
+STUDY-008,Corvant Pharma,Vancouver,2026,2,2057.02
+STUDY-008,Corvant Pharma,Vancouver,2026,3,1728.64
+STUDY-008,Corvant Pharma,Vancouver,2026,4,1461.04
+STUDY-008,Corvant Pharma,Vancouver,2026,5,1461.04
+STUDY-008,Corvant Pharma,Vancouver,2026,6,903.61
+STUDY-008,Corvant Pharma,Vancouver,2026,7,589.93
+STUDY-008,Corvant Pharma,Vancouver,2026,8,589.93
+STUDY-008,Corvant Pharma,Vancouver,2026,9,14.45
+STUDY-008,Corvant Pharma,Vancouver,2026,10,14.45
+STUDY-009,Helix Ridge Bio,Calgary,2025,6,281.47
+STUDY-009,Helix Ridge Bio,Calgary,2025,7,541.76
+STUDY-009,Helix Ridge Bio,Calgary,2025,8,555.51
+STUDY-009,Helix Ridge Bio,Calgary,2025,9,1751.4
+STUDY-009,Helix Ridge Bio,Calgary,2025,10,2644.05
+STUDY-009,Helix Ridge Bio,Calgary,2025,11,3077.66
+STUDY-009,Helix Ridge Bio,Calgary,2025,12,3337.82
+STUDY-009,Helix Ridge Bio,Calgary,2026,1,3682.15
+STUDY-009,Helix Ridge Bio,Calgary,2026,2,3810.04
+STUDY-009,Helix Ridge Bio,Calgary,2026,3,3689.64
+STUDY-009,Helix Ridge Bio,Calgary,2026,4,2804.07
+STUDY-009,Helix Ridge Bio,Calgary,2026,5,2912.56
+STUDY-009,Helix Ridge Bio,Calgary,2026,6,2118.2
+STUDY-009,Helix Ridge Bio,Calgary,2026,7,978.79
+STUDY-009,Helix Ridge Bio,Calgary,2026,8,663.88
+STUDY-009,Helix Ridge Bio,Calgary,2026,9,447.2
+STUDY-009,Helix Ridge Bio,Calgary,2026,10,100.86
+STUDY-009,Helix Ridge Bio,Toronto,2025,6,968.27
+STUDY-009,Helix Ridge Bio,Toronto,2025,7,1868.12
+STUDY-009,Helix Ridge Bio,Toronto,2025,8,1895.12
+STUDY-009,Helix Ridge Bio,Toronto,2025,9,2880.39
+STUDY-009,Helix Ridge Bio,Toronto,2025,10,2675.88
+STUDY-009,Helix Ridge Bio,Toronto,2025,11,3333.16
+STUDY-009,Helix Ridge Bio,Toronto,2025,12,4123.71
+STUDY-009,Helix Ridge Bio,Toronto,2026,1,4023.12
+STUDY-009,Helix Ridge Bio,Toronto,2026,2,4146.77
+STUDY-009,Helix Ridge Bio,Toronto,2026,3,4523.09
+STUDY-009,Helix Ridge Bio,Toronto,2026,4,4513.7
+STUDY-009,Helix Ridge Bio,Toronto,2026,5,5059.98
+STUDY-009,Helix Ridge Bio,Toronto,2026,6,4278.54
+STUDY-009,Helix Ridge Bio,Toronto,2026,7,3916.6
+STUDY-009,Helix Ridge Bio,Toronto,2026,8,2549.49
+STUDY-009,Helix Ridge Bio,Toronto,2026,9,1592.37
+STUDY-009,Helix Ridge Bio,Toronto,2026,10,1206.37
+STUDY-009,Helix Ridge Bio,Vancouver,2025,6,723.07
+STUDY-009,Helix Ridge Bio,Vancouver,2025,7,1129.61
+STUDY-009,Helix Ridge Bio,Vancouver,2025,8,1129.61
+STUDY-009,Helix Ridge Bio,Vancouver,2025,9,1808.55
+STUDY-009,Helix Ridge Bio,Vancouver,2025,10,2134.03
+STUDY-009,Helix Ridge Bio,Vancouver,2025,11,1734.76
+STUDY-009,Helix Ridge Bio,Vancouver,2025,12,1598.08
+STUDY-009,Helix Ridge Bio,Vancouver,2026,1,2250.42
+STUDY-009,Helix Ridge Bio,Vancouver,2026,2,2399.82
+STUDY-009,Helix Ridge Bio,Vancouver,2026,3,2604.15
+STUDY-009,Helix Ridge Bio,Vancouver,2026,4,3392.47
+STUDY-009,Helix Ridge Bio,Vancouver,2026,5,3612.99
+STUDY-009,Helix Ridge Bio,Vancouver,2026,6,3302.85
+STUDY-009,Helix Ridge Bio,Vancouver,2026,7,2487.88
+STUDY-009,Helix Ridge Bio,Vancouver,2026,8,2095.97
+STUDY-009,Helix Ridge Bio,Vancouver,2026,9,1509.63
+STUDY-009,Helix Ridge Bio,Vancouver,2026,10,452.32
+STUDY-010,Larkspur Biotech,Calgary,2025,1,202.46
+STUDY-010,Larkspur Biotech,Calgary,2025,2,202.46
+STUDY-010,Larkspur Biotech,Calgary,2025,3,621.71
+STUDY-010,Larkspur Biotech,Calgary,2025,4,621.71
+STUDY-010,Larkspur Biotech,Calgary,2025,5,1466.38
+STUDY-010,Larkspur Biotech,Calgary,2025,6,1466.38
+STUDY-010,Larkspur Biotech,Calgary,2025,7,1466.38
+STUDY-010,Larkspur Biotech,Calgary,2025,8,1466.38
+STUDY-010,Larkspur Biotech,Calgary,2025,9,1466.38
+STUDY-010,Larkspur Biotech,Calgary,2025,10,905.82
+STUDY-010,Larkspur Biotech,Calgary,2025,11,540.91
+STUDY-010,Larkspur Biotech,Calgary,2025,12,229.73
+STUDY-010,Larkspur Biotech,Toronto,2025,2,88.11
+STUDY-010,Larkspur Biotech,Toronto,2025,3,159.14
+STUDY-010,Larkspur Biotech,Toronto,2025,4,765.46
+STUDY-010,Larkspur Biotech,Toronto,2025,5,1331.44
+STUDY-010,Larkspur Biotech,Toronto,2025,6,1575.4
+STUDY-010,Larkspur Biotech,Toronto,2025,7,1610.87
+STUDY-010,Larkspur Biotech,Toronto,2025,8,1610.87
+STUDY-010,Larkspur Biotech,Toronto,2025,9,1610.87
+STUDY-010,Larkspur Biotech,Toronto,2025,10,1191.55
+STUDY-010,Larkspur Biotech,Toronto,2025,11,1191.55
+STUDY-010,Larkspur Biotech,Toronto,2025,12,935.62
+STUDY-010,Larkspur Biotech,Toronto,2026,1,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,2,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,3,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,4,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,5,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,6,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,7,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,8,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,9,167.6
+STUDY-010,Larkspur Biotech,Toronto,2026,10,167.6
+STUDY-010,Larkspur Biotech,Vancouver,2025,3,358.04
+STUDY-010,Larkspur Biotech,Vancouver,2025,4,746.85
+STUDY-010,Larkspur Biotech,Vancouver,2025,5,637.78
+STUDY-010,Larkspur Biotech,Vancouver,2025,6,1005.61
+STUDY-010,Larkspur Biotech,Vancouver,2025,7,1595.54
+STUDY-010,Larkspur Biotech,Vancouver,2025,8,1595.54
+STUDY-010,Larkspur Biotech,Vancouver,2025,9,1172.07
+STUDY-010,Larkspur Biotech,Vancouver,2025,10,1172.07
+STUDY-010,Larkspur Biotech,Vancouver,2025,11,892.32
+STUDY-010,Larkspur Biotech,Vancouver,2025,12,524.49
+STUDY-010,Larkspur Biotech,Vancouver,2026,1,524.49
+STUDY-010,Larkspur Biotech,Vancouver,2026,2,524.49
+STUDY-010,Larkspur Biotech,Vancouver,2026,3,231.2
+STUDY-010,Larkspur Biotech,Vancouver,2026,4,231.2
+STUDY-011,Helix Ridge Bio,Calgary,2025,4,82.43
+STUDY-011,Helix Ridge Bio,Calgary,2025,5,624.26
+STUDY-011,Helix Ridge Bio,Calgary,2025,6,632.43
+STUDY-011,Helix Ridge Bio,Calgary,2025,7,1211.9
+STUDY-011,Helix Ridge Bio,Calgary,2025,8,1318.91
+STUDY-011,Helix Ridge Bio,Calgary,2025,9,1573.31
+STUDY-011,Helix Ridge Bio,Calgary,2025,10,1201.09
+STUDY-011,Helix Ridge Bio,Calgary,2025,11,1175.53
+STUDY-011,Helix Ridge Bio,Calgary,2025,12,1951.76
+STUDY-011,Helix Ridge Bio,Calgary,2026,1,2052.57
+STUDY-011,Helix Ridge Bio,Calgary,2026,2,1897.82
+STUDY-011,Helix Ridge Bio,Calgary,2026,3,1634.19
+STUDY-011,Helix Ridge Bio,Calgary,2026,4,1634.19
+STUDY-011,Helix Ridge Bio,Calgary,2026,5,1366.53
+STUDY-011,Helix Ridge Bio,Calgary,2026,6,1366.53
+STUDY-011,Helix Ridge Bio,Calgary,2026,7,665.85
+STUDY-011,Helix Ridge Bio,Calgary,2026,8,420.53
+STUDY-011,Helix Ridge Bio,Calgary,2026,9,127.03
+STUDY-011,Helix Ridge Bio,Calgary,2026,10,127.03
+STUDY-011,Helix Ridge Bio,Toronto,2025,4,1381.53
+STUDY-011,Helix Ridge Bio,Toronto,2025,5,2714.68
+STUDY-011,Helix Ridge Bio,Toronto,2025,6,3217.33
+STUDY-011,Helix Ridge Bio,Toronto,2025,7,3464.32
+STUDY-011,Helix Ridge Bio,Toronto,2025,8,3661.0
+STUDY-011,Helix Ridge Bio,Toronto,2025,9,4749.14
+STUDY-011,Helix Ridge Bio,Toronto,2025,10,4664.25
+STUDY-011,Helix Ridge Bio,Toronto,2025,11,5002.91
+STUDY-011,Helix Ridge Bio,Toronto,2025,12,3336.23
+STUDY-011,Helix Ridge Bio,Toronto,2026,1,3587.2
+STUDY-011,Helix Ridge Bio,Toronto,2026,2,4070.29
+STUDY-011,Helix Ridge Bio,Toronto,2026,3,3560.1
+STUDY-011,Helix Ridge Bio,Toronto,2026,4,3149.91
+STUDY-011,Helix Ridge Bio,Toronto,2026,5,2244.8
+STUDY-011,Helix Ridge Bio,Toronto,2026,6,1779.57
+STUDY-011,Helix Ridge Bio,Toronto,2026,7,1481.71
+STUDY-011,Helix Ridge Bio,Toronto,2026,8,880.96
+STUDY-011,Helix Ridge Bio,Toronto,2026,9,234.43
+STUDY-011,Helix Ridge Bio,Toronto,2026,10,234.43
+STUDY-011,Helix Ridge Bio,Vancouver,2025,5,701.27
+STUDY-011,Helix Ridge Bio,Vancouver,2025,6,701.27
+STUDY-011,Helix Ridge Bio,Vancouver,2025,7,1541.27
+STUDY-011,Helix Ridge Bio,Vancouver,2025,8,1136.63
+STUDY-011,Helix Ridge Bio,Vancouver,2025,9,1056.7
+STUDY-011,Helix Ridge Bio,Vancouver,2025,10,1389.42
+STUDY-011,Helix Ridge Bio,Vancouver,2025,11,1137.89
+STUDY-011,Helix Ridge Bio,Vancouver,2025,12,1291.19
+STUDY-011,Helix Ridge Bio,Vancouver,2026,1,1849.14
+STUDY-011,Helix Ridge Bio,Vancouver,2026,2,1978.69
+STUDY-011,Helix Ridge Bio,Vancouver,2026,3,1591.49
+STUDY-011,Helix Ridge Bio,Vancouver,2026,4,1484.64
+STUDY-011,Helix Ridge Bio,Vancouver,2026,5,1151.92
+STUDY-011,Helix Ridge Bio,Vancouver,2026,6,816.63
+STUDY-011,Helix Ridge Bio,Vancouver,2026,7,816.63
+STUDY-011,Helix Ridge Bio,Vancouver,2026,8,429.98
+STUDY-011,Helix Ridge Bio,Vancouver,2026,9,125.67
+STUDY-011,Helix Ridge Bio,Vancouver,2026,10,125.67
+STUDY-012,Aurelis Pharma,Calgary,2025,9,99.6
+STUDY-012,Aurelis Pharma,Calgary,2025,10,738.8
+STUDY-012,Aurelis Pharma,Calgary,2025,11,1430.01
+STUDY-012,Aurelis Pharma,Calgary,2025,12,1450.89
+STUDY-012,Aurelis Pharma,Calgary,2026,1,2396.96
+STUDY-012,Aurelis Pharma,Calgary,2026,2,3352.39
+STUDY-012,Aurelis Pharma,Calgary,2026,3,3627.76
+STUDY-012,Aurelis Pharma,Calgary,2026,4,3989.87
+STUDY-012,Aurelis Pharma,Calgary,2026,5,4720.01
+STUDY-012,Aurelis Pharma,Calgary,2026,6,5767.27
+STUDY-012,Aurelis Pharma,Calgary,2026,7,4699.76
+STUDY-012,Aurelis Pharma,Calgary,2026,8,2805.7
+STUDY-012,Aurelis Pharma,Calgary,2026,9,2805.7
+STUDY-012,Aurelis Pharma,Calgary,2026,10,1926.9
+STUDY-012,Aurelis Pharma,Toronto,2025,9,21.14
+STUDY-012,Aurelis Pharma,Toronto,2025,10,307.29
+STUDY-012,Aurelis Pharma,Toronto,2025,11,1560.76
+STUDY-012,Aurelis Pharma,Toronto,2025,12,1913.97
+STUDY-012,Aurelis Pharma,Toronto,2026,1,1807.01
+STUDY-012,Aurelis Pharma,Toronto,2026,2,2784.43
+STUDY-012,Aurelis Pharma,Toronto,2026,3,2967.06
+STUDY-012,Aurelis Pharma,Toronto,2026,4,3881.73
+STUDY-012,Aurelis Pharma,Toronto,2026,5,4887.02
+STUDY-012,Aurelis Pharma,Toronto,2026,6,5914.86
+STUDY-012,Aurelis Pharma,Toronto,2026,7,5641.05
+STUDY-012,Aurelis Pharma,Toronto,2026,8,4872.51
+STUDY-012,Aurelis Pharma,Toronto,2026,9,4275.83
+STUDY-012,Aurelis Pharma,Toronto,2026,10,4275.83
+STUDY-012,Aurelis Pharma,Vancouver,2025,9,90.66
+STUDY-012,Aurelis Pharma,Vancouver,2025,10,594.02
+STUDY-012,Aurelis Pharma,Vancouver,2025,11,1326.66
+STUDY-012,Aurelis Pharma,Vancouver,2025,12,1191.46
+STUDY-012,Aurelis Pharma,Vancouver,2026,1,1434.38
+STUDY-012,Aurelis Pharma,Vancouver,2026,2,2020.38
+STUDY-012,Aurelis Pharma,Vancouver,2026,3,2059.27
+STUDY-012,Aurelis Pharma,Vancouver,2026,4,2935.25
+STUDY-012,Aurelis Pharma,Vancouver,2026,5,4840.12
+STUDY-012,Aurelis Pharma,Vancouver,2026,6,5480.34
+STUDY-012,Aurelis Pharma,Vancouver,2026,7,5480.34
+STUDY-012,Aurelis Pharma,Vancouver,2026,8,5480.34
+STUDY-012,Aurelis Pharma,Vancouver,2026,9,5115.33
+STUDY-012,Aurelis Pharma,Vancouver,2026,10,5115.33
+STUDY-013,Nordvale Therapeutics,Calgary,2026,1,399.63
+STUDY-013,Nordvale Therapeutics,Calgary,2026,2,509.02
+STUDY-013,Nordvale Therapeutics,Calgary,2026,3,509.02
+STUDY-013,Nordvale Therapeutics,Calgary,2026,4,539.58
+STUDY-013,Nordvale Therapeutics,Calgary,2026,5,778.7
+STUDY-013,Nordvale Therapeutics,Calgary,2026,6,399.63
+STUDY-013,Nordvale Therapeutics,Calgary,2026,7,399.63
+STUDY-013,Nordvale Therapeutics,Calgary,2026,8,399.63
+STUDY-013,Nordvale Therapeutics,Calgary,2026,9,399.63
+STUDY-013,Nordvale Therapeutics,Toronto,2025,10,348.79
+STUDY-013,Nordvale Therapeutics,Toronto,2025,11,348.79
+STUDY-013,Nordvale Therapeutics,Toronto,2025,12,797.78
+STUDY-013,Nordvale Therapeutics,Toronto,2026,1,512.55
+STUDY-013,Nordvale Therapeutics,Toronto,2026,2,1170.3
+STUDY-013,Nordvale Therapeutics,Toronto,2026,3,1170.3
+STUDY-013,Nordvale Therapeutics,Toronto,2026,4,1741.99
+STUDY-013,Nordvale Therapeutics,Toronto,2026,5,2010.34
+STUDY-013,Nordvale Therapeutics,Toronto,2026,6,2010.34
+STUDY-013,Nordvale Therapeutics,Toronto,2026,7,2010.34
+STUDY-013,Nordvale Therapeutics,Toronto,2026,8,2010.34
+STUDY-013,Nordvale Therapeutics,Toronto,2026,9,1661.55
+STUDY-013,Nordvale Therapeutics,Toronto,2026,10,1661.55
+STUDY-013,Nordvale Therapeutics,Vancouver,2025,11,408.11
+STUDY-013,Nordvale Therapeutics,Vancouver,2025,12,408.11
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,1,823.96
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,2,823.96
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,3,823.96
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,4,976.01
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,5,976.01
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,6,823.96
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,7,823.96
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,8,415.85
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,9,415.85
+STUDY-013,Nordvale Therapeutics,Vancouver,2026,10,415.85
+STUDY-014,Cobalt Neuro,Calgary,2025,4,273.25
+STUDY-014,Cobalt Neuro,Calgary,2025,5,508.66
+STUDY-014,Cobalt Neuro,Calgary,2025,6,508.66
+STUDY-014,Cobalt Neuro,Calgary,2025,7,508.66
+STUDY-014,Cobalt Neuro,Calgary,2025,8,649.29
+STUDY-014,Cobalt Neuro,Calgary,2025,9,508.66
+STUDY-014,Cobalt Neuro,Calgary,2025,10,247.46
+STUDY-014,Cobalt Neuro,Calgary,2025,11,633.92
+STUDY-014,Cobalt Neuro,Calgary,2025,12,398.51
+STUDY-014,Cobalt Neuro,Calgary,2026,1,517.28
+STUDY-014,Cobalt Neuro,Calgary,2026,2,841.58
+STUDY-014,Cobalt Neuro,Calgary,2026,3,841.58
+STUDY-014,Cobalt Neuro,Calgary,2026,4,757.22
+STUDY-014,Cobalt Neuro,Calgary,2026,5,757.22
+STUDY-014,Cobalt Neuro,Calgary,2026,6,757.22
+STUDY-014,Cobalt Neuro,Calgary,2026,7,458.84
+STUDY-014,Cobalt Neuro,Calgary,2026,8,458.84
+STUDY-014,Cobalt Neuro,Calgary,2026,9,234.23
+STUDY-014,Cobalt Neuro,Calgary,2026,10,234.23
+STUDY-014,Cobalt Neuro,Toronto,2025,3,461.8
+STUDY-014,Cobalt Neuro,Toronto,2025,4,461.8
+STUDY-014,Cobalt Neuro,Toronto,2025,5,461.8
+STUDY-014,Cobalt Neuro,Toronto,2025,6,714.35
+STUDY-014,Cobalt Neuro,Toronto,2025,7,714.35
+STUDY-014,Cobalt Neuro,Toronto,2025,8,252.55
+STUDY-014,Cobalt Neuro,Toronto,2025,9,252.55
+STUDY-014,Cobalt Neuro,Toronto,2025,10,374.11
+STUDY-014,Cobalt Neuro,Toronto,2025,11,579.32
+STUDY-014,Cobalt Neuro,Toronto,2025,12,661.47
+STUDY-014,Cobalt Neuro,Toronto,2026,1,408.93
+STUDY-014,Cobalt Neuro,Toronto,2026,2,326.77
+STUDY-014,Cobalt Neuro,Toronto,2026,3,326.77
+STUDY-014,Cobalt Neuro,Toronto,2026,4,692.51
+STUDY-014,Cobalt Neuro,Toronto,2026,5,365.74
+STUDY-014,Cobalt Neuro,Toronto,2026,6,365.74
+STUDY-014,Cobalt Neuro,Toronto,2026,7,365.74
+STUDY-014,Cobalt Neuro,Toronto,2026,8,365.74
+STUDY-014,Cobalt Neuro,Toronto,2026,9,365.74
+STUDY-014,Cobalt Neuro,Vancouver,2025,4,295.37
+STUDY-014,Cobalt Neuro,Vancouver,2025,5,295.37
+STUDY-014,Cobalt Neuro,Vancouver,2025,6,295.37
+STUDY-014,Cobalt Neuro,Vancouver,2025,7,390.33
+STUDY-014,Cobalt Neuro,Vancouver,2025,8,390.33
+STUDY-014,Cobalt Neuro,Vancouver,2025,9,295.37
+STUDY-014,Cobalt Neuro,Vancouver,2026,1,375.48
+STUDY-014,Cobalt Neuro,Vancouver,2026,2,375.48
+STUDY-014,Cobalt Neuro,Vancouver,2026,3,375.48
+STUDY-014,Cobalt Neuro,Vancouver,2026,4,375.48
+STUDY-014,Cobalt Neuro,Vancouver,2026,5,375.48
+STUDY-015,Nordvale Therapeutics,Calgary,2025,9,273.89
+STUDY-015,Nordvale Therapeutics,Calgary,2025,10,575.29
+STUDY-015,Nordvale Therapeutics,Calgary,2025,11,603.55
+STUDY-015,Nordvale Therapeutics,Calgary,2025,12,603.55
+STUDY-015,Nordvale Therapeutics,Calgary,2026,1,603.55
+STUDY-015,Nordvale Therapeutics,Calgary,2026,2,603.55
+STUDY-015,Nordvale Therapeutics,Calgary,2026,3,603.55
+STUDY-015,Nordvale Therapeutics,Calgary,2026,4,603.55
+STUDY-015,Nordvale Therapeutics,Calgary,2026,5,777.57
+STUDY-015,Nordvale Therapeutics,Calgary,2026,6,777.57
+STUDY-015,Nordvale Therapeutics,Calgary,2026,7,603.55
+STUDY-015,Nordvale Therapeutics,Calgary,2026,8,329.66
+STUDY-015,Nordvale Therapeutics,Calgary,2026,9,329.66
+STUDY-015,Nordvale Therapeutics,Calgary,2026,10,28.26
+STUDY-015,Nordvale Therapeutics,Toronto,2025,9,217.64
+STUDY-015,Nordvale Therapeutics,Toronto,2025,10,2535.67
+STUDY-015,Nordvale Therapeutics,Toronto,2025,11,2560.35
+STUDY-015,Nordvale Therapeutics,Toronto,2025,12,2367.18
+STUDY-015,Nordvale Therapeutics,Toronto,2026,1,3095.51
+STUDY-015,Nordvale Therapeutics,Toronto,2026,2,3108.81
+STUDY-015,Nordvale Therapeutics,Toronto,2026,3,2785.84
+STUDY-015,Nordvale Therapeutics,Toronto,2026,4,3730.96
+STUDY-015,Nordvale Therapeutics,Toronto,2026,5,3013.34
+STUDY-015,Nordvale Therapeutics,Toronto,2026,6,3047.39
+STUDY-015,Nordvale Therapeutics,Toronto,2026,7,3047.39
+STUDY-015,Nordvale Therapeutics,Toronto,2026,8,3047.39
+STUDY-015,Nordvale Therapeutics,Toronto,2026,9,2470.39
+STUDY-015,Nordvale Therapeutics,Toronto,2026,10,2051.73
+STUDY-015,Nordvale Therapeutics,Vancouver,2025,9,142.38
+STUDY-015,Nordvale Therapeutics,Vancouver,2025,10,554.82
+STUDY-015,Nordvale Therapeutics,Vancouver,2025,11,554.82
+STUDY-015,Nordvale Therapeutics,Vancouver,2025,12,824.92
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,1,554.82
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,2,922.72
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,3,1426.42
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,4,1426.42
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,5,1426.42
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,6,2113.78
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,7,1398.85
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,8,1398.85
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,9,1398.85
+STUDY-015,Nordvale Therapeutics,Vancouver,2026,10,1398.85
+STUDY-016,Helix Ridge Bio,Calgary,2025,2,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2025,3,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2025,4,493.84
+STUDY-016,Helix Ridge Bio,Calgary,2025,5,493.84
+STUDY-016,Helix Ridge Bio,Calgary,2025,6,493.84
+STUDY-016,Helix Ridge Bio,Calgary,2025,7,493.84
+STUDY-016,Helix Ridge Bio,Calgary,2025,8,493.84
+STUDY-016,Helix Ridge Bio,Calgary,2025,9,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2025,10,221.05
+STUDY-016,Helix Ridge Bio,Calgary,2025,11,221.05
+STUDY-016,Helix Ridge Bio,Calgary,2025,12,220.32
+STUDY-016,Helix Ridge Bio,Calgary,2026,1,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,2,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,3,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,4,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,5,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,6,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,7,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,8,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,9,43.35
+STUDY-016,Helix Ridge Bio,Calgary,2026,10,43.35
+STUDY-016,Helix Ridge Bio,Toronto,2025,3,167.34
+STUDY-016,Helix Ridge Bio,Toronto,2025,4,401.92
+STUDY-016,Helix Ridge Bio,Toronto,2025,5,959.51
+STUDY-016,Helix Ridge Bio,Toronto,2025,6,1664.72
+STUDY-016,Helix Ridge Bio,Toronto,2025,7,2032.75
+STUDY-016,Helix Ridge Bio,Toronto,2025,8,2255.09
+STUDY-016,Helix Ridge Bio,Toronto,2025,9,2255.09
+STUDY-016,Helix Ridge Bio,Toronto,2025,10,2255.09
+STUDY-016,Helix Ridge Bio,Toronto,2025,11,1948.37
+STUDY-016,Helix Ridge Bio,Toronto,2025,12,1886.54
+STUDY-016,Helix Ridge Bio,Toronto,2026,1,1917.32
+STUDY-016,Helix Ridge Bio,Toronto,2026,2,1917.32
+STUDY-016,Helix Ridge Bio,Toronto,2026,3,1627.33
+STUDY-016,Helix Ridge Bio,Toronto,2026,4,1627.33
+STUDY-016,Helix Ridge Bio,Toronto,2026,5,1627.33
+STUDY-016,Helix Ridge Bio,Toronto,2026,6,868.0
+STUDY-016,Helix Ridge Bio,Toronto,2026,7,868.0
+STUDY-016,Helix Ridge Bio,Toronto,2026,8,192.11
+STUDY-016,Helix Ridge Bio,Toronto,2026,9,192.11
+STUDY-016,Helix Ridge Bio,Toronto,2026,10,192.11
+STUDY-016,Helix Ridge Bio,Vancouver,2025,2,438.23
+STUDY-016,Helix Ridge Bio,Vancouver,2025,3,438.23
+STUDY-016,Helix Ridge Bio,Vancouver,2025,4,438.23
+STUDY-016,Helix Ridge Bio,Vancouver,2025,5,721.34
+STUDY-016,Helix Ridge Bio,Vancouver,2025,6,721.34
+STUDY-016,Helix Ridge Bio,Vancouver,2025,7,721.34
+STUDY-016,Helix Ridge Bio,Vancouver,2025,8,721.34
+STUDY-016,Helix Ridge Bio,Vancouver,2025,9,338.81
+STUDY-016,Helix Ridge Bio,Vancouver,2025,10,338.81
+STUDY-016,Helix Ridge Bio,Vancouver,2025,11,338.81
+STUDY-016,Helix Ridge Bio,Vancouver,2025,12,287.07
+STUDY-016,Helix Ridge Bio,Vancouver,2026,1,287.07
+STUDY-016,Helix Ridge Bio,Vancouver,2026,2,287.07
+STUDY-016,Helix Ridge Bio,Vancouver,2026,3,287.07
+STUDY-016,Helix Ridge Bio,Vancouver,2026,4,287.07
+STUDY-016,Helix Ridge Bio,Vancouver,2026,5,287.07
+STUDY-016,Helix Ridge Bio,Vancouver,2026,6,287.07
+STUDY-016,Helix Ridge Bio,Vancouver,2026,7,55.7
+STUDY-016,Helix Ridge Bio,Vancouver,2026,8,55.7
+STUDY-016,Helix Ridge Bio,Vancouver,2026,9,55.7
+STUDY-016,Helix Ridge Bio,Vancouver,2026,10,55.7
+STUDY-017,Aurelis Pharma,Calgary,2025,5,317.3
+STUDY-017,Aurelis Pharma,Calgary,2025,6,579.03
+STUDY-017,Aurelis Pharma,Calgary,2025,7,579.03
+STUDY-017,Aurelis Pharma,Calgary,2025,8,1216.18
+STUDY-017,Aurelis Pharma,Calgary,2025,9,1066.84
+STUDY-017,Aurelis Pharma,Calgary,2025,10,1216.7
+STUDY-017,Aurelis Pharma,Calgary,2025,11,1584.13
+STUDY-017,Aurelis Pharma,Calgary,2025,12,1870.94
+STUDY-017,Aurelis Pharma,Calgary,2026,1,1584.13
+STUDY-017,Aurelis Pharma,Calgary,2026,2,1266.83
+STUDY-017,Aurelis Pharma,Calgary,2026,3,1266.83
+STUDY-017,Aurelis Pharma,Calgary,2026,4,865.29
+STUDY-017,Aurelis Pharma,Calgary,2026,5,865.29
+STUDY-017,Aurelis Pharma,Calgary,2026,6,865.29
+STUDY-017,Aurelis Pharma,Calgary,2026,7,865.29
+STUDY-017,Aurelis Pharma,Calgary,2026,8,497.85
+STUDY-017,Aurelis Pharma,Calgary,2026,9,497.85
+STUDY-017,Aurelis Pharma,Calgary,2026,10,497.85
+STUDY-017,Aurelis Pharma,Toronto,2025,3,537.66
+STUDY-017,Aurelis Pharma,Toronto,2025,4,1515.8
+STUDY-017,Aurelis Pharma,Toronto,2025,5,1198.52
+STUDY-017,Aurelis Pharma,Toronto,2025,6,1251.18
+STUDY-017,Aurelis Pharma,Toronto,2025,7,1342.53
+STUDY-017,Aurelis Pharma,Toronto,2025,8,1821.7
+STUDY-017,Aurelis Pharma,Toronto,2025,9,1821.7
+STUDY-017,Aurelis Pharma,Toronto,2025,10,1821.7
+STUDY-017,Aurelis Pharma,Toronto,2025,11,1369.06
+STUDY-017,Aurelis Pharma,Toronto,2025,12,1976.99
+STUDY-017,Aurelis Pharma,Toronto,2026,1,1488.97
+STUDY-017,Aurelis Pharma,Toronto,2026,2,1330.21
+STUDY-017,Aurelis Pharma,Toronto,2026,3,1330.21
+STUDY-017,Aurelis Pharma,Toronto,2026,4,905.49
+STUDY-017,Aurelis Pharma,Toronto,2026,5,905.49
+STUDY-017,Aurelis Pharma,Toronto,2026,6,905.49
+STUDY-017,Aurelis Pharma,Toronto,2026,7,905.49
+STUDY-017,Aurelis Pharma,Toronto,2026,8,637.26
+STUDY-017,Aurelis Pharma,Toronto,2026,9,637.26
+STUDY-017,Aurelis Pharma,Toronto,2026,10,637.26
+STUDY-017,Aurelis Pharma,Vancouver,2025,2,380.44
+STUDY-017,Aurelis Pharma,Vancouver,2025,3,527.87
+STUDY-017,Aurelis Pharma,Vancouver,2025,4,527.87
+STUDY-017,Aurelis Pharma,Vancouver,2025,5,710.55
+STUDY-017,Aurelis Pharma,Vancouver,2025,6,710.55
+STUDY-017,Aurelis Pharma,Vancouver,2025,7,987.13
+STUDY-017,Aurelis Pharma,Vancouver,2025,8,710.55
+STUDY-017,Aurelis Pharma,Vancouver,2025,9,1232.27
+STUDY-017,Aurelis Pharma,Vancouver,2025,10,1651.66
+STUDY-017,Aurelis Pharma,Vancouver,2025,11,1393.96
+STUDY-017,Aurelis Pharma,Vancouver,2025,12,1013.52
+STUDY-017,Aurelis Pharma,Vancouver,2026,1,683.41
+STUDY-017,Aurelis Pharma,Vancouver,2026,2,683.41
+STUDY-017,Aurelis Pharma,Vancouver,2026,3,683.41
+STUDY-017,Aurelis Pharma,Vancouver,2026,4,326.43
+STUDY-017,Aurelis Pharma,Vancouver,2026,5,326.43
+STUDY-017,Aurelis Pharma,Vancouver,2026,6,326.43
+STUDY-017,Aurelis Pharma,Vancouver,2026,7,326.43
+STUDY-017,Aurelis Pharma,Vancouver,2026,8,326.43
+STUDY-017,Aurelis Pharma,Vancouver,2026,9,326.43
+STUDY-017,Aurelis Pharma,Vancouver,2026,10,326.43
+STUDY-018,Northbridge Memory Lab,Calgary,2025,5,672.0
+STUDY-018,Northbridge Memory Lab,Calgary,2025,6,1373.26
+STUDY-018,Northbridge Memory Lab,Calgary,2025,7,1495.86
+STUDY-018,Northbridge Memory Lab,Calgary,2025,8,1836.6
+STUDY-018,Northbridge Memory Lab,Calgary,2025,9,1872.84
+STUDY-018,Northbridge Memory Lab,Calgary,2025,10,1689.61
+STUDY-018,Northbridge Memory Lab,Calgary,2025,11,2063.27
+STUDY-018,Northbridge Memory Lab,Calgary,2025,12,2059.34
+STUDY-018,Northbridge Memory Lab,Calgary,2026,1,2284.49
+STUDY-018,Northbridge Memory Lab,Calgary,2026,2,2131.17
+STUDY-018,Northbridge Memory Lab,Calgary,2026,3,2518.46
+STUDY-018,Northbridge Memory Lab,Calgary,2026,4,2097.67
+STUDY-018,Northbridge Memory Lab,Calgary,2026,5,1773.55
+STUDY-018,Northbridge Memory Lab,Calgary,2026,6,1773.55
+STUDY-018,Northbridge Memory Lab,Calgary,2026,7,1773.55
+STUDY-018,Northbridge Memory Lab,Calgary,2026,8,1773.55
+STUDY-018,Northbridge Memory Lab,Calgary,2026,9,1251.47
+STUDY-018,Northbridge Memory Lab,Calgary,2026,10,1034.3
+STUDY-018,Northbridge Memory Lab,Toronto,2025,4,47.92
+STUDY-018,Northbridge Memory Lab,Toronto,2025,5,580.23
+STUDY-018,Northbridge Memory Lab,Toronto,2025,6,1098.9
+STUDY-018,Northbridge Memory Lab,Toronto,2025,7,1477.79
+STUDY-018,Northbridge Memory Lab,Toronto,2025,8,1846.45
+STUDY-018,Northbridge Memory Lab,Toronto,2025,9,2471.41
+STUDY-018,Northbridge Memory Lab,Toronto,2025,10,2999.11
+STUDY-018,Northbridge Memory Lab,Toronto,2025,11,3469.46
+STUDY-018,Northbridge Memory Lab,Toronto,2025,12,3635.34
+STUDY-018,Northbridge Memory Lab,Toronto,2026,1,3693.36
+STUDY-018,Northbridge Memory Lab,Toronto,2026,2,4199.24
+STUDY-018,Northbridge Memory Lab,Toronto,2026,3,3418.27
+STUDY-018,Northbridge Memory Lab,Toronto,2026,4,3418.27
+STUDY-018,Northbridge Memory Lab,Toronto,2026,5,3418.27
+STUDY-018,Northbridge Memory Lab,Toronto,2026,6,2847.67
+STUDY-018,Northbridge Memory Lab,Toronto,2026,7,2503.19
+STUDY-018,Northbridge Memory Lab,Toronto,2026,8,1324.08
+STUDY-018,Northbridge Memory Lab,Toronto,2026,9,1324.08
+STUDY-018,Northbridge Memory Lab,Toronto,2026,10,713.57
+STUDY-018,Northbridge Memory Lab,Vancouver,2025,5,498.68
+STUDY-018,Northbridge Memory Lab,Vancouver,2025,6,1255.85
+STUDY-018,Northbridge Memory Lab,Vancouver,2025,7,1121.63
+STUDY-018,Northbridge Memory Lab,Vancouver,2025,8,1026.66
+STUDY-018,Northbridge Memory Lab,Vancouver,2025,9,1117.1
+STUDY-018,Northbridge Memory Lab,Vancouver,2025,10,1528.12
+STUDY-018,Northbridge Memory Lab,Vancouver,2025,11,1781.75
+STUDY-018,Northbridge Memory Lab,Vancouver,2025,12,1346.76
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,1,1024.18
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,2,1485.05
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,3,1777.77
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,4,1487.18
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,5,1076.16
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,6,1076.16
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,7,1076.16
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,8,1076.16
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,9,836.26
+STUDY-018,Northbridge Memory Lab,Vancouver,2026,10,836.26
+STUDY-019,Corvant Pharma,Calgary,2025,8,110.34
+STUDY-019,Corvant Pharma,Calgary,2025,9,110.34
+STUDY-019,Corvant Pharma,Calgary,2025,10,398.67
+STUDY-019,Corvant Pharma,Calgary,2025,11,831.45
+STUDY-019,Corvant Pharma,Calgary,2025,12,1181.58
+STUDY-019,Corvant Pharma,Calgary,2026,1,931.1
+STUDY-019,Corvant Pharma,Calgary,2026,2,1044.77
+STUDY-019,Corvant Pharma,Calgary,2026,3,1470.03
+STUDY-019,Corvant Pharma,Calgary,2026,4,1256.72
+STUDY-019,Corvant Pharma,Calgary,2026,5,1023.08
+STUDY-019,Corvant Pharma,Calgary,2026,6,729.3
+STUDY-019,Corvant Pharma,Calgary,2026,7,330.63
+STUDY-019,Corvant Pharma,Calgary,2026,8,330.63
+STUDY-019,Corvant Pharma,Calgary,2026,9,330.63
+STUDY-019,Corvant Pharma,Calgary,2026,10,330.63
+STUDY-019,Corvant Pharma,Toronto,2025,9,484.76
+STUDY-019,Corvant Pharma,Toronto,2025,10,1181.31
+STUDY-019,Corvant Pharma,Toronto,2025,11,1552.0
+STUDY-019,Corvant Pharma,Toronto,2025,12,1423.15
+STUDY-019,Corvant Pharma,Toronto,2026,1,1715.11
+STUDY-019,Corvant Pharma,Toronto,2026,2,1933.35
+STUDY-019,Corvant Pharma,Toronto,2026,3,1842.73
+STUDY-019,Corvant Pharma,Toronto,2026,4,2324.41
+STUDY-019,Corvant Pharma,Toronto,2026,5,2626.08
+STUDY-019,Corvant Pharma,Toronto,2026,6,2626.08
+STUDY-019,Corvant Pharma,Toronto,2026,7,2391.53
+STUDY-019,Corvant Pharma,Toronto,2026,8,2148.39
+STUDY-019,Corvant Pharma,Toronto,2026,9,1872.79
+STUDY-019,Corvant Pharma,Toronto,2026,10,1872.79
+STUDY-019,Corvant Pharma,Vancouver,2025,10,173.01
+STUDY-019,Corvant Pharma,Vancouver,2025,11,263.66
+STUDY-019,Corvant Pharma,Vancouver,2025,12,90.65
+STUDY-019,Corvant Pharma,Vancouver,2026,1,208.72
+STUDY-019,Corvant Pharma,Vancouver,2026,3,646.72
+STUDY-019,Corvant Pharma,Vancouver,2026,4,822.56
+STUDY-019,Corvant Pharma,Vancouver,2026,5,321.51
+STUDY-019,Corvant Pharma,Vancouver,2026,6,321.51
+STUDY-019,Corvant Pharma,Vancouver,2026,7,321.51
+STUDY-019,Corvant Pharma,Vancouver,2026,8,321.51
+STUDY-019,Corvant Pharma,Vancouver,2026,9,321.51
+STUDY-019,Corvant Pharma,Vancouver,2026,10,321.51
+STUDY-020,Aurelis Pharma,Calgary,2025,7,92.86
+STUDY-020,Aurelis Pharma,Calgary,2025,8,114.01
+STUDY-020,Aurelis Pharma,Calgary,2025,9,114.01
+STUDY-020,Aurelis Pharma,Calgary,2025,10,114.01
+STUDY-020,Aurelis Pharma,Calgary,2025,11,114.01
+STUDY-020,Aurelis Pharma,Calgary,2025,12,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,1,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,2,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,3,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,4,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,5,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,6,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,7,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,8,422.16
+STUDY-020,Aurelis Pharma,Calgary,2026,9,114.01
+STUDY-020,Aurelis Pharma,Calgary,2026,10,114.01
+STUDY-020,Aurelis Pharma,Toronto,2025,3,435.93
+STUDY-020,Aurelis Pharma,Toronto,2025,4,435.93
+STUDY-020,Aurelis Pharma,Toronto,2025,5,435.93
+STUDY-020,Aurelis Pharma,Toronto,2025,6,435.93
+STUDY-020,Aurelis Pharma,Toronto,2025,7,435.93
+STUDY-020,Aurelis Pharma,Toronto,2025,8,435.93
+STUDY-020,Aurelis Pharma,Toronto,2025,11,197.3
+STUDY-020,Aurelis Pharma,Toronto,2025,12,522.32
+STUDY-020,Aurelis Pharma,Toronto,2026,1,685.25
+STUDY-020,Aurelis Pharma,Toronto,2026,2,685.25
+STUDY-020,Aurelis Pharma,Toronto,2026,3,685.25
+STUDY-020,Aurelis Pharma,Toronto,2026,4,685.25
+STUDY-020,Aurelis Pharma,Toronto,2026,5,685.25
+STUDY-020,Aurelis Pharma,Toronto,2026,6,685.25
+STUDY-020,Aurelis Pharma,Toronto,2026,7,685.25
+STUDY-020,Aurelis Pharma,Toronto,2026,8,685.25
+STUDY-020,Aurelis Pharma,Vancouver,2025,5,365.85
+STUDY-020,Aurelis Pharma,Vancouver,2025,6,365.85
+STUDY-020,Aurelis Pharma,Vancouver,2025,7,365.85
+STUDY-020,Aurelis Pharma,Vancouver,2025,8,365.85
+STUDY-020,Aurelis Pharma,Vancouver,2025,9,365.85
+STUDY-020,Aurelis Pharma,Vancouver,2025,10,1584.11
+STUDY-020,Aurelis Pharma,Vancouver,2025,11,1584.11
+STUDY-020,Aurelis Pharma,Vancouver,2025,12,1584.11
+STUDY-020,Aurelis Pharma,Vancouver,2026,1,1584.11
+STUDY-020,Aurelis Pharma,Vancouver,2026,2,1393.88
+STUDY-020,Aurelis Pharma,Vancouver,2026,3,1393.88
+STUDY-020,Aurelis Pharma,Vancouver,2026,4,1393.88
+STUDY-020,Aurelis Pharma,Vancouver,2026,5,536.76
+STUDY-020,Aurelis Pharma,Vancouver,2026,6,175.62
+STUDY-020,Aurelis Pharma,Vancouver,2026,7,175.62
+STUDY-020,Aurelis Pharma,Vancouver,2026,8,175.62
+STUDY-020,Aurelis Pharma,Vancouver,2026,9,175.62
+STUDY-020,Aurelis Pharma,Vancouver,2026,10,175.62
+STUDY-021,Aurelis Pharma,Calgary,2025,9,377.01
+STUDY-021,Aurelis Pharma,Calgary,2025,11,163.76
+STUDY-021,Aurelis Pharma,Calgary,2025,12,163.76
+STUDY-021,Aurelis Pharma,Toronto,2025,6,155.99
+STUDY-021,Aurelis Pharma,Toronto,2025,7,504.12
+STUDY-021,Aurelis Pharma,Toronto,2025,8,1108.14
+STUDY-021,Aurelis Pharma,Toronto,2025,9,1457.91
+STUDY-021,Aurelis Pharma,Toronto,2025,10,1457.91
+STUDY-021,Aurelis Pharma,Toronto,2025,11,1457.91
+STUDY-021,Aurelis Pharma,Toronto,2025,12,1457.91
+STUDY-021,Aurelis Pharma,Toronto,2026,1,2773.35
+STUDY-021,Aurelis Pharma,Toronto,2026,2,2120.05
+STUDY-021,Aurelis Pharma,Toronto,2026,3,1499.22
+STUDY-021,Aurelis Pharma,Toronto,2026,4,1188.0
+STUDY-021,Aurelis Pharma,Toronto,2026,5,1188.0
+STUDY-021,Aurelis Pharma,Toronto,2026,6,669.9
+STUDY-021,Aurelis Pharma,Toronto,2026,7,669.9
+STUDY-021,Aurelis Pharma,Toronto,2026,8,17.64
+STUDY-021,Aurelis Pharma,Toronto,2026,9,17.64
+STUDY-021,Aurelis Pharma,Toronto,2026,10,17.64
+STUDY-021,Aurelis Pharma,Vancouver,2025,8,355.59
+STUDY-021,Aurelis Pharma,Vancouver,2025,9,310.7
+STUDY-021,Aurelis Pharma,Vancouver,2025,10,310.7
+STUDY-021,Aurelis Pharma,Vancouver,2025,11,310.7
+STUDY-021,Aurelis Pharma,Vancouver,2025,12,310.7
+STUDY-021,Aurelis Pharma,Vancouver,2026,1,310.7
+STUDY-021,Aurelis Pharma,Vancouver,2026,2,310.7
+STUDY-021,Aurelis Pharma,Vancouver,2026,3,310.7
+STUDY-021,Aurelis Pharma,Vancouver,2026,4,1627.17
+STUDY-021,Aurelis Pharma,Vancouver,2026,5,1627.17
+STUDY-021,Aurelis Pharma,Vancouver,2026,6,1316.47
+STUDY-021,Aurelis Pharma,Vancouver,2026,7,1316.47
+STUDY-021,Aurelis Pharma,Vancouver,2026,8,1316.47
+STUDY-021,Aurelis Pharma,Vancouver,2026,9,1316.47
+STUDY-021,Aurelis Pharma,Vancouver,2026,10,1316.47
+STUDY-022,Nordvale Therapeutics,Calgary,2025,2,9.76
+STUDY-022,Nordvale Therapeutics,Calgary,2025,3,652.05
+STUDY-022,Nordvale Therapeutics,Calgary,2025,4,652.05
+STUDY-022,Nordvale Therapeutics,Calgary,2025,5,1099.21
+STUDY-022,Nordvale Therapeutics,Calgary,2025,6,1559.43
+STUDY-022,Nordvale Therapeutics,Calgary,2025,7,2297.51
+STUDY-022,Nordvale Therapeutics,Calgary,2025,8,2297.51
+STUDY-022,Nordvale Therapeutics,Calgary,2025,9,1953.12
+STUDY-022,Nordvale Therapeutics,Calgary,2025,10,2072.61
+STUDY-022,Nordvale Therapeutics,Calgary,2025,11,2209.64
+STUDY-022,Nordvale Therapeutics,Calgary,2025,12,1267.38
+STUDY-022,Nordvale Therapeutics,Calgary,2026,1,1133.12
+STUDY-022,Nordvale Therapeutics,Calgary,2026,2,1133.12
+STUDY-022,Nordvale Therapeutics,Calgary,2026,3,1226.72
+STUDY-022,Nordvale Therapeutics,Calgary,2026,4,1226.72
+STUDY-022,Nordvale Therapeutics,Calgary,2026,5,1435.23
+STUDY-022,Nordvale Therapeutics,Calgary,2026,6,1435.23
+STUDY-022,Nordvale Therapeutics,Calgary,2026,7,1435.23
+STUDY-022,Nordvale Therapeutics,Calgary,2026,8,1030.39
+STUDY-022,Nordvale Therapeutics,Calgary,2026,9,1030.39
+STUDY-022,Nordvale Therapeutics,Calgary,2026,10,632.57
+STUDY-022,Nordvale Therapeutics,Toronto,2025,2,513.28
+STUDY-022,Nordvale Therapeutics,Toronto,2025,3,770.18
+STUDY-022,Nordvale Therapeutics,Toronto,2025,4,1322.49
+STUDY-022,Nordvale Therapeutics,Toronto,2025,5,2140.01
+STUDY-022,Nordvale Therapeutics,Toronto,2025,6,2464.1
+STUDY-022,Nordvale Therapeutics,Toronto,2025,7,2658.41
+STUDY-022,Nordvale Therapeutics,Toronto,2025,8,3251.54
+STUDY-022,Nordvale Therapeutics,Toronto,2025,9,3868.8
+STUDY-022,Nordvale Therapeutics,Toronto,2025,10,3700.28
+STUDY-022,Nordvale Therapeutics,Toronto,2025,11,3792.82
+STUDY-022,Nordvale Therapeutics,Toronto,2025,12,4718.61
+STUDY-022,Nordvale Therapeutics,Toronto,2026,1,4857.27
+STUDY-022,Nordvale Therapeutics,Toronto,2026,2,4857.27
+STUDY-022,Nordvale Therapeutics,Toronto,2026,3,4039.46
+STUDY-022,Nordvale Therapeutics,Toronto,2026,4,3911.71
+STUDY-022,Nordvale Therapeutics,Toronto,2026,5,3679.94
+STUDY-022,Nordvale Therapeutics,Toronto,2026,6,2920.02
+STUDY-022,Nordvale Therapeutics,Toronto,2026,7,2465.4
+STUDY-022,Nordvale Therapeutics,Toronto,2026,8,1578.7
+STUDY-022,Nordvale Therapeutics,Toronto,2026,9,1578.7
+STUDY-022,Nordvale Therapeutics,Toronto,2026,10,1298.85
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,2,304.16
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,3,688.2
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,4,384.04
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,5,466.12
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,6,466.12
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,7,497.37
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,8,880.01
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,9,880.01
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,10,1722.41
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,11,1161.86
+STUDY-022,Nordvale Therapeutics,Vancouver,2025,12,1652.43
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,1,2086.87
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,2,2478.98
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,3,2493.98
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,4,1794.42
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,5,1794.42
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,6,1794.42
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,7,1794.42
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,8,991.33
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,9,991.33
+STUDY-022,Nordvale Therapeutics,Vancouver,2026,10,718.05
+STUDY-023,Corvant Pharma,Calgary,2025,10,714.25
+STUDY-023,Corvant Pharma,Calgary,2025,11,737.17
+STUDY-023,Corvant Pharma,Calgary,2025,12,1631.71
+STUDY-023,Corvant Pharma,Calgary,2026,1,1783.64
+STUDY-023,Corvant Pharma,Calgary,2026,2,1783.64
+STUDY-023,Corvant Pharma,Calgary,2026,3,1783.64
+STUDY-023,Corvant Pharma,Calgary,2026,4,2515.92
+STUDY-023,Corvant Pharma,Calgary,2026,5,2515.92
+STUDY-023,Corvant Pharma,Calgary,2026,6,2425.71
+STUDY-023,Corvant Pharma,Calgary,2026,7,2425.71
+STUDY-023,Corvant Pharma,Calgary,2026,8,1711.46
+STUDY-023,Corvant Pharma,Calgary,2026,9,1711.46
+STUDY-023,Corvant Pharma,Calgary,2026,10,1711.46
+STUDY-023,Corvant Pharma,Toronto,2025,10,1051.59
+STUDY-023,Corvant Pharma,Toronto,2025,11,2096.16
+STUDY-023,Corvant Pharma,Toronto,2025,12,2808.14
+STUDY-023,Corvant Pharma,Toronto,2026,1,3328.55
+STUDY-023,Corvant Pharma,Toronto,2026,2,3714.84
+STUDY-023,Corvant Pharma,Toronto,2026,3,5043.0
+STUDY-023,Corvant Pharma,Toronto,2026,4,6599.85
+STUDY-023,Corvant Pharma,Toronto,2026,5,7447.81
+STUDY-023,Corvant Pharma,Toronto,2026,6,8057.34
+STUDY-023,Corvant Pharma,Toronto,2026,7,7771.67
+STUDY-023,Corvant Pharma,Toronto,2026,8,6173.27
+STUDY-023,Corvant Pharma,Toronto,2026,9,5812.67
+STUDY-023,Corvant Pharma,Toronto,2026,10,5200.58
+STUDY-023,Corvant Pharma,Vancouver,2025,10,382.66
+STUDY-023,Corvant Pharma,Vancouver,2025,11,967.79
+STUDY-023,Corvant Pharma,Vancouver,2025,12,967.79
+STUDY-023,Corvant Pharma,Vancouver,2026,1,1514.03
+STUDY-023,Corvant Pharma,Vancouver,2026,2,1618.99
+STUDY-023,Corvant Pharma,Vancouver,2026,3,1730.6
+STUDY-023,Corvant Pharma,Vancouver,2026,4,2137.96
+STUDY-023,Corvant Pharma,Vancouver,2026,5,3333.91
+STUDY-023,Corvant Pharma,Vancouver,2026,6,2799.28
+STUDY-023,Corvant Pharma,Vancouver,2026,7,2622.2
+STUDY-023,Corvant Pharma,Vancouver,2026,8,2622.2
+STUDY-023,Corvant Pharma,Vancouver,2026,9,2622.2
+STUDY-023,Corvant Pharma,Vancouver,2026,10,2622.2
+STUDY-024,Cobalt Neuro,Calgary,2025,4,1630.97
+STUDY-024,Cobalt Neuro,Calgary,2025,5,1748.25
+STUDY-024,Cobalt Neuro,Calgary,2025,6,1883.18
+STUDY-024,Cobalt Neuro,Calgary,2025,7,2765.36
+STUDY-024,Cobalt Neuro,Calgary,2025,8,4020.93
+STUDY-024,Cobalt Neuro,Calgary,2025,9,5056.1
+STUDY-024,Cobalt Neuro,Calgary,2025,10,4594.67
+STUDY-024,Cobalt Neuro,Calgary,2025,11,4313.25
+STUDY-024,Cobalt Neuro,Calgary,2025,12,4775.28
+STUDY-024,Cobalt Neuro,Calgary,2026,1,3982.34
+STUDY-024,Cobalt Neuro,Calgary,2026,2,4350.7
+STUDY-024,Cobalt Neuro,Calgary,2026,3,4243.83
+STUDY-024,Cobalt Neuro,Calgary,2026,4,3886.44
+STUDY-024,Cobalt Neuro,Calgary,2026,5,3034.1
+STUDY-024,Cobalt Neuro,Calgary,2026,6,2401.26
+STUDY-024,Cobalt Neuro,Calgary,2026,7,2189.89
+STUDY-024,Cobalt Neuro,Calgary,2026,8,1651.84
+STUDY-024,Cobalt Neuro,Calgary,2026,9,1651.84
+STUDY-024,Cobalt Neuro,Calgary,2026,10,1651.84
+STUDY-024,Cobalt Neuro,Toronto,2025,3,1113.09
+STUDY-024,Cobalt Neuro,Toronto,2025,4,1329.4
+STUDY-024,Cobalt Neuro,Toronto,2025,5,2124.22
+STUDY-024,Cobalt Neuro,Toronto,2025,6,3092.9
+STUDY-024,Cobalt Neuro,Toronto,2025,7,4037.97
+STUDY-024,Cobalt Neuro,Toronto,2025,8,4047.54
+STUDY-024,Cobalt Neuro,Toronto,2025,9,5360.32
+STUDY-024,Cobalt Neuro,Toronto,2025,10,5428.55
+STUDY-024,Cobalt Neuro,Toronto,2025,11,7394.69
+STUDY-024,Cobalt Neuro,Toronto,2025,12,7363.86
+STUDY-024,Cobalt Neuro,Toronto,2026,1,8705.72
+STUDY-024,Cobalt Neuro,Toronto,2026,2,8558.85
+STUDY-024,Cobalt Neuro,Toronto,2026,3,9323.07
+STUDY-024,Cobalt Neuro,Toronto,2026,4,10028.27
+STUDY-024,Cobalt Neuro,Toronto,2026,5,9382.85
+STUDY-024,Cobalt Neuro,Toronto,2026,6,7571.5
+STUDY-024,Cobalt Neuro,Toronto,2026,7,6684.72
+STUDY-024,Cobalt Neuro,Toronto,2026,8,6104.6
+STUDY-024,Cobalt Neuro,Toronto,2026,9,4671.12
+STUDY-024,Cobalt Neuro,Toronto,2026,10,3525.39
+STUDY-024,Cobalt Neuro,Vancouver,2025,4,494.79
+STUDY-024,Cobalt Neuro,Vancouver,2025,5,934.92
+STUDY-024,Cobalt Neuro,Vancouver,2025,6,1321.6
+STUDY-024,Cobalt Neuro,Vancouver,2025,7,1333.55
+STUDY-024,Cobalt Neuro,Vancouver,2025,8,1785.22
+STUDY-024,Cobalt Neuro,Vancouver,2025,9,1658.5
+STUDY-024,Cobalt Neuro,Vancouver,2025,10,2202.34
+STUDY-024,Cobalt Neuro,Vancouver,2025,11,2824.78
+STUDY-024,Cobalt Neuro,Vancouver,2025,12,3496.07
+STUDY-024,Cobalt Neuro,Vancouver,2026,1,4036.76
+STUDY-024,Cobalt Neuro,Vancouver,2026,2,3784.03
+STUDY-024,Cobalt Neuro,Vancouver,2026,3,3124.54
+STUDY-024,Cobalt Neuro,Vancouver,2026,4,3401.0
+STUDY-024,Cobalt Neuro,Vancouver,2026,5,3052.74
+STUDY-024,Cobalt Neuro,Vancouver,2026,6,2835.69
+STUDY-024,Cobalt Neuro,Vancouver,2026,7,2006.39
+STUDY-024,Cobalt Neuro,Vancouver,2026,8,1227.97
+STUDY-024,Cobalt Neuro,Vancouver,2026,9,1227.97
+STUDY-024,Cobalt Neuro,Vancouver,2026,10,1227.97
+STUDY-025,Aurelis Pharma,Calgary,2025,3,1452.34
+STUDY-025,Aurelis Pharma,Calgary,2025,4,1464.47
+STUDY-025,Aurelis Pharma,Calgary,2025,5,1607.11
+STUDY-025,Aurelis Pharma,Calgary,2025,6,2020.8
+STUDY-025,Aurelis Pharma,Calgary,2025,7,2146.91
+STUDY-025,Aurelis Pharma,Calgary,2025,8,2438.78
+STUDY-025,Aurelis Pharma,Calgary,2025,9,2685.25
+STUDY-025,Aurelis Pharma,Calgary,2025,10,4243.67
+STUDY-025,Aurelis Pharma,Calgary,2025,11,3315.96
+STUDY-025,Aurelis Pharma,Calgary,2025,12,3315.96
+STUDY-025,Aurelis Pharma,Calgary,2026,1,2943.3
+STUDY-025,Aurelis Pharma,Calgary,2026,2,2582.48
+STUDY-025,Aurelis Pharma,Calgary,2026,3,2582.48
+STUDY-025,Aurelis Pharma,Calgary,2026,4,2582.48
+STUDY-025,Aurelis Pharma,Calgary,2026,5,2083.45
+STUDY-025,Aurelis Pharma,Calgary,2026,6,1350.92
+STUDY-025,Aurelis Pharma,Calgary,2026,7,1350.92
+STUDY-025,Aurelis Pharma,Calgary,2026,8,378.65
+STUDY-025,Aurelis Pharma,Calgary,2026,9,378.65
+STUDY-025,Aurelis Pharma,Calgary,2026,10,378.65
+STUDY-025,Aurelis Pharma,Toronto,2025,2,522.68
+STUDY-025,Aurelis Pharma,Toronto,2025,3,1124.82
+STUDY-025,Aurelis Pharma,Toronto,2025,4,834.66
+STUDY-025,Aurelis Pharma,Toronto,2025,5,1435.44
+STUDY-025,Aurelis Pharma,Toronto,2025,6,1869.25
+STUDY-025,Aurelis Pharma,Toronto,2025,7,1889.93
+STUDY-025,Aurelis Pharma,Toronto,2025,8,1889.93
+STUDY-025,Aurelis Pharma,Toronto,2025,9,1770.71
+STUDY-025,Aurelis Pharma,Toronto,2025,10,2501.04
+STUDY-025,Aurelis Pharma,Toronto,2025,11,2662.92
+STUDY-025,Aurelis Pharma,Toronto,2025,12,2395.91
+STUDY-025,Aurelis Pharma,Toronto,2026,1,2461.45
+STUDY-025,Aurelis Pharma,Toronto,2026,2,2880.74
+STUDY-025,Aurelis Pharma,Toronto,2026,3,2446.93
+STUDY-025,Aurelis Pharma,Toronto,2026,4,2446.93
+STUDY-025,Aurelis Pharma,Toronto,2026,5,2446.93
+STUDY-025,Aurelis Pharma,Toronto,2026,6,1723.1
+STUDY-025,Aurelis Pharma,Toronto,2026,7,1723.1
+STUDY-025,Aurelis Pharma,Toronto,2026,8,1183.69
+STUDY-025,Aurelis Pharma,Toronto,2026,9,1183.69
+STUDY-025,Aurelis Pharma,Toronto,2026,10,807.79
+STUDY-025,Aurelis Pharma,Vancouver,2025,2,428.18
+STUDY-025,Aurelis Pharma,Vancouver,2025,3,593.56
+STUDY-025,Aurelis Pharma,Vancouver,2025,4,593.56
+STUDY-025,Aurelis Pharma,Vancouver,2025,5,1013.56
+STUDY-025,Aurelis Pharma,Vancouver,2025,6,1169.36
+STUDY-025,Aurelis Pharma,Vancouver,2025,7,1169.36
+STUDY-025,Aurelis Pharma,Vancouver,2025,8,1013.56
+STUDY-025,Aurelis Pharma,Vancouver,2025,9,1045.95
+STUDY-025,Aurelis Pharma,Vancouver,2025,10,541.28
+STUDY-025,Aurelis Pharma,Vancouver,2025,11,541.28
+STUDY-025,Aurelis Pharma,Vancouver,2025,12,564.24
+STUDY-025,Aurelis Pharma,Vancouver,2026,1,564.24
+STUDY-025,Aurelis Pharma,Vancouver,2026,2,564.24
+STUDY-025,Aurelis Pharma,Vancouver,2026,3,531.22
+STUDY-025,Aurelis Pharma,Vancouver,2026,4,531.22
+STUDY-025,Aurelis Pharma,Vancouver,2026,5,531.22
+STUDY-025,Aurelis Pharma,Vancouver,2026,6,531.22
+STUDY-025,Aurelis Pharma,Vancouver,2026,7,531.22
+STUDY-025,Aurelis Pharma,Vancouver,2026,8,531.22
+STUDY-025,Aurelis Pharma,Vancouver,2026,9,531.22
+STUDY-025,Aurelis Pharma,Vancouver,2026,10,163.02
+STUDY-026,Cobalt Neuro,Calgary,2025,4,81.24
+STUDY-026,Cobalt Neuro,Calgary,2025,5,170.36
+STUDY-026,Cobalt Neuro,Calgary,2025,6,777.92
+STUDY-026,Cobalt Neuro,Calgary,2025,7,688.8
+STUDY-026,Cobalt Neuro,Calgary,2025,8,794.88
+STUDY-026,Cobalt Neuro,Calgary,2025,9,818.33
+STUDY-026,Cobalt Neuro,Calgary,2025,10,792.56
+STUDY-026,Cobalt Neuro,Calgary,2025,11,451.96
+STUDY-026,Cobalt Neuro,Calgary,2025,12,857.37
+STUDY-026,Cobalt Neuro,Calgary,2026,1,642.0
+STUDY-026,Cobalt Neuro,Calgary,2026,2,1002.83
+STUDY-026,Cobalt Neuro,Calgary,2026,3,818.25
+STUDY-026,Cobalt Neuro,Calgary,2026,4,1097.81
+STUDY-026,Cobalt Neuro,Calgary,2026,5,1170.27
+STUDY-026,Cobalt Neuro,Calgary,2026,6,1209.91
+STUDY-026,Cobalt Neuro,Calgary,2026,7,1081.4
+STUDY-026,Cobalt Neuro,Calgary,2026,8,831.56
+STUDY-026,Cobalt Neuro,Calgary,2026,9,604.21
+STUDY-026,Cobalt Neuro,Calgary,2026,10,604.21
+STUDY-026,Cobalt Neuro,Toronto,2025,3,444.6
+STUDY-026,Cobalt Neuro,Toronto,2025,4,499.2
+STUDY-026,Cobalt Neuro,Toronto,2025,5,741.25
+STUDY-026,Cobalt Neuro,Toronto,2025,6,741.25
+STUDY-026,Cobalt Neuro,Toronto,2025,7,1038.37
+STUDY-026,Cobalt Neuro,Toronto,2025,8,979.46
+STUDY-026,Cobalt Neuro,Toronto,2025,9,1506.61
+STUDY-026,Cobalt Neuro,Toronto,2025,10,1718.91
+STUDY-026,Cobalt Neuro,Toronto,2025,11,2187.73
+STUDY-026,Cobalt Neuro,Toronto,2025,12,1984.34
+STUDY-026,Cobalt Neuro,Toronto,2026,1,3117.69
+STUDY-026,Cobalt Neuro,Toronto,2026,2,3543.15
+STUDY-026,Cobalt Neuro,Toronto,2026,3,3496.95
+STUDY-026,Cobalt Neuro,Toronto,2026,4,3360.59
+STUDY-026,Cobalt Neuro,Toronto,2026,5,2166.86
+STUDY-026,Cobalt Neuro,Toronto,2026,6,1636.79
+STUDY-026,Cobalt Neuro,Toronto,2026,7,1211.34
+STUDY-026,Cobalt Neuro,Toronto,2026,8,1133.0
+STUDY-026,Cobalt Neuro,Toronto,2026,9,1133.0
+STUDY-026,Cobalt Neuro,Toronto,2026,10,753.06
+STUDY-026,Cobalt Neuro,Vancouver,2025,4,222.83
+STUDY-026,Cobalt Neuro,Vancouver,2025,5,417.84
+STUDY-026,Cobalt Neuro,Vancouver,2025,6,560.5
+STUDY-026,Cobalt Neuro,Vancouver,2025,7,561.17
+STUDY-026,Cobalt Neuro,Vancouver,2025,8,782.86
+STUDY-026,Cobalt Neuro,Vancouver,2025,9,1012.85
+STUDY-026,Cobalt Neuro,Vancouver,2025,10,1210.58
+STUDY-026,Cobalt Neuro,Vancouver,2025,11,1422.4
+STUDY-026,Cobalt Neuro,Vancouver,2025,12,1483.96
+STUDY-026,Cobalt Neuro,Vancouver,2026,1,728.9
+STUDY-026,Cobalt Neuro,Vancouver,2026,2,667.34
+STUDY-026,Cobalt Neuro,Vancouver,2026,3,667.34
+STUDY-026,Cobalt Neuro,Vancouver,2026,4,531.73
+STUDY-026,Cobalt Neuro,Vancouver,2026,5,551.68
+STUDY-026,Cobalt Neuro,Vancouver,2026,6,298.51
+STUDY-026,Cobalt Neuro,Vancouver,2026,7,184.18
+STUDY-026,Cobalt Neuro,Vancouver,2026,8,141.5
+STUDY-026,Cobalt Neuro,Vancouver,2026,9,141.5
+STUDY-026,Cobalt Neuro,Vancouver,2026,10,141.5
+STUDY-027,Aurelis Pharma,Calgary,2025,4,712.42
+STUDY-027,Aurelis Pharma,Calgary,2025,5,833.42
+STUDY-027,Aurelis Pharma,Calgary,2025,6,833.42
+STUDY-027,Aurelis Pharma,Calgary,2025,7,993.26
+STUDY-027,Aurelis Pharma,Calgary,2025,8,1045.11
+STUDY-027,Aurelis Pharma,Calgary,2025,9,1045.11
+STUDY-027,Aurelis Pharma,Calgary,2025,10,660.13
+STUDY-027,Aurelis Pharma,Calgary,2025,11,660.13
+STUDY-027,Aurelis Pharma,Calgary,2025,12,332.69
+STUDY-027,Aurelis Pharma,Calgary,2026,1,332.69
+STUDY-027,Aurelis Pharma,Calgary,2026,2,332.69
+STUDY-027,Aurelis Pharma,Calgary,2026,3,332.69
+STUDY-027,Aurelis Pharma,Calgary,2026,4,332.69
+STUDY-027,Aurelis Pharma,Toronto,2025,4,752.69
+STUDY-027,Aurelis Pharma,Toronto,2025,5,752.69
+STUDY-027,Aurelis Pharma,Toronto,2025,6,752.69
+STUDY-027,Aurelis Pharma,Toronto,2025,7,752.69
+STUDY-027,Aurelis Pharma,Toronto,2025,8,752.69
+STUDY-027,Aurelis Pharma,Toronto,2025,9,936.98
+STUDY-027,Aurelis Pharma,Toronto,2025,10,1492.37
+STUDY-027,Aurelis Pharma,Toronto,2025,11,313.07
+STUDY-027,Aurelis Pharma,Toronto,2025,12,313.07
+STUDY-027,Aurelis Pharma,Toronto,2026,1,345.06
+STUDY-027,Aurelis Pharma,Toronto,2026,2,345.06
+STUDY-027,Aurelis Pharma,Toronto,2026,3,345.06
+STUDY-027,Aurelis Pharma,Toronto,2026,4,345.06
+STUDY-027,Aurelis Pharma,Toronto,2026,5,345.06
+STUDY-027,Aurelis Pharma,Toronto,2026,6,31.99
+STUDY-027,Aurelis Pharma,Toronto,2026,7,31.99
+STUDY-027,Aurelis Pharma,Toronto,2026,8,31.99
+STUDY-027,Aurelis Pharma,Toronto,2026,9,31.99
+STUDY-027,Aurelis Pharma,Toronto,2026,10,31.99
+STUDY-027,Aurelis Pharma,Vancouver,2025,4,510.63
+STUDY-027,Aurelis Pharma,Vancouver,2025,5,889.79
+STUDY-027,Aurelis Pharma,Vancouver,2025,6,889.79
+STUDY-027,Aurelis Pharma,Vancouver,2025,7,1558.12
+STUDY-027,Aurelis Pharma,Vancouver,2025,8,2212.98
+STUDY-027,Aurelis Pharma,Vancouver,2025,9,2212.98
+STUDY-027,Aurelis Pharma,Vancouver,2025,10,2212.98
+STUDY-027,Aurelis Pharma,Vancouver,2025,11,1849.0
+STUDY-027,Aurelis Pharma,Vancouver,2025,12,2145.09
+STUDY-027,Aurelis Pharma,Vancouver,2026,1,1323.19
+STUDY-027,Aurelis Pharma,Vancouver,2026,2,758.28
+STUDY-027,Aurelis Pharma,Vancouver,2026,3,758.28
+STUDY-027,Aurelis Pharma,Vancouver,2026,4,416.7
+STUDY-027,Aurelis Pharma,Vancouver,2026,5,103.42
+STUDY-027,Aurelis Pharma,Vancouver,2026,6,103.42
+STUDY-027,Aurelis Pharma,Vancouver,2026,7,103.42
+STUDY-027,Aurelis Pharma,Vancouver,2026,8,103.42
+STUDY-027,Aurelis Pharma,Vancouver,2026,9,103.42
+STUDY-027,Aurelis Pharma,Vancouver,2026,10,103.42
+STUDY-028,Aurelis Pharma,Calgary,2025,4,413.54
+STUDY-028,Aurelis Pharma,Calgary,2025,5,874.19
+STUDY-028,Aurelis Pharma,Calgary,2025,6,969.03
+STUDY-028,Aurelis Pharma,Calgary,2025,7,3177.57
+STUDY-028,Aurelis Pharma,Calgary,2025,8,4291.14
+STUDY-028,Aurelis Pharma,Calgary,2025,9,6411.19
+STUDY-028,Aurelis Pharma,Calgary,2025,10,7385.33
+STUDY-028,Aurelis Pharma,Calgary,2025,11,7461.19
+STUDY-028,Aurelis Pharma,Calgary,2025,12,6854.77
+STUDY-028,Aurelis Pharma,Calgary,2026,1,6399.86
+STUDY-028,Aurelis Pharma,Calgary,2026,2,4179.8
+STUDY-028,Aurelis Pharma,Calgary,2026,3,3564.39
+STUDY-028,Aurelis Pharma,Calgary,2026,4,2425.94
+STUDY-028,Aurelis Pharma,Calgary,2026,5,1118.35
+STUDY-028,Aurelis Pharma,Calgary,2026,6,748.64
+STUDY-028,Aurelis Pharma,Calgary,2026,7,187.96
+STUDY-028,Aurelis Pharma,Calgary,2026,8,187.96
+STUDY-028,Aurelis Pharma,Calgary,2026,9,187.96
+STUDY-028,Aurelis Pharma,Calgary,2026,10,187.96
+STUDY-028,Aurelis Pharma,Toronto,2025,5,2373.15
+STUDY-028,Aurelis Pharma,Toronto,2025,6,2751.72
+STUDY-028,Aurelis Pharma,Toronto,2025,7,3864.02
+STUDY-028,Aurelis Pharma,Toronto,2025,8,5566.14
+STUDY-028,Aurelis Pharma,Toronto,2025,9,5934.08
+STUDY-028,Aurelis Pharma,Toronto,2025,10,6900.0
+STUDY-028,Aurelis Pharma,Toronto,2025,11,6785.64
+STUDY-028,Aurelis Pharma,Toronto,2025,12,5311.39
+STUDY-028,Aurelis Pharma,Toronto,2026,1,5311.39
+STUDY-028,Aurelis Pharma,Toronto,2026,2,4034.34
+STUDY-028,Aurelis Pharma,Toronto,2026,3,3186.71
+STUDY-028,Aurelis Pharma,Toronto,2026,4,2790.98
+STUDY-028,Aurelis Pharma,Toronto,2026,5,1398.66
+STUDY-028,Aurelis Pharma,Toronto,2026,6,954.48
+STUDY-028,Aurelis Pharma,Toronto,2026,7,317.43
+STUDY-028,Aurelis Pharma,Toronto,2026,8,317.43
+STUDY-028,Aurelis Pharma,Toronto,2026,9,317.43
+STUDY-028,Aurelis Pharma,Toronto,2026,10,317.43
+STUDY-028,Aurelis Pharma,Vancouver,2025,4,598.81
+STUDY-028,Aurelis Pharma,Vancouver,2025,5,1064.29
+STUDY-028,Aurelis Pharma,Vancouver,2025,6,1428.32
+STUDY-028,Aurelis Pharma,Vancouver,2025,7,2097.58
+STUDY-028,Aurelis Pharma,Vancouver,2025,8,3189.38
+STUDY-028,Aurelis Pharma,Vancouver,2025,9,3322.78
+STUDY-028,Aurelis Pharma,Vancouver,2025,10,3785.85
+STUDY-028,Aurelis Pharma,Vancouver,2025,11,5115.85
+STUDY-028,Aurelis Pharma,Vancouver,2025,12,4252.2
+STUDY-028,Aurelis Pharma,Vancouver,2026,1,3653.39
+STUDY-028,Aurelis Pharma,Vancouver,2026,2,3200.6
+STUDY-028,Aurelis Pharma,Vancouver,2026,3,1715.8
+STUDY-028,Aurelis Pharma,Vancouver,2026,4,1440.23
+STUDY-028,Aurelis Pharma,Vancouver,2026,5,1440.23
+STUDY-028,Aurelis Pharma,Vancouver,2026,6,871.41
+STUDY-028,Aurelis Pharma,Vancouver,2026,7,871.41
+STUDY-028,Aurelis Pharma,Vancouver,2026,8,124.17
+STUDY-028,Aurelis Pharma,Vancouver,2026,9,124.17
+STUDY-028,Aurelis Pharma,Vancouver,2026,10,124.17
+STUDY-029,Nordvale Therapeutics,Calgary,2025,12,253.22
+STUDY-029,Nordvale Therapeutics,Calgary,2026,1,548.03
+STUDY-029,Nordvale Therapeutics,Calgary,2026,2,878.36
+STUDY-029,Nordvale Therapeutics,Calgary,2026,3,878.36
+STUDY-029,Nordvale Therapeutics,Calgary,2026,4,878.36
+STUDY-029,Nordvale Therapeutics,Calgary,2026,5,2115.81
+STUDY-029,Nordvale Therapeutics,Calgary,2026,6,2377.55
+STUDY-029,Nordvale Therapeutics,Calgary,2026,7,2115.81
+STUDY-029,Nordvale Therapeutics,Calgary,2026,8,2115.81
+STUDY-029,Nordvale Therapeutics,Calgary,2026,9,2115.81
+STUDY-029,Nordvale Therapeutics,Calgary,2026,10,1822.7
+STUDY-029,Nordvale Therapeutics,Toronto,2025,10,474.81
+STUDY-029,Nordvale Therapeutics,Toronto,2025,11,933.83
+STUDY-029,Nordvale Therapeutics,Toronto,2025,12,1892.66
+STUDY-029,Nordvale Therapeutics,Toronto,2026,1,1857.62
+STUDY-029,Nordvale Therapeutics,Toronto,2026,2,3165.8
+STUDY-029,Nordvale Therapeutics,Toronto,2026,3,3185.11
+STUDY-029,Nordvale Therapeutics,Toronto,2026,4,3168.33
+STUDY-029,Nordvale Therapeutics,Toronto,2026,5,3168.33
+STUDY-029,Nordvale Therapeutics,Toronto,2026,6,4005.08
+STUDY-029,Nordvale Therapeutics,Toronto,2026,7,3563.73
+STUDY-029,Nordvale Therapeutics,Toronto,2026,8,3433.17
+STUDY-029,Nordvale Therapeutics,Toronto,2026,9,2600.44
+STUDY-029,Nordvale Therapeutics,Toronto,2026,10,1786.22
+STUDY-029,Nordvale Therapeutics,Vancouver,2025,10,652.37
+STUDY-029,Nordvale Therapeutics,Vancouver,2025,11,1102.35
+STUDY-029,Nordvale Therapeutics,Vancouver,2025,12,1703.43
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,1,1869.26
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,2,1727.95
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,3,2192.31
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,4,2691.93
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,5,3780.65
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,6,3246.46
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,7,2443.87
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,8,2339.47
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,9,1705.27
+STUDY-029,Nordvale Therapeutics,Vancouver,2026,10,1705.27
+STUDY-030,Northbridge Memory Lab,Calgary,2025,4,279.89
+STUDY-030,Northbridge Memory Lab,Calgary,2025,5,668.8
+STUDY-030,Northbridge Memory Lab,Calgary,2025,6,668.8
+STUDY-030,Northbridge Memory Lab,Calgary,2025,7,747.21
+STUDY-030,Northbridge Memory Lab,Calgary,2025,8,886.27
+STUDY-030,Northbridge Memory Lab,Calgary,2025,9,668.8
+STUDY-030,Northbridge Memory Lab,Calgary,2025,10,915.08
+STUDY-030,Northbridge Memory Lab,Calgary,2025,11,987.82
+STUDY-030,Northbridge Memory Lab,Calgary,2025,12,319.02
+STUDY-030,Northbridge Memory Lab,Calgary,2026,1,246.29
+STUDY-030,Northbridge Memory Lab,Calgary,2026,2,246.29
+STUDY-030,Northbridge Memory Lab,Calgary,2026,3,246.29
+STUDY-030,Northbridge Memory Lab,Calgary,2026,4,246.29
+STUDY-030,Northbridge Memory Lab,Calgary,2026,5,246.29
+STUDY-030,Northbridge Memory Lab,Calgary,2026,6,246.29
+STUDY-030,Northbridge Memory Lab,Toronto,2025,1,64.22
+STUDY-030,Northbridge Memory Lab,Toronto,2025,2,176.32
+STUDY-030,Northbridge Memory Lab,Toronto,2025,3,112.11
+STUDY-030,Northbridge Memory Lab,Toronto,2025,4,112.11
+STUDY-030,Northbridge Memory Lab,Toronto,2025,5,430.13
+STUDY-030,Northbridge Memory Lab,Toronto,2025,6,430.13
+STUDY-030,Northbridge Memory Lab,Toronto,2025,7,575.31
+STUDY-030,Northbridge Memory Lab,Toronto,2025,8,430.13
+STUDY-030,Northbridge Memory Lab,Toronto,2025,9,438.49
+STUDY-030,Northbridge Memory Lab,Toronto,2025,10,1037.06
+STUDY-030,Northbridge Memory Lab,Toronto,2025,11,1037.06
+STUDY-030,Northbridge Memory Lab,Toronto,2025,12,1782.12
+STUDY-030,Northbridge Memory Lab,Toronto,2026,1,2372.09
+STUDY-030,Northbridge Memory Lab,Toronto,2026,2,1989.81
+STUDY-030,Northbridge Memory Lab,Toronto,2026,3,1870.26
+STUDY-030,Northbridge Memory Lab,Toronto,2026,4,1870.26
+STUDY-030,Northbridge Memory Lab,Toronto,2026,5,1556.18
+STUDY-030,Northbridge Memory Lab,Toronto,2026,6,1271.7
+STUDY-030,Northbridge Memory Lab,Toronto,2026,7,953.92
+STUDY-030,Northbridge Memory Lab,Toronto,2026,8,590.89
+STUDY-030,Northbridge Memory Lab,Toronto,2026,9,235.48
+STUDY-030,Northbridge Memory Lab,Toronto,2026,10,235.48
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,1,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,2,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,3,415.88
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,4,415.88
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,5,415.88
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,6,415.88
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,7,879.49
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,8,879.49
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,9,879.49
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,10,879.49
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,11,550.77
+STUDY-030,Northbridge Memory Lab,Vancouver,2025,12,550.77
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,1,550.77
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,2,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,3,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,4,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,5,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,6,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,7,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,8,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,9,87.16
+STUDY-030,Northbridge Memory Lab,Vancouver,2026,10,87.16

@@ -1,0 +1,103 @@
+table DimExchangeRate
+	lineageTag: fa108fd4-ba06-4570-ae43-ed12e4f093df
+
+	column YearMonthKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9266185e-02ea-4be9-bf7d-4ec247d2e3fc
+		summarizeBy: none
+		sourceColumn: YearMonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PeriodLabel
+		dataType: string
+		lineageTag: 7e4ad157-077d-4de4-b87e-8da6efec7200
+		summarizeBy: none
+		sourceColumn: PeriodLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column USD_CAD_Rate
+		dataType: double
+		lineageTag: ec8c01c7-4f5b-4e65-a051-40c36c29ddf5
+		summarizeBy: none
+		sourceColumn: USD_CAD_Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DimExchangeRate = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(
+				        {
+				            // FY2022-2023 (Sep 2022 - Aug 2023) — Source: Bank of Canada daily rates via freecurrencyrates.com
+				            {202209, "Sep 2022", 1.3389},
+				            {202210, "Oct 2022", 1.3722},
+				            {202211, "Nov 2022", 1.3419},
+				            {202212, "Dec 2022", 1.3577},
+				            {202301, "Jan 2023", 1.3414},
+				            {202302, "Feb 2023", 1.3475},
+				            {202303, "Mar 2023", 1.3696},
+				            {202304, "Apr 2023", 1.3493},
+				            {202305, "May 2023", 1.3527},
+				            {202306, "Jun 2023", 1.3295},
+				            {202307, "Jul 2023", 1.3219},
+				            {202308, "Aug 2023", 1.3491},
+				            // FY2023-2024 (Sep 2023 - Aug 2024)
+				            {202309, "Sep 2023", 1.3524},
+				            {202310, "Oct 2023", 1.3741},
+				            {202311, "Nov 2023", 1.3720},
+				            {202312, "Dec 2023", 1.3421},
+				            {202401, "Jan 2024", 1.3430},
+				            {202402, "Feb 2024", 1.3501},
+				            {202403, "Mar 2024", 1.3555},
+				            {202404, "Apr 2024", 1.3700},
+				            {202405, "May 2024", 1.3681},
+				            {202406, "Jun 2024", 1.3700},
+				            {202407, "Jul 2024", 1.3720},
+				            {202408, "Aug 2024", 1.3624},
+				            // FY2024-2025 (Sep 2024 - Aug 2025)
+				            {202409, "Sep 2024", 1.3541},
+				            {202410, "Oct 2024", 1.3783},
+				            {202411, "Nov 2024", 1.3987},
+				            {202412, "Dec 2024", 1.4224},
+				            {202501, "Jan 2025", 1.4408},
+				            {202502, "Feb 2025", 1.4291},
+				            {202503, "Mar 2025", 1.4381},
+				            {202504, "Apr 2025", 1.3982},
+				            {202505, "May 2025", 1.3873},
+				            {202506, "Jun 2025", 1.3686},
+				            {202507, "Jul 2025", 1.3724},
+				            {202508, "Aug 2025", 1.3810},
+				            // FY2025-2026 (Sep 2025 - Aug 2026)
+				            {202509, "Sep 2025", 1.3838},
+				            {202510, "Oct 2025", 1.3987},
+				            {202511, "Nov 2025", 1.4059},
+				            {202512, "Dec 2025", 1.3825},
+				            {202601, "Jan 2026", 1.3808},
+				            {202602, "Feb 2026", 1.3651}, // Bank of Canada official
+				            {202603, "Mar 2026", 1.3717}, // Bank of Canada official
+				            {202604, "Apr 2026", 1.3751}, // Bank of Canada official
+				            {202605, "May 2026", 1.3723}, // Bank of Canada official
+				            {202606, "Jun 2026", 1.4040}, // Bank of Canada official
+				            {202607, "Jul 2026", 1.3700}, // Partial month estimate
+				            {202608, "Aug 2026", 1.3700}  // Placeholder
+				        },
+				        {"YearMonthKey", "PeriodLabel", "USD_CAD_Rate"}
+				    ),
+				    TypedTable = Table.TransformColumnTypes(Source, {
+				        {"YearMonthKey", Int64.Type},
+				        {"PeriodLabel", type text},
+				        {"USD_CAD_Rate", type number}
+				    })
+				in
+				    TypedTable
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

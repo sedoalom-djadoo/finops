@@ -1,0 +1,233 @@
+table _Measures_Expenses
+	lineageTag: 0880cc3d-84ee-47d0-9760-7c124a457048
+
+	measure 'Total Expenses' =
+			
+			CALCULATE(
+			    SUM(FactTransactions[Amount]),
+			    DimAccount[ExpenseType] = "Operating"
+			)
+		lineageTag: c8b42103-0183-4010-b2f7-6c435b6e85ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expenses Prior Year' =
+			
+			CALCULATE(
+			    [Total Expenses],
+			    SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) )
+			)
+		lineageTag: d8c55a28-0201-4234-affb-be318a69d42c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expenses YOY Growth %' =
+			
+			IF(
+			    ISBLANK([Total Expenses Prior Year]),
+			    BLANK(),
+			    DIVIDE([Total Expenses] - [Total Expenses Prior Year], [Total Expenses Prior Year])
+			)
+		lineageTag: 415c21c3-5ab8-45d2-902c-335f8c321c67
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expenses Prior Year Variance' =
+			
+			IF(
+			    ISBLANK([Total Expenses Prior Year]),
+			    "No prior year data",
+			    VAR _growth = [Total Expenses YOY Growth %]
+			    VAR _delta = [Total Expenses] - [Total Expenses Prior Year]
+			    VAR _arrow = IF(_growth >= 0, "▲ +", "▼ ")
+			    VAR _pct = FORMAT(ABS(_growth), "0.0%")
+			    VAR _sign = IF(_delta >= 0, "+", "-")
+			    VAR _abs = _sign & FORMAT(ABS(_delta) / 1000000, "0.00") & "M"
+			    RETURN _arrow & _pct & " | " & _abs & " vs PY"
+			)
+		lineageTag: 5f2c0069-c02d-4581-9c9d-9cb797cd11c8
+
+	measure 'Occupancy Cost' =
+			
+			CALCULATE(
+			    SUM(FactTransactions[Amount]),
+			    DimAccount[ExpenseCategory] = "Occupancy"
+			)
+		lineageTag: 2c066e22-28a5-440f-8d29-7ea6de6ef662
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Occupancy Cost Prior Year' =
+			
+			CALCULATE(
+			    [Occupancy Cost],
+			    SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) )
+			)
+		lineageTag: 7785b8ca-3104-4b79-9250-11276999cfba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Occupancy % of Revenue' =
+			
+			DIVIDE(
+			    [Occupancy Cost],
+			    [Total Revenue],
+			    0
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: b123fbb6-c3ff-4fa4-b5f3-6f01216fdbad
+
+	measure 'Occupancy % of Revenue Prior Year' =
+			
+			DIVIDE(
+			    [Occupancy Cost Prior Year],
+			    [Revenue Prior Year],
+			    0
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 95e3e26b-2420-4f44-83c3-d4fed01e1392
+
+	measure 'Occupancy % of Revenue Variance' =
+			
+			IF(
+			    ISBLANK([Occupancy % of Revenue Prior Year]),
+			    "No prior year data",
+			    VAR _current = [Occupancy % of Revenue]
+			    VAR _prior = [Occupancy % of Revenue Prior Year]
+			    VAR _deltaPts = (_current - _prior) * 100
+			    VAR _arrow = IF(_deltaPts >= 0, "▲ +", "▼ ")
+			    RETURN _arrow & FORMAT(ABS(_deltaPts), "0.0") & " pts vs PY"
+			)
+		lineageTag: fbe63a4f-ace2-40f9-a236-9710f102822a
+
+	measure 'Financial Charges' =
+			
+			CALCULATE(
+			    SUM(FactTransactions[Amount]),
+			    DimAccount[ExpenseCategory] = "Financial Charges"
+			)
+		formatString: #,0
+		lineageTag: 5c159b2c-512e-493f-bf58-523b9db7f999
+
+	measure 'Financial Charges Prior Year' =
+			
+			CALCULATE(
+			    [Financial Charges],
+			    SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) )
+			)
+		lineageTag: 49a973ab-53f8-46e6-8993-7f74e6616a0e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Financial Charges YOY Growth %' =
+			
+			IF(
+			    ISBLANK([Financial Charges Prior Year]),
+			    BLANK(),
+			    DIVIDE([Financial Charges] - [Financial Charges Prior Year], [Financial Charges Prior Year])
+			)
+		lineageTag: 8812aaea-dd14-4e13-b347-f1a935f72d24
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Financial Charges Prior Year Variance' =
+			
+			IF(
+			    ISBLANK([Financial Charges Prior Year]),
+			    "No prior year data",
+			    VAR _growth = [Financial Charges YOY Growth %]
+			    VAR _delta = [Financial Charges] - [Financial Charges Prior Year]
+			    VAR _arrow = IF(_growth >= 0, "▲ +", "▼ ")
+			    VAR _pct = FORMAT(ABS(_growth), "0.0%")
+			    VAR _sign = IF(_delta >= 0, "+", "-")
+			    VAR _abs = _sign & FORMAT(ABS(_delta) / 1000, "0") & "K"
+			    RETURN _arrow & _pct & " | " & _abs & " vs PY"
+			)
+		lineageTag: e453e7d9-6fa2-4d0b-842d-2ff3aedd4c7f
+
+	measure 'Operating Expenses % of Gross Margin' =
+			
+			DIVIDE(
+			    [Total Expenses],
+			    [Gross Margin],
+			    0
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: d66e916b-2215-4d7f-808f-2d4be8b37d92
+
+	measure 'Operating Expenses % of Gross Margin Prior Year' =
+			
+			IF(
+			    ISBLANK([Total Expenses Prior Year]),
+			    BLANK(),
+			    DIVIDE([Total Expenses Prior Year], [Gross Margin Prior Year])
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 76809ed1-ce0f-4c82-8308-8400da0addd1
+
+	measure 'Operating Expenses % of Gross Margin Variance' =
+			
+			IF(
+			    ISBLANK([Operating Expenses % of Gross Margin Prior Year]),
+			    "No prior year data",
+			    VAR _current = [Operating Expenses % of Gross Margin]
+			    VAR _prior = [Operating Expenses % of Gross Margin Prior Year]
+			    VAR _deltaPts = (_current - _prior) * 100
+			    VAR _arrow = IF(_deltaPts >= 0, "▲ +", "▼ ")
+			    RETURN _arrow & FORMAT(ABS(_deltaPts), "0.0") & " pts vs PY"
+			)
+		lineageTag: 6bb43568-9310-468a-b555-fc0cb16a6846
+
+	measure 'Occupancy % of Revenue Delta' =
+			
+			IF(
+			    ISBLANK([Occupancy % of Revenue Prior Year]),
+			    BLANK(),
+			    [Occupancy % of Revenue] - [Occupancy % of Revenue Prior Year]
+			)
+		lineageTag: 350ca4b7-0936-4e33-aace-2d61df836d51
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Operating Expenses % of Gross Margin Delta' =
+			
+			IF(
+			    ISBLANK([Operating Expenses % of Gross Margin Prior Year]),
+			    BLANK(),
+			    [Operating Expenses % of Gross Margin] - [Operating Expenses % of Gross Margin Prior Year]
+			)
+		lineageTag: 26dd6ef4-1114-4df5-b825-44df80a228ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expense Composition %' =
+			
+			VAR _catCost = CALCULATE(
+			    SUM(FactTransactions[Amount]),
+			    DimAccount[ExpenseType] = "Operating"
+			)
+			VAR _totalOperating = CALCULATE(
+			    SUM(FactTransactions[Amount]),
+			    ALLSELECTED(DimAccount),
+			    DimAccount[ExpenseType] = "Operating"
+			)
+			RETURN
+			DIVIDE(_catCost, _totalOperating, 0)
+		lineageTag: 6d0edc99-d66f-4f79-b45f-84835bf9c683
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		lineageTag: e7504e4b-facb-45f9-9bcd-ae948d4f6a0f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Column1]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures_Expenses = calculated
+		mode: import
+		source = DATATABLE("Column1", STRING, {{"placeholder"}})
+
+	annotation PBI_Id = eaa0385d3ee848a28dc4bd7c8ccaf129
+

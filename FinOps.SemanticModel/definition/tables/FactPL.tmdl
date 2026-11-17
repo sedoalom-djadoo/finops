@@ -1,0 +1,113 @@
+table FactPL
+	lineageTag: 2bf6fd44-cfc1-488a-91b5-d675c3364e54
+
+	measure 'Validation Revenue Total' =
+			
+			CALCULATE(
+			    SUM(FactPL[Amount]),
+			    FactPL[AccountNumber] = "40001"
+			)
+		lineageTag: 2180decc-0b27-4d08-85f1-f6240c81100e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AccountNumber
+		dataType: string
+		lineageTag: 6019981d-d7fc-433b-a840-c18cd1682663
+		summarizeBy: none
+		sourceColumn: AccountNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column PeriodLabel
+		dataType: string
+		lineageTag: 6693684d-4831-4ace-a0a9-d9e257731c01
+		summarizeBy: none
+		sourceColumn: PeriodLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 17553927-b3c1-4888-992d-52c86cc60e8d
+		summarizeBy: count
+		sourceColumn: YearMonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		lineageTag: bb5ebbfb-96ea-4039-832b-0480cf442a96
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e9267a2d-155b-4f6e-8eae-9b2bdaca74c2
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactPL = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents(DataFolder & "Profit_and_Loss_by_Month.xlsx"), false, true),
+				    Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    BufferedSheet = Table.Buffer(Sheet),
+				    SkipRows = Table.Skip(BufferedSheet, 4),
+				    PromoteHeaders = Table.PromoteHeaders(SkipRows, [PromoteAllScalars=true]),
+				    RenameFirst = Table.RenameColumns(PromoteHeaders, {{Table.ColumnNames(PromoteHeaders){0}, "AccountLabel"}}),
+				    RemoveTotal = Table.RemoveColumns(RenameFirst, {"Total"}),
+				    FilterAccounts = Table.SelectRows(RemoveTotal, each
+				        [AccountLabel] <> null and
+				        [AccountLabel] <> "" and
+				        (try
+				            let
+				                firstWord = Text.Split(Text.From([AccountLabel]), " "){0},
+				                n = Int64.From(firstWord)
+				            in n >= 10000 and n <= 99999
+				         otherwise false)
+				    ),
+				    AddAccountNumber = Table.AddColumn(FilterAccounts, "AccountNumber", each
+				        Text.BeforeDelimiter(Text.From([AccountLabel]), " ")
+				    , type text),
+				    NonPivotCols = {"AccountLabel", "AccountNumber"},
+				    MonthCols = List.RemoveItems(Table.ColumnNames(AddAccountNumber), NonPivotCols),
+				    Unpivoted = Table.Unpivot(AddAccountNumber, MonthCols, "PeriodLabel", "Amount"),
+				    MonthMap = [Jan=1, Feb=2, Mar=3, Apr=4, May=5, Jun=6,
+				                Jul=7, Aug=8, Sep=9, Oct=10, Nov=11, Dec=12],
+				    AddYearMonthKey = Table.AddColumn(Unpivoted, "YearMonthKey", each
+				        let
+				            parts = Text.Split([PeriodLabel], " "),
+				            monthNum = Record.Field(MonthMap, parts{0}),
+				            yearNum = Int64.From(List.Last(parts))
+				        in
+				            yearNum * 100 + monthNum
+				    , Int64.Type),
+				    SelectColumns = Table.SelectColumns(AddYearMonthKey, {
+				        "AccountNumber", "PeriodLabel", "YearMonthKey", "Amount"
+				    }),
+				    TypedTable = Table.TransformColumnTypes(SelectColumns, {
+				        {"AccountNumber", type text},
+				        {"PeriodLabel", type text},
+				        {"Amount", type number}
+				    }),
+				    FilterNonNull = Table.SelectRows(TypedTable, each [Amount] <> null),
+				    AddDateKey = Table.AddColumn(FilterNonNull, "DateKey", each
+				        [YearMonthKey] * 100 + 1
+				    , Int64.Type)
+				in
+				    AddDateKey
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

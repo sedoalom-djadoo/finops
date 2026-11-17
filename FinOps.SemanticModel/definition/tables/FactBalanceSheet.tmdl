@@ -1,0 +1,98 @@
+table FactBalanceSheet
+	lineageTag: 20ebabef-e3d0-4079-89ce-ba177f5221d2
+
+	column AccountNumber
+		dataType: string
+		lineageTag: c5631451-2492-424b-a344-62f261107120
+		summarizeBy: none
+		sourceColumn: AccountNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountName
+		dataType: string
+		lineageTag: c1db0942-2ea2-4e6b-ae5e-72568b2d77c0
+		summarizeBy: none
+		sourceColumn: AccountName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AsOfDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8a1b50f0-d7da-414e-b516-fdc081ae46b4
+		summarizeBy: none
+		sourceColumn: AsOfDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IsPartialYear
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9e54179c-ae05-4df4-b116-cd5e52127122
+		summarizeBy: none
+		sourceColumn: IsPartialYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column Balance
+		dataType: double
+		lineageTag: 7f4ef24b-d703-47c8-add4-c2c646dc8782
+		summarizeBy: sum
+		sourceColumn: Balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactBalanceSheet = m
+		mode: import
+		source = ```
+				let
+				    Source = Excel.Workbook(File.Contents(DataFolder & "Balance_Sheet_by_FY.xlsx"), null, true),
+				    SheetMapping = #table(
+				        {"SheetName", "AsOfDate", "IsPartialYear"},
+				        {
+				            {"2023", #date(2023, 8, 31), false},
+				            {"2024", #date(2024, 8, 31), false},
+				            {"2025", #date(2025, 8, 31), false},
+				            {"2026", #date(2026, 7, 9),  true}
+				        }
+				    ),
+				    FilteredSheets = Table.SelectRows(Source, each List.Contains({"2023","2024","2025","2026"}, [Item])),
+				    JoinedWithMapping = Table.NestedJoin(FilteredSheets, {"Item"}, SheetMapping, {"SheetName"}, "MappingData", JoinKind.Inner),
+				    ProcessSheet = Table.AddColumn(JoinedWithMapping, "ProcessedData", each
+				        let
+				            RawTable = Table.Buffer([Data]),
+				            SkippedHeader = Table.Skip(RawTable, 5),
+				            // account rows start with a digit; QB prints "Profit for the year" without an account number,
+				            // so it is mapped to the synthetic account 99999 here instead of being hard-coded
+				            KeepRows = Table.SelectRows(SkippedHeader, each
+				                [Column1] <> null and Text.Length(Text.From([Column1])) > 0 and
+				                (List.Contains({"0".."9"}, Text.Start(Text.From([Column1]), 1)) or Text.From([Column1]) = "Profit for the year")
+				            ),
+				            AddAccountNumber = Table.AddColumn(KeepRows, "AccountNumber", each
+				                if Text.From([Column1]) = "Profit for the year" then "99999" else Text.BeforeDelimiter(Text.From([Column1]), " ")),
+				            AddAccountName = Table.AddColumn(AddAccountNumber, "AccountName", each
+				                if Text.From([Column1]) = "Profit for the year" then "Profit for the year" else Text.Trim(Text.AfterDelimiter(Text.From([Column1]), " "))),
+				            SelectFinal = Table.SelectColumns(AddAccountName, {"AccountNumber", "AccountName", "Column2"})
+				        in
+				            SelectFinal
+				    ),
+				    ExpandProcessed = Table.ExpandTableColumn(ProcessSheet, "ProcessedData", {"AccountNumber", "AccountName", "Column2"}, {"AccountNumber", "AccountName", "Balance"}),
+				    ExpandMapping = Table.ExpandTableColumn(ExpandProcessed, "MappingData", {"AsOfDate", "IsPartialYear"}, {"AsOfDate", "IsPartialYear"}),
+				    SelectColumns = Table.SelectColumns(ExpandMapping, {"AccountNumber", "AccountName", "AsOfDate", "IsPartialYear", "Balance"}),
+				    ChangedTypes = Table.TransformColumnTypes(SelectColumns, {
+				        {"AccountNumber", type text}, {"AccountName", type text}, {"AsOfDate", type date},
+				        {"IsPartialYear", type logical}, {"Balance", type number}
+				    })
+				in
+				    ChangedTypes
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

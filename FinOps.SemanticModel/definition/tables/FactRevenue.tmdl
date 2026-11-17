@@ -1,0 +1,194 @@
+table FactRevenue
+	lineageTag: cc93d071-caf8-4c2d-98bb-108ad2fc3f2a
+
+	column SponsorNameNormalized
+		dataType: string
+		lineageTag: cca9109e-c2d7-4b96-b069-e883a1bff522
+		summarizeBy: none
+		sourceColumn: SponsorNameNormalized
+
+		annotation SummarizationSetBy = Automatic
+
+	column SiteCode
+		dataType: string
+		lineageTag: 74700819-c3cd-4bfc-b8e8-89489a70fae3
+		summarizeBy: none
+		sourceColumn: SiteCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: a57edeee-f8e1-4aca-bec2-7660b9a69380
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a48acec4-f853-4b09-9544-10f7ac935170
+		summarizeBy: none
+		sourceColumn: MonthDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Amount_CAD
+		dataType: double
+		lineageTag: 9bd095ac-b8a0-420a-af0e-b6fab2ded0fa
+		summarizeBy: sum
+		sourceColumn: Amount_CAD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FiscalYearBilling
+		dataType: string
+		lineageTag: 8a3832b4-cc63-42b7-a507-2369e3c948b2
+		summarizeBy: none
+		sourceColumn: FiscalYearBilling
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudyCompositeKey
+		dataType: string
+		lineageTag: 81be0fb9-89da-4847-a0bf-796bbccbc53a
+		summarizeBy: none
+		sourceColumn: StudyCompositeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CRO
+		dataType: string
+		lineageTag: d40824bc-b918-47fa-a7ca-0cbd5c1d2400
+		summarizeBy: none
+		sourceColumn: CRO
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudyRaw
+		dataType: string
+		lineageTag: e3533dc4-0523-48b4-b226-1b8cb0fd8e08
+		summarizeBy: none
+		sourceColumn: StudyRaw
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactRevenue = m
+		mode: import
+		source = ```
+				let
+				    BasePath = DataFolder & "billing\",
+				    Load = (fy as number, site as text) as table =>
+				        Excel.Workbook(File.Contents(BasePath & "Billing_Revenue_FY" & Text.From(fy + 1) & ".xlsx"), null, true){[Item = site & " Revenues", Kind = "Sheet"]}[Data],
+
+				    // billing-team workbook: title rows, a header row containing TOTAL, totals and legend rows mixed with detail
+				    ProcessSheet = (tbl as table, site as text, fyStartYear as number) as table =>
+				        let
+				            FindHeaderRow = Table.Skip(tbl, each not List.Contains(Record.ToList(_), "TOTAL")),
+				            PromoteHeaders = Table.PromoteHeaders(FindHeaderRow, [PromoteAllScalars=true]),
+				            ColNames = Table.ColumnNames(PromoteHeaders),
+				            RenamedFirst3 = Table.RenameColumns(PromoteHeaders, {
+				                {ColNames{0}, "CRO"}, {ColNames{1}, "SponsorRaw"}, {ColNames{2}, "StudyRaw"}
+				            }),
+				            DropPharma = if List.Contains(Table.ColumnNames(RenamedFirst3), "Pharma")
+				                then Table.RemoveColumns(RenamedFirst3, {"Pharma"}) else RenamedFirst3,
+				            AddSite = Table.AddColumn(DropPharma, "SiteCode", each site, type text),
+				            AddFYStart = Table.AddColumn(AddSite, "FYStartYear", each fyStartYear, Int64.Type),
+				            RemoveTotalRow = Table.SelectRows(AddFYStart, each [CRO] <> null or [SponsorRaw] <> null or [StudyRaw] <> null),
+				            RemoveLegendRows = Table.SelectRows(RemoveTotalRow, each
+				                [StudyRaw] = null or
+				                (not Text.StartsWith(Text.From([StudyRaw]), "Total") and
+				                 not Text.StartsWith(Text.From([StudyRaw]), "Legend") and
+				                 [StudyRaw] <> "TOTAL")
+				            ),
+				            RemoveEmptySponsor = Table.SelectRows(RemoveLegendRows, each [SponsorRaw] <> null and [SponsorRaw] <> "")
+				        in
+				            RemoveEmptySponsor,
+
+				    // site sheets available per fiscal year (Vancouver opened in October 2024)
+				    SheetPlan = {
+				        {2022, "TOR"}, {2022, "CAL"},
+				        {2023, "TOR"}, {2023, "CAL"},
+				        {2024, "VAN"}, {2024, "TOR"}, {2024, "CAL"},
+				        {2025, "VAN"}, {2025, "TOR"}, {2025, "CAL"}
+				    },
+				    Combined = Table.Combine(List.Transform(SheetPlan, each ProcessSheet(Load(_{0}, _{1}), _{1}, _{0}))),
+				    Buffered = Table.Buffer(Combined),
+
+				    FilterNumericTotal = Table.SelectRows(Buffered, each [TOTAL] <> null and [TOTAL] > 0),
+
+				    NormalizeCRO = Table.TransformColumns(FilterNumericTotal, {{"CRO", each
+				        let c = Text.Trim(Text.From(_ ?? ""))
+				        in if c = "Cambira" or Text.Lower(c) = "cambria" then "Cambria CRO"
+				           else if c = "Vantage" then "Vantage Clinical"
+				           else if c = "N/A" or c = "" then ""
+				           else c
+				    , type text}}),
+
+				    NormalizeSponsor = Table.TransformColumns(NormalizeCRO, {{"SponsorRaw", each
+				        let c = Text.Trim(_ ?? ""), u = Text.Upper(c)
+				        in if u = "AURELIS" or u = "AURELIS PHARMA" then "Aurelis Pharma"
+				           else if u = "NORDVALE" or u = "NORDVALE THERAPEUTICS" then "Nordvale Therapeutics"
+				           else if u = "HELIX RIDGE" or u = "HELIXRIDGE" or u = "HELIX RIDGE BIO" then "Helix Ridge Bio"
+				           else if u = "COBALT" or u = "COBALT NEURO" then "Cobalt Neuro"
+				           else if u = "LARKSPUR" or u = "LARKSPUR BIOTECH" then "Larkspur Biotech"
+				           else if u = "NORTHBRIDGE" or u = "NORTHBRIDGE MEMORY LAB" then "Northbridge Memory Lab"
+				           else c
+				    , type text}}),
+				    RenameNormalized = Table.RenameColumns(NormalizeSponsor, {{"SponsorRaw", "SponsorNameNormalized"}}),
+
+				    // lines the billing team could not attribute to a protocol fall back to the sponsor name
+				    BadStudy = {"-", "??", "two protocols?", "which cohort ??"},
+				    // protocol codes are typed by hand ("Study-007", "STUDY 007", "STUDY-0007"): rebuild them as STUDY-nnn
+				    NormalizeStudy = Table.TransformColumns(RenameNormalized, {{"StudyRaw", each
+				        let c = Text.Trim(Text.From(_ ?? "")), cLower = Text.Lower(c), digits = Text.Select(c, {"0".."9"})
+				        in if List.Contains(BadStudy, cLower) or c = "" then null
+				           else if Text.StartsWith(Text.Upper(c), "STUDY") and Text.Length(digits) >= 3 then "STUDY-" & Text.End(digits, 3)
+				           else c
+				    , type text}}),
+				
+				    FallbackStudy = Table.AddColumn(NormalizeStudy, "StudyFinal", each
+				        if [StudyRaw] = null then [SponsorNameNormalized] else [StudyRaw]
+				    , type text),
+				    DropStudyRaw = Table.RemoveColumns(FallbackStudy, {"StudyRaw"}),
+				    RenameStudy = Table.RenameColumns(DropStudyRaw, {{"StudyFinal", "StudyRaw"}}),
+
+				    Unpivoted = Table.UnpivotOtherColumns(RenameStudy, {"CRO", "SponsorNameNormalized", "StudyRaw", "SiteCode", "FYStartYear", "TOTAL"}, "MonthRaw", "Amount_CAD"),
+				    FilterMonths = Table.SelectRows(Unpivoted, each [Amount_CAD] <> null and [Amount_CAD] > 0 and [MonthRaw] <> "TOTAL"),
+				    DropTotalCol = Table.RemoveColumns(FilterMonths, {"TOTAL"}),
+
+				    MonthMap = [Sept = 9, Oct = 10, Nov = 11, Dec = 12, Jan = 1, Feb = 2, Mar = 3, Apr = 4, May = 5, Jun = 6, Jul = 7, Aug = 8],
+				    ParsedDate = Table.AddColumn(DropTotalCol, "MonthDate", each
+				        let
+				            monthNum = Record.FieldOrDefault(MonthMap, [MonthRaw], null),
+				            year = if monthNum = null then null else if monthNum >= 9 then [FYStartYear] else [FYStartYear] + 1
+				        in if monthNum = null then null else #date(year, monthNum, 1)
+				    , type date),
+				    RemoveNullDates = Table.SelectRows(ParsedDate, each [MonthDate] <> null),
+
+				    AddFiscalYear = Table.AddColumn(RemoveNullDates, "FiscalYearBilling", each
+				        let m = Date.Month([MonthDate]), y = Date.Year([MonthDate])
+				        in if m >= 9 then Text.From(y) & "-" & Text.From(y + 1) else Text.From(y - 1) & "-" & Text.From(y)
+				    , type text),
+				    AddYearMonth = Table.AddColumn(AddFiscalYear, "YearMonth", each
+				        Text.From(Date.Year([MonthDate])) & "-" & Text.PadStart(Text.From(Date.Month([MonthDate])), 2, "0")
+				    , type text),
+				    AddCompositeKey = Table.AddColumn(AddYearMonth, "StudyCompositeKey", each [SponsorNameNormalized] & "|" & [StudyRaw], type text),
+				    FixAmountType = Table.TransformColumnTypes(AddCompositeKey, {{"Amount_CAD", type number}}),
+				    FinalCols = Table.SelectColumns(FixAmountType, {
+				        "CRO", "SponsorNameNormalized", "StudyRaw", "StudyCompositeKey",
+				        "SiteCode", "MonthDate", "YearMonth", "Amount_CAD", "FiscalYearBilling"
+				    })
+				in
+				    FinalCols
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

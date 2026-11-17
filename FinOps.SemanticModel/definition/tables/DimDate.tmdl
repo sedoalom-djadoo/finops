@@ -1,0 +1,195 @@
+table DimDate
+	lineageTag: 372bfd6f-d216-4527-b55f-163425fa6d94
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: 47aa910f-2a0e-4d93-9ac2-8e79a859a2d1
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CalendarYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e56e370-23b4-481d-975c-fad3e4307d0f
+		summarizeBy: sum
+		sourceColumn: CalendarYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarMonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: c87d727d-00a2-42ed-b318-d95024ab465d
+		summarizeBy: sum
+		sourceColumn: CalendarMonthNumber
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarMonthName
+		dataType: string
+		lineageTag: eca4a370-3520-41f4-a1f2-0b4b56bd6ac3
+		summarizeBy: none
+		sourceColumn: CalendarMonthName
+		sortByColumn: FiscalMonthNumber
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column CalendarQuarter
+		dataType: string
+		lineageTag: 62bf0db6-634a-4cae-aa47-7d5fe863b274
+		summarizeBy: none
+		sourceColumn: CalendarQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalMonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: cabff3c3-585c-4601-864c-0dcbdfa475e4
+		summarizeBy: sum
+		sourceColumn: FiscalMonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYear
+		dataType: int64
+		formatString: 0
+		lineageTag: d9e3b292-de1f-4d01-b0f3-2a95cc854ace
+		summarizeBy: sum
+		sourceColumn: FiscalYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYearLabel
+		dataType: string
+		lineageTag: aa8301f1-2f8a-4a98-94c4-62a6bf38db39
+		summarizeBy: none
+		sourceColumn: FiscalYearLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalQuarter
+		dataType: string
+		lineageTag: c42e5701-6e2d-41da-9c4e-f5d66bef54f4
+		summarizeBy: none
+		sourceColumn: FiscalQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek
+		dataType: string
+		lineageTag: ad6b3613-ac76-4416-bb0a-9b69e868c006
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 80feb079-36a6-47c8-a475-c979fb8c6ddd
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d914d74e-2273-488c-ab28-78107f228135
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalMonthName =
+			
+			SWITCH(
+			    DimDate[FiscalMonthNumber],
+			    1, "Sep",
+			    2, "Oct",
+			    3, "Nov",
+			    4, "Dec",
+			    5, "Jan",
+			    6, "Feb",
+			    7, "Mar",
+			    8, "Apr",
+			    9, "May",
+			    10, "Jun",
+			    11, "Jul",
+			    12, "Aug"
+			)
+		lineageTag: 578305a8-1905-4a3b-9d6f-577fe9275659
+		summarizeBy: none
+		sortByColumn: FiscalMonthNumber
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE up to the last transaction date in the general ledger. Prior-year measures shift only these dates, so a partial current year is compared with the same partial period last year.
+	column IsBeforeDataCutoff = DimDate[Date] <= MAX ( FactTransactions[TransactionDate] )
+		dataType: boolean
+		lineageTag: f54ef2b9-64d1-4925-ab97-ca7db53a4f98
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source = ```
+				let
+				    StartDate = #date(2022, 9, 1),
+				    EndDate = #date(2027, 8, 31),
+				
+				    DateList = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    DateTable = Table.FromList(DateList, Splitter.SplitByNothing(), {"Date"}),
+				    ChangedType = Table.TransformColumnTypes(DateTable, {{"Date", type date}}),
+				
+				    // Calendar columns
+				    AddYear = Table.AddColumn(ChangedType, "CalendarYear", each Date.Year([Date]), Int64.Type),
+				    AddMonth = Table.AddColumn(AddYear, "CalendarMonthNumber", each Date.Month([Date]), Int64.Type),
+				    AddMonthName = Table.AddColumn(AddMonth, "CalendarMonthName", each Date.ToText([Date], "MMMM"), type text),
+				    AddQuarter = Table.AddColumn(AddMonthName, "CalendarQuarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+				
+				    // Fiscal year columns (Sep = Month 1, Aug = Month 12)
+				    AddFiscalMonthNumber = Table.AddColumn(AddQuarter, "FiscalMonthNumber", each 
+				        if Date.Month([Date]) >= 9 then Date.Month([Date]) - 8 
+				        else Date.Month([Date]) + 4, Int64.Type),
+				
+				    AddFiscalYear = Table.AddColumn(AddFiscalMonthNumber, "FiscalYear", each 
+				        if Date.Month([Date]) >= 9 then Date.Year([Date]) + 1 
+				        else Date.Year([Date]), Int64.Type),
+				
+				    AddFiscalYearLabel = Table.AddColumn(AddFiscalYear, "FiscalYearLabel", each 
+				        "FY" & Text.From([FiscalYear] - 1) & "-" & Text.From([FiscalYear]), type text),
+				
+				    AddFiscalQuarter = Table.AddColumn(AddFiscalYearLabel, "FiscalQuarter", each 
+				        "Q" & Text.From(Number.RoundUp([FiscalMonthNumber] / 3, 0)), type text),
+				
+				    // Day of week
+				    AddDayOfWeek = Table.AddColumn(AddFiscalQuarter, "DayOfWeek", each Date.DayOfWeekName([Date]), type text),
+				    AddIsWeekend = Table.AddColumn(AddDayOfWeek, "IsWeekend", each Date.DayOfWeek([Date]) >= 5, type logical),
+				
+				    // Date key for relationships
+				    AddDateKey = Table.AddColumn(AddIsWeekend, "DateKey", each Date.Year([Date]) * 10000 + Date.Month([Date]) * 100 + Date.Day([Date]), Int64.Type)
+				
+				in
+				    AddDateKey
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

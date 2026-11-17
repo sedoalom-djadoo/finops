@@ -1,0 +1,36 @@
+table DimSponsor
+	lineageTag: c3db1947-deb7-4810-a233-774f3b198687
+
+	column SponsorKey
+		dataType: int64
+		formatString: 0
+		lineageTag: cc9b1d86-c5b7-42c0-a2ff-c91c54526009
+		summarizeBy: none
+		sourceColumn: SponsorKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SponsorNameNormalized
+		dataType: string
+		lineageTag: 14c7dd89-7cda-4aa5-b5b4-9f5fb37ea562
+		summarizeBy: none
+		sourceColumn: SponsorNameNormalized
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSponsor = m
+		mode: import
+		source =
+				let
+				    Source = FactRevenue,
+				    SelectColumns = Table.SelectColumns(Source, {"SponsorNameNormalized"}),
+				    DistinctSponsors = Table.Distinct(SelectColumns),
+				    AddSponsorKey = Table.AddIndexColumn(DistinctSponsors, "SponsorKey", 1, 1, Int64.Type),
+				    ReorderColumns = Table.ReorderColumns(AddSponsorKey, {"SponsorKey", "SponsorNameNormalized"})
+				in
+				    ReorderColumns
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

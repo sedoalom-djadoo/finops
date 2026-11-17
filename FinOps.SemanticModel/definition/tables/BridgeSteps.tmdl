@@ -1,0 +1,54 @@
+table BridgeSteps
+	lineageTag: eea21767-e756-42be-89c7-1d82707660da
+
+	measure 'Bridge Value' =
+			
+			VAR _step = SELECTEDVALUE(BridgeSteps[StepName])
+			RETURN
+			SWITCH(
+			    _step,
+			    "Net income", [Net Income (GL)],
+			    "+ Financial", CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Financial"),
+			    "+ Depreciation", CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Depreciation"),
+			    "+ Tax", CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Tax"),
+			    BLANK()
+			)
+		lineageTag: a2a9790c-a37a-4906-ae97-f11e90751e53
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column StepName
+		lineageTag: 84aa743a-ec55-4988-9ad9-bd27fe2bc15c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [StepName]
+		sortByColumn: SortOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortOrder
+		formatString: 0
+		lineageTag: cdcb8e14-9e35-4c05-b98b-dec305bf51a7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SortOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition BridgeSteps = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "StepName", STRING,
+				    "SortOrder", INTEGER,
+				    {
+				        {"Net income", 1},
+				        {"+ Financial", 2},
+				        {"+ Depreciation", 3},
+				        {"+ Tax", 4}
+				    }
+				)
+
+	annotation PBI_Id = 76161ab06991457ebaa28ec7132168fb
+

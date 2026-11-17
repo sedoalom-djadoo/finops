@@ -1,0 +1,56 @@
+relationship AutoDetected_d5300721-8454-4625-98d5-ee6400aadf44
+	fromColumn: FactRevenue.SiteCode
+	toColumn: DimSite.SiteCode
+
+relationship AutoDetected_0c2d4001-7a87-4a76-ac68-549817f0f38b
+	fromColumn: FactTransactions.DateKey
+	toColumn: DimDate.DateKey
+
+relationship AutoDetected_c99ae5bc-ceb1-452f-b07f-65c72e705571
+	fromColumn: FactTransactions.YearMonthKey
+	toColumn: DimExchangeRate.YearMonthKey
+
+relationship ad4f4699-7e98-19d3-ab11-0426395a6434
+	fromColumn: FactRevenue.MonthDate
+	toColumn: DimDate.Date
+
+relationship AutoDetected_e1dda307-9e2d-46f4-814c-4a1fbe616ded
+	fromColumn: FactRevenue.StudyCompositeKey
+	toColumn: DimStudy.StudyCompositeKey
+
+relationship 29a23457-7431-3de2-430e-22c8ff76eb65
+	fromColumn: FactInvoices.TransactionDate
+	toColumn: DimDate.Date
+
+relationship AutoDetected_cd08e64d-609d-4957-bc41-cd61a6d9b707
+	fromColumn: FactPL.DateKey
+	toColumn: DimDate.DateKey
+
+relationship AutoDetected_ef5af9ba-c3b9-4ae4-85f5-db6afc0337e1
+	fromColumn: FactPL.AccountNumber
+	toColumn: DimAccount.AccountNumber
+
+relationship AutoDetected_34f1089a-17bd-4ef8-be88-59c3c01dba99
+	fromColumn: FactBalanceSheet.AccountNumber
+	toColumn: DimAccount.AccountNumber
+
+relationship 8e9a4b0a-ed4a-ec11-146b-c7f05c67fcad
+	fromColumn: FactBalanceSheet.AsOfDate
+	toColumn: DimDate.Date
+
+relationship e697605a-0925-168c-1767-bcef64dee652
+	fromColumn: FactTransactions.AccountNumber
+	toColumn: DimAccount.AccountNumber
+
+relationship 8376c05f-b5a4-8209-a747-c57ea05ea073
+	fromColumn: FactPLAdjustments.AsOfDate
+	toColumn: DimDate.Date
+
+relationship AutoDetected_441206bd-8864-4028-8ab5-d0c6b802ca7e
+	fromColumn: FactRevenue.SponsorNameNormalized
+	toColumn: DimSponsor.SponsorNameNormalized
+
+relationship AutoDetected_dcb19e6d-855b-4124-9471-29bb482a9d62
+	isActive: false
+	fromColumn: DimStudy.SponsorNameNormalized
+	toColumn: DimSponsor.SponsorNameNormalized

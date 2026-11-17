@@ -1,0 +1,182 @@
+table _Measures_BalanceSheet
+	lineageTag: c55e09e3-3688-4c04-a5d5-4330500291f0
+
+	measure 'Total Assets' = CALCULATE(SUM(FactBalanceSheet[Balance]), DimAccount[BalanceSheetSection] = "Asset")
+		lineageTag: be64f199-d069-46f7-be6b-50de0b1a1463
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Liabilities' = CALCULATE(SUM(FactBalanceSheet[Balance]), DimAccount[BalanceSheetSection] = "Liability")
+		lineageTag: f00c2c89-7a78-469b-93ed-88cc8bdc12b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Equity' = CALCULATE(SUM(FactBalanceSheet[Balance]), DimAccount[BalanceSheetSection] = "Equity")
+		lineageTag: cfe0f970-7357-4a41-830c-bd996080f8ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Current Assets' = CALCULATE(SUM(FactBalanceSheet[Balance]), DimAccount[BalanceSheetSection] = "Asset", DimAccount[IsCurrent] = TRUE)
+		lineageTag: f604217b-d3b7-4d80-a073-8e7c6c8f1e96
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Current Liabilities' = CALCULATE(SUM(FactBalanceSheet[Balance]), DimAccount[BalanceSheetSection] = "Liability", DimAccount[IsCurrent] = TRUE)
+		lineageTag: c228c58c-0068-48c8-9853-a05a450ba895
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Working Capital' = [Current Assets] - [Current Liabilities]
+		lineageTag: 9c82f4ef-f683-4114-a229-d21f7c0e08a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Balances of accounts that have a lender in DimAccount (replaces a hard-coded list of account numbers).
+	measure 'Long-term Debt' = ```
+			CALCULATE ( SUM ( FactBalanceSheet[Balance] ), KEEPFILTERS ( NOT ISBLANK ( DimAccount[Lender] ) ) )
+			```
+		lineageTag: 68a2ecf8-f028-46c4-a8b0-4f1c02d84dd8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Debt-to-Equity = DIVIDE([Long-term Debt], [Total Equity], 0)
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 2b006440-15ec-4424-b5f2-b6cf0403141c
+
+	measure 'Total Assets Prior Year' =
+			
+			VAR _currentFY = MAX(DimDate[FiscalYear])
+			RETURN CALCULATE([Total Assets], DimDate[FiscalYear] = _currentFY - 1)
+		lineageTag: 1ed3938f-3207-46e1-b362-b88bb33a0b69
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Liabilities Prior Year' =
+			
+			VAR _currentFY = MAX(DimDate[FiscalYear])
+			RETURN CALCULATE([Total Liabilities], DimDate[FiscalYear] = _currentFY - 1)
+		lineageTag: ff21dc09-0f3a-4c87-9fc5-8b1f83f9fd1f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Working Capital Prior Year' =
+			
+			VAR _currentFY = MAX(DimDate[FiscalYear])
+			RETURN CALCULATE([Working Capital], DimDate[FiscalYear] = _currentFY - 1)
+		lineageTag: e0589b21-6a33-481f-8a96-66f037d636c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Debt-to-Equity Prior Year' =
+			
+			VAR _currentFY = MAX(DimDate[FiscalYear])
+			RETURN CALCULATE([Debt-to-Equity], DimDate[FiscalYear] = _currentFY - 1)
+		lineageTag: 03dd1e5d-7881-41b7-bd82-9c8d4873ed89
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Assets Variance %' =
+			
+			VAR _prior = [Total Assets Prior Year]
+			RETURN IF(ISBLANK(_prior), BLANK(), DIVIDE([Total Assets] - _prior, _prior))
+		lineageTag: 2a04e132-ac08-40e3-9d85-b59f652489c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Assets Variance Label' =
+			
+			VAR _prior = [Total Assets Prior Year]
+			RETURN
+			IF(
+			    ISBLANK(_prior),
+			    "No prior year data",
+			    VAR _pct = [Total Assets Variance %]
+			    VAR _delta = [Total Assets] - _prior
+			    VAR _arrow = IF(_delta >= 0, "▲", "▼")
+			    VAR _deltaM = _delta / 1000000
+			    RETURN _arrow & " " & FORMAT(_pct, "+0.0%;-0.0%") & " | " & FORMAT(_deltaM, "+0.00;-0.00") & "M vs PY"
+			)
+		lineageTag: 4f72ff27-4967-418e-a404-8d6b5c9086ff
+
+	measure 'Total Liabilities Variance %' =
+			
+			VAR _prior = [Total Liabilities Prior Year]
+			RETURN IF(ISBLANK(_prior), BLANK(), DIVIDE([Total Liabilities] - _prior, _prior))
+		lineageTag: 1d9e6b3f-8401-443c-9f4d-85eb56d408a8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Liabilities Variance Label' =
+			
+			VAR _prior = [Total Liabilities Prior Year]
+			RETURN
+			IF(
+			    ISBLANK(_prior),
+			    "No prior year data",
+			    VAR _pct = [Total Liabilities Variance %]
+			    VAR _delta = [Total Liabilities] - _prior
+			    VAR _arrow = IF(_delta >= 0, "▲", "▼")
+			    VAR _deltaM = _delta / 1000000
+			    RETURN _arrow & " " & FORMAT(_pct, "+0.0%;-0.0%") & " | " & FORMAT(_deltaM, "+0.00;-0.00") & "M vs PY"
+			)
+		lineageTag: cf14f660-7e56-488e-b4ca-a7c77b4d770c
+
+	measure 'Working Capital Variance %' =
+			
+			VAR _prior = [Working Capital Prior Year]
+			RETURN IF(ISBLANK(_prior), BLANK(), DIVIDE([Working Capital] - _prior, _prior))
+		lineageTag: 5568d6cb-777f-49ae-8ad5-942d20db4111
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Working Capital Variance Label' =
+			
+			VAR _prior = [Working Capital Prior Year]
+			RETURN
+			IF(
+			    ISBLANK(_prior),
+			    "No prior year data",
+			    VAR _pct = [Working Capital Variance %]
+			    VAR _delta = [Working Capital] - _prior
+			    VAR _arrow = IF(_delta >= 0, "▲", "▼")
+			    VAR _deltaM = _delta / 1000000
+			    RETURN _arrow & " " & FORMAT(_pct, "+0.0%;-0.0%") & " | " & FORMAT(_deltaM, "+0.00;-0.00") & "M vs PY"
+			)
+		lineageTag: 997f676f-3f40-4b35-b481-a24bddaae90b
+
+	measure 'Debt-to-Equity Variance (pts)' =
+			
+			VAR _prior = [Debt-to-Equity Prior Year]
+			RETURN IF(ISBLANK(_prior), BLANK(), [Debt-to-Equity] - _prior)
+		lineageTag: d4d7dcc4-d8b7-4533-9120-7c917ca8a799
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Debt-to-Equity Variance Label' =
+			
+			VAR _prior = [Debt-to-Equity Prior Year]
+			RETURN
+			IF(
+			    ISBLANK(_prior),
+			    "No prior year data",
+			    VAR _delta = [Debt-to-Equity] - _prior
+			    VAR _arrow = IF(_delta >= 0, "▲", "▼")
+			    RETURN _arrow & " " & FORMAT(_delta, "+0.00;-0.00") & " pts vs PY"
+			)
+		lineageTag: 58b4786e-9939-4dd0-ab7c-27208f321679
+
+	column 'Sort Order'
+		formatString: 0
+		lineageTag: 9b3742d3-40d9-4b4e-81eb-ef1c13cc2f76
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Sort Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures_BalanceSheet = calculated
+		mode: import
+		source = ROW("Sort Order", 1)
+
+	annotation PBI_Id = 2697cbdfb4804bb7ba8db3c890f7f175
+

@@ -1,0 +1,203 @@
+table FactTransactions
+	lineageTag: 125efd56-f5bd-4cb9-b7fd-766286231226
+
+	column AccountNumber
+		dataType: string
+		lineageTag: 733a1cf8-9ea6-41c9-98e6-38654abf6831
+		summarizeBy: none
+		sourceColumn: AccountNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountRaw
+		dataType: string
+		lineageTag: 44a49faa-39dc-47ac-a77e-785043392baf
+		summarizeBy: none
+		sourceColumn: AccountRaw
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransactionDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b8801d32-44be-4594-90bf-c96406e813b7
+		summarizeBy: none
+		sourceColumn: TransactionDate
+
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TransactionType
+		dataType: string
+		lineageTag: b94f9d09-9a6b-4dc6-80f0-2f83eaacee6b
+		summarizeBy: none
+		sourceColumn: TransactionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReferenceNumber
+		dataType: string
+		lineageTag: 8086c091-1e3a-4ecd-bd34-0882d87c03b3
+		summarizeBy: none
+		sourceColumn: ReferenceNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: ec85dddb-5bdb-413d-9b2d-c5498a4116e5
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClassFullName
+		dataType: string
+		lineageTag: 19768d35-2e1c-4c9d-9d8a-4db2fec96eb9
+		summarizeBy: none
+		sourceColumn: ClassFullName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: bcb858fb-551c-45be-b7ac-e286605c89bf
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column SplitAccount
+		dataType: string
+		lineageTag: 269424cc-fa2b-4023-81c9-ee32da83aa5c
+		summarizeBy: none
+		sourceColumn: SplitAccount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		lineageTag: d1be598b-7422-44eb-af17-58ba8c218277
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SiteCode
+		dataType: string
+		lineageTag: cd1bb217-ec0c-430b-a2b7-0823baa3a229
+		summarizeBy: none
+		sourceColumn: SiteCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2db86a17-5a31-483a-aa8f-4ac5a3aa5462
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 24fbe078-81a2-432f-bd8f-34f5ede87359
+		summarizeBy: none
+		sourceColumn: YearMonthKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactTransactions = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents(DataFolder & "General_Ledger_Transaction_Detail.xlsx"), false, true),
+				    Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    BufferedSheet = Table.Buffer(Sheet),
+				
+				    // Tag account header rows only (non-null Column1, not a Total row, Column2 is null)
+				    AddAccountRaw = Table.AddColumn(BufferedSheet, "AccountRaw", each
+				        if [Column1] <> null
+				           and not Text.StartsWith(Text.From([Column1] ?? ""), "Total")
+				           and [Column2] = null
+				        then Text.From([Column1])
+				        else null
+				    , type text),
+				
+				    // FillDown to propagate account name to all transaction rows below
+				    FilledDown = Table.FillDown(AddAccountRaw, {"AccountRaw"}),
+				
+				    // Keep only transaction rows: Column1 = null, Column2 = date (not header)
+				    FilterTransactions = Table.SelectRows(FilledDown, each
+				        [Column1] = null and
+				        [Column2] <> null and
+				        [Column2] <> "Transaction date"
+				    ),
+				
+				    // Extract AccountNumber (digits before first space in AccountRaw)
+				    AddAccountNumber = Table.AddColumn(FilterTransactions, "AccountNumber", each
+				        Text.BeforeDelimiter([AccountRaw] ?? "", " ")
+				    , type text),
+				
+				    // Select and rename columns
+				    SelectColumns = Table.SelectColumns(AddAccountNumber, {
+				        "AccountNumber", "AccountRaw", "Column2", "Column3", "Column4",
+				        "Column5", "Column6", "Column7", "Column8", "Column9"
+				    }),
+				    RenameColumns = Table.RenameColumns(SelectColumns, {
+				        {"Column2", "TransactionDate"},
+				        {"Column3", "TransactionType"},
+				        {"Column4", "ReferenceNumber"},
+				        {"Column5", "Name"},
+				        {"Column6", "ClassFullName"},
+				        {"Column7", "Description"},
+				        {"Column8", "SplitAccount"},
+				        {"Column9", "Amount"}
+				    }),
+				
+				    // Type conversions
+				    TypedTable = Table.TransformColumnTypes(RenameColumns, {
+				        {"AccountNumber", type text},
+				        {"AccountRaw", type text},
+				        {"TransactionDate", type date},
+				        {"TransactionType", type text},
+				        {"ReferenceNumber", type text},
+				        {"Name", type text},
+				        {"ClassFullName", type text},
+				        {"Description", type text},
+				        {"SplitAccount", type text},
+				        {"Amount", type number}
+				    }),
+				
+				    // DateKey for DimDate relationship
+				    AddDateKey = Table.AddColumn(TypedTable, "DateKey", each
+				        Date.Year([TransactionDate]) * 10000 +
+				        Date.Month([TransactionDate]) * 100 +
+				        Date.Day([TransactionDate])
+				    , Int64.Type),
+				
+				    // YearMonthKey for DimExchangeRate relationship
+				    AddYearMonthKey = Table.AddColumn(AddDateKey, "YearMonthKey", each
+				        Date.Year([TransactionDate]) * 100 + Date.Month([TransactionDate])
+				    , Int64.Type),
+				
+				    // SiteCode from the QuickBooks Class field (blank when the bookkeeper did not tag a site)
+				    AddSiteCode = Table.AddColumn(AddYearMonthKey, "SiteCode", each
+				        if [ClassFullName] = "Toronto" then "TOR"
+				        else if [ClassFullName] = "Calgary" then "CAL"
+				        else if [ClassFullName] = "Vancouver" then "VAN"
+				        else null
+				    , type text)
+				in
+				    AddSiteCode
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

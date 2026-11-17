@@ -1,0 +1,38 @@
+table _Measures_Validation
+	lineageTag: d2cca163-f79c-40ea-bf60-123f432a1b55
+
+	measure 'GL Amount' =
+			
+			SUM(FactTransactions[Amount])
+		lineageTag: b7274b74-1b4e-4415-af4d-aba692c74463
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PL Amount' =
+			
+			SUM(FactPL[Amount])
+		lineageTag: b67a96b5-efc7-4d8e-bf34-fa8d034e5469
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL vs PL Variance' =
+			
+			[GL Amount] - [PL Amount]
+		lineageTag: f8ebe14c-b037-4962-bb23-7c468fc07652
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		lineageTag: 45e7245c-e049-461b-9cb0-e561f251d7e0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Column1]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures_Validation = calculated
+		mode: import
+		source = DATATABLE("Column1", STRING, {{"placeholder"}})
+
+	annotation PBI_Id = 08e41d21ec5340a8afafb2ac06dd76fa
+

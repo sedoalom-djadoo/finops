@@ -1,0 +1,73 @@
+table FactPLAdjustments
+	lineageTag: a80e9430-8de7-4fbb-9261-5da6c11de36f
+
+	column AsOfDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: acc6e6df-6d2c-4e34-b131-58bfb0b4524d
+		summarizeBy: none
+		sourceColumn: AsOfDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IsPartialYear
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e2d2e94f-0b0a-403d-b27b-2e3c4d9f9adf
+		summarizeBy: none
+		sourceColumn: IsPartialYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		lineageTag: cde86fbf-d36c-4ea0-9143-f7e136eef33e
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactPLAdjustments = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents(DataFolder & "Profit_and_Loss_by_FY.xlsx"), null, true),
+				
+				    SheetMapping = #table(
+				        {"SheetName", "AsOfDate", "IsPartialYear"},
+				        {
+				            {"2023", #date(2023, 8, 31), false},
+				            {"2024", #date(2024, 8, 31), false},
+				            {"2025", #date(2025, 8, 31), false},
+				            {"2026", #date(2026, 7, 9),  true}
+				        }
+				    ),
+				    FilteredSheets = Table.SelectRows(Source, each List.Contains({"2023","2024","2025","2026"}, [Item])),
+				    JoinedWithMapping = Table.NestedJoin(FilteredSheets, {"Item"}, SheetMapping, {"SheetName"}, "MappingData", JoinKind.Inner),
+				
+				    ExtractLine = Table.AddColumn(JoinedWithMapping, "Amount", each
+				        let
+				            RawTable = Table.Buffer([Data]),
+				            FoundRow = Table.SelectRows(RawTable, each [Column1] = "Unrealized Gain or Loss")
+				        in
+				            if Table.RowCount(FoundRow) = 0 then null else FoundRow{0}[Column2]
+				    , type number),
+				
+				    ExpandMapping = Table.ExpandTableColumn(ExtractLine, "MappingData", {"AsOfDate", "IsPartialYear"}, {"AsOfDate", "IsPartialYear"}),
+				    SelectFinal = Table.SelectColumns(ExpandMapping, {"AsOfDate", "IsPartialYear", "Amount"}),
+				    ChangedTypes = Table.TransformColumnTypes(SelectFinal, {
+				        {"AsOfDate", type date},
+				        {"IsPartialYear", type logical},
+				        {"Amount", type number}
+				    })
+				in
+				    ChangedTypes
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

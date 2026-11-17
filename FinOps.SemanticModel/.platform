@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Financial KPI Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e681ba44-0bed-40ef-9f6f-ffa37669d1c1"
+  }
+}

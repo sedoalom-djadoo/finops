@@ -1,0 +1,68 @@
+table DimSite
+	lineageTag: 64d72d3b-5181-4713-84f3-8fbdb229366b
+
+	column SiteKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c4cab5f-6086-4818-9bc8-b5cf28298fd6
+		summarizeBy: none
+		sourceColumn: SiteKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SiteCode
+		dataType: string
+		lineageTag: 90546245-8ab2-4fc0-9075-d8dce3c6ddee
+		summarizeBy: none
+		sourceColumn: SiteCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SiteName
+		dataType: string
+		lineageTag: 36a94880-60e7-4801-9a75-09b0d9a73b78
+		summarizeBy: none
+		sourceColumn: SiteName
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 6258e941-b304-4ed3-aae1-d319330f2c1b
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 61376bd8-f0a5-4ac2-a319-27b8b4a84414
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSite = m
+		mode: import
+		source = ```
+				let
+				    Source = Table.FromRows(
+				        {
+				            {1, "TOR", "Toronto Memory Clinic", "Toronto", true},
+				            {2, "CAL", "Calgary Memory Clinic", "Calgary", true},
+				            {3, "VAN", "Vancouver Memory Clinic", "Vancouver", true}
+				        },
+				        {"SiteKey", "SiteCode", "SiteName", "City", "IsActive"}
+				    ),
+				    TypedTable = Table.TransformColumnTypes(Source, {
+				        {"SiteKey", Int64.Type}, {"SiteCode", type text}, {"SiteName", type text}, {"City", type text}, {"IsActive", type logical}
+				    })
+				in
+				    TypedTable
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

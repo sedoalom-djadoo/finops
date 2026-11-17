@@ -1,0 +1,150 @@
+table _Measures_PL
+	lineageTag: 7408340f-f62e-4633-acfd-809b3aa1c296
+
+	measure 'Unrealized Gain or Loss Adjustment' = SUM(FactPLAdjustments[Amount])
+		lineageTag: 358c49b6-53fb-4bb8-8bd1-f1ce77084dc6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Income (GL)' =
+			
+			VAR _revenue = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Revenue")
+			VAR _otherIncome = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "OtherIncome")
+			VAR _direct = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Direct")
+			VAR _operating = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Operating")
+			VAR _depreciation = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Depreciation")
+			VAR _financial = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Financial")
+			VAR _tax = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Tax")
+			VAR _nonOperating = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "NonOperating")
+			RETURN _revenue + _otherIncome - _direct - _operating - _depreciation - _financial - _tax - _nonOperating
+		lineageTag: 27ccaba3-55ec-4c77-86bf-f2b3b42dea64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Net income / QuickBooks revenue. Both from the accounting system (the billing file uses another calendar and does not reconcile month by month).
+	measure 'Net Margin %' = ```
+			DIVIDE ( [Net Income (GL)], [Revenue QB], 0 )
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: a34c3b39-1cfb-4ff9-82eb-eec696a4936a
+
+	/// Net income for the same period one year earlier (like-for-like when the current fiscal year is partial).
+	measure 'Net Income (GL) Prior Year' = ```
+			CALCULATE ( [Net Income (GL)], SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) ) )
+			```
+		lineageTag: 14348f63-23cb-48b6-b3b7-66c343a16c62
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YOY Net Income Change' =
+			
+			VAR _prior = [Net Income (GL) Prior Year]
+			RETURN IF(ISBLANK(_prior), BLANK(), [Net Income (GL)] - _prior)
+		lineageTag: e77b20e3-5678-406e-87e4-c1dc119995c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YOY Net Income Change %' =
+			
+			VAR _prior = [Net Income (GL) Prior Year]
+			RETURN IF(ISBLANK(_prior), BLANK(), DIVIDE([YOY Net Income Change], ABS(_prior)))
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 0167e7f9-47e1-4e3e-9316-8840c078aaa7
+
+	measure 'Net Income Variance Label' =
+			
+			VAR _prior = [Net Income (GL) Prior Year]
+			RETURN
+			IF(
+			    ISBLANK(_prior),
+			    "No prior year data",
+			    VAR _delta = [Net Income (GL)] - _prior
+			    VAR _arrow = IF(_delta >= 0, "▲", "▼")
+			    VAR _deltaM = _delta / 1000000
+			    RETURN _arrow & " " & FORMAT(_deltaM, "+0.00;-0.00") & "M vs PY"
+			)
+		lineageTag: ab8073fd-2298-47f9-a20a-4e2e5b8b7ad9
+
+	/// Net margin % for the same period one year earlier.
+	measure 'Net Margin % Prior Year' = ```
+			CALCULATE ( [Net Margin %], SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) ) )
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: b0ce64d4-67c4-4252-875e-522afe7c9a40
+
+	measure 'Net Margin % Variance Label' =
+			
+			VAR _prior = [Net Margin % Prior Year]
+			RETURN
+			IF(
+			    ISBLANK(_prior),
+			    "No prior year data",
+			    VAR _deltaPts = [Net Margin % Variance (pts)]
+			    VAR _arrow = IF(_deltaPts >= 0, "▲", "▼")
+			    RETURN _arrow & " " & FORMAT(_deltaPts, "+0.0;-0.0") & " pts vs PY"
+			)
+		lineageTag: 8a67696e-e670-456d-ab8b-26265fdd91cd
+
+	measure EBITDA =
+			
+			VAR _financial = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Financial")
+			VAR _depreciation = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Depreciation")
+			VAR _tax = CALCULATE(SUM(FactTransactions[Amount]), DimAccount[ExpenseType] = "Tax")
+			RETURN [Net Income (GL)] + _financial + _depreciation + _tax
+		lineageTag: dce50737-10dc-4bec-9502-1213b9031739
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// EBITDA for the same period one year earlier.
+	measure 'EBITDA Prior Year' = ```
+			CALCULATE ( [EBITDA], SAMEPERIODLASTYEAR ( CALCULATETABLE ( VALUES ( DimDate[Date] ), DimDate[IsBeforeDataCutoff] = TRUE () ) ) )
+			```
+		lineageTag: f1146d64-87ef-475a-9b91-ac7f8c8747c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'EBITDA Variance Label' =
+			
+			VAR _prior = [EBITDA Prior Year]
+			RETURN
+			IF(
+			    ISBLANK(_prior),
+			    "No prior year data",
+			    VAR _delta = [EBITDA] - _prior
+			    VAR _arrow = IF(_delta >= 0, "▲", "▼")
+			    VAR _deltaM = _delta / 1000000
+			    RETURN _arrow & " " & FORMAT(_deltaM, "+0.00;-0.00") & "M vs PY"
+			)
+		lineageTag: 25a50d6b-683e-44e1-bebd-eec49a2ebc61
+
+	measure 'Net Margin % Variance (pts)' =
+			
+			VAR _prior = [Net Margin % Prior Year]
+			RETURN IF(ISBLANK(_prior), BLANK(), ([Net Margin %] - _prior) * 100)
+		lineageTag: 524779fb-7526-4e82-8e21-758bf9a18138
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'EBITDA Variance' =
+			
+			VAR _prior = [EBITDA Prior Year]
+			RETURN IF(ISBLANK(_prior), BLANK(), [EBITDA] - _prior)
+		lineageTag: 563c39f8-c4e9-456f-8e0e-a6f63a4b35be
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sort Order'
+		formatString: 0
+		lineageTag: 20ec6633-f463-494c-b298-af3235180fc7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Sort Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures_PL = calculated
+		mode: import
+		source = ROW("Sort Order", 1)
+
+	annotation PBI_Id = deb5b3847a6548848a298db5cc759e75
+

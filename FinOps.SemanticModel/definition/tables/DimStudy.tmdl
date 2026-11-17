@@ -1,0 +1,79 @@
+table DimStudy
+	lineageTag: 64565e3d-09a9-4009-992a-a8c4577fe0a0
+
+	column StudyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: da0be80d-0891-4739-8a82-236f438bdd66
+		summarizeBy: none
+		sourceColumn: StudyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SponsorKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f31a5ee5-9091-419d-b313-1ce909c0f9c7
+		summarizeBy: none
+		sourceColumn: SponsorKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudyCompositeKey
+		dataType: string
+		lineageTag: 01620f54-4d90-42db-adf1-4dd0b781110d
+		summarizeBy: none
+		sourceColumn: StudyCompositeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudyRaw
+		dataType: string
+		lineageTag: e3ca97a4-eb9b-42e2-9370-5f4fb5ffe001
+		summarizeBy: none
+		sourceColumn: StudyRaw
+
+		annotation SummarizationSetBy = Automatic
+
+	column SponsorNameNormalized
+		dataType: string
+		lineageTag: 09aaebd7-45cd-45a3-bf1a-cbd786e7cba6
+		summarizeBy: none
+		sourceColumn: SponsorNameNormalized
+
+		annotation SummarizationSetBy = Automatic
+
+	column CRO
+		dataType: string
+		lineageTag: ebbb66ad-fdad-4fa6-8e95-9b598ae43677
+		summarizeBy: none
+		sourceColumn: CRO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimStudy = m
+		mode: import
+		source = ```
+				let
+				    Source = FactRevenue,
+				    SelectColumns = Table.SelectColumns(Source, {"StudyRaw", "SponsorNameNormalized", "CRO"}),
+				    DistinctStudies = Table.Distinct(SelectColumns, {"StudyRaw", "SponsorNameNormalized"}),
+				    JoinSponsor = Table.NestedJoin(
+				        DistinctStudies, {"SponsorNameNormalized"},
+				        DimSponsor, {"SponsorNameNormalized"},
+				        "SponsorLookup", JoinKind.LeftOuter
+				    ),
+				    ExpandSponsorKey = Table.ExpandTableColumn(JoinSponsor, "SponsorLookup", {"SponsorKey"}),
+				    AddStudyKey = Table.AddIndexColumn(ExpandSponsorKey, "StudyKey", 1, 1, Int64.Type),
+				    ReorderColumns = Table.ReorderColumns(AddStudyKey, {"StudyKey", "StudyRaw", "SponsorNameNormalized", "SponsorKey", "CRO"}),
+				    AddCompositeKey = Table.AddColumn(ReorderColumns, "StudyCompositeKey", each 
+				        [SponsorNameNormalized] & "|" & [StudyRaw]
+				    , type text)
+				in
+				    AddCompositeKey
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
